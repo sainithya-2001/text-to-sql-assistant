@@ -148,14 +148,20 @@ streamlit run app/streamlit_app.py
 
 ## Phases
 
-0. Secret scan + sanitized prototype copies + this spec  (done)
-1. DB layer (DuckDB TPC-H, optional Snowflake) + catalog/descriptions
-2. Schema RAG (embedder, FAISS retriever) + Claude generator
-3. Safety guard, executor limits, self-correction
-4. Eval set (40 Qs + gold SQL) + runner + cost cap; run with approval
-5. Business glossary: `glossary.yaml` of TPC-H business terms (e.g. revenue = extendedprice*(1-discount),
-   "large order", "late shipment", regions/segments) retrieved alongside schema; ambiguous questions get a
-   clarifying question instead of a guess; glossary + ambiguity items added to the eval
-6. CLI + Streamlit
-7. Tests, CI (GitHub Actions: ruff, pytest, sanitized check, `docker build` since Docker isn't available
-   locally), Dockerfile, README (diagram, story, results)
+All done (2026-10-14): 0 secret scan + sanitized copies + spec; 1 DB layer; 2 hybrid retrieval + generator;
+3 guard + self-correction; 4 eval set + runner; 5 glossary + clarification; 6 CLI + Streamlit;
+7 CI + Dockerfile + README. Results: `eval/results/REPORT.md` (regenerate with `python eval/report.py`),
+offline retrieval recall in `eval/results/retrieval_recall.md`.
+
+API spend to date: ~$0.87 of the $1.00 cap (smoke $0.023, pilot $0.046, eval runs $0.79, ~$0.004 in
+two crashed calls not recorded in JSON). Any further paid run needs the owner's approval first.
+
+## Gotchas learned
+
+- `sqlglot` raises `TokenError` (not a `ParseError`) on unterminated strings; catch `SqlglotError`.
+- Iterate sets in sorted order wherever the result is user-visible (join-path bridging was
+  hash-seed dependent).
+- `pytest -q` on the command line plus `-q` in addopts hides the summary line; check the exit code,
+  never `| tail`.
+- On Git Bash for Windows, `sys.stdin.isatty()` can be True with stdin redirected; handle `EOFError`.
+- anthropic 1.x raises `TypeError("Could not resolve authentication method...")` without credentials.

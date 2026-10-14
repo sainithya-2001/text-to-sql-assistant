@@ -1,0 +1,2322 @@
+{
+ "started": "2026-10-14T17:37:34",
+ "configs": [
+  "claude-haiku-5-5/retrieved+glossary",
+  "claude-sonnet-5-5/retrieved+glossary"
+ ],
+ "stopped_reason": null,
+ "budget_cap_usd": 0.28,
+ "spent_usd": 0.247438,
+ "items": {
+  "claude-haiku-5-5/retrieved+glossary": [
+   {
+    "id": "e01",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customer_count FROM customer",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2183,
+    "output_tokens": 24,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00023030000000000001,
+    "elapsed_s": 1.06
+   },
+   {
+    "id": "e02",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS order_count FROM orders WHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2188,
+    "output_tokens": 66,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002518,
+    "elapsed_s": 1.01
+   },
+   {
+    "id": "e03",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r_name AS region_name FROM region ORDER BY r_name ASC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "gold_tables": [
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1655,
+    "output_tokens": 30,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0001805,
+    "elapsed_s": 0.91
+   },
+   {
+    "id": "e04",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c_mktsegment AS market_segment, COUNT(*) AS customer_count FROM customer GROUP BY c_mktsegment ORDER BY c_mktsegment",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2196,
+    "output_tokens": 64,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00025160000000000004,
+    "elapsed_s": 1.0
+   },
+   {
+    "id": "e05",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT AVG(c_acctbal) AS avg_account_balance FROM customer WHERE c_mktsegment = 'AUTOMOBILE'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2259,
+    "output_tokens": 55,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002534,
+    "elapsed_s": 0.9
+   },
+   {
+    "id": "e06",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS negative_balance_supplier_count FROM supplier WHERE s_acctbal < 0",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1613,
+    "output_tokens": 45,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00018380000000000002,
+    "elapsed_s": 1.15
+   },
+   {
+    "id": "e07",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS part_count FROM part WHERE p_brand = 'Brand#23'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2237,
+    "output_tokens": 39,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00024320000000000003,
+    "elapsed_s": 1.38
+   },
+   {
+    "id": "e08",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT SUM(o_totalprice) AS total_price FROM orders WHERE o_orderstatus = 'F'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2270,
+    "output_tokens": 43,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002485,
+    "elapsed_s": 0.82
+   },
+   {
+    "id": "e09",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT l_shipmode AS ship_mode, COUNT(*) AS line_item_count FROM lineitem GROUP BY l_shipmode ORDER BY line_item_count DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2534,
+    "output_tokens": 67,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002869,
+    "elapsed_s": 0.98
+   },
+   {
+    "id": "e10",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT MAX(p_retailprice) AS highest_retail_price FROM part",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2235,
+    "output_tokens": 30,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002385,
+    "elapsed_s": 0.86
+   },
+   {
+    "id": "e11",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS urgent_order_count FROM orders WHERE o_orderpriority = '1-URGENT'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2245,
+    "output_tokens": 47,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.000248,
+    "elapsed_s": 0.76
+   },
+   {
+    "id": "e12",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT p_name AS part_name, p_retailprice AS retail_price FROM part ORDER BY p_retailprice DESC LIMIT 3",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2254,
+    "output_tokens": 53,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002519,
+    "elapsed_s": 1.02
+   },
+   {
+    "id": "e13",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS returned_line_items FROM lineitem WHERE l_returnflag = 'R'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2236,
+    "output_tokens": 43,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00024510000000000005,
+    "elapsed_s": 0.78
+   },
+   {
+    "id": "e14",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT AVG(l_quantity) AS avg_quantity FROM lineitem",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2264,
+    "output_tokens": 31,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002419,
+    "elapsed_s": 0.62
+   },
+   {
+    "id": "m01",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(c.c_custkey) AS customer_count FROM nation n LEFT JOIN customer c ON c.c_nationkey = n.n_nationkey GROUP BY n.n_name ORDER BY customer_count DESC, nation_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2058,
+    "output_tokens": 102,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002568,
+    "elapsed_s": 1.12
+   },
+   {
+    "id": "m02",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(n.n_nationkey) AS nation_count FROM region r LEFT JOIN nation n ON n.n_regionkey = r.r_regionkey GROUP BY r.r_name ORDER BY r.r_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1884,
+    "output_tokens": 94,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002354,
+    "elapsed_s": 1.69
+   },
+   {
+    "id": "m03",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c.c_mktsegment AS market_segment, SUM(o.o_totalprice) AS total_order_price FROM orders o INNER JOIN customer c ON o.o_custkey = c.c_custkey WHERE o.o_orderdate >= DATE '1997-01-01' AND o.o_orderdate < DATE '1998-01-01' GROUP BY c.c_mktsegment ORDER BY total_order_price DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "customer",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2284,
+    "output_tokens": 151,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00030389999999999996,
+    "elapsed_s": 1.07
+   },
+   {
+    "id": "m04",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c.c_name AS customer_name, SUM(o.o_totalprice) AS combined_total_price FROM customer c INNER JOIN orders o ON o.o_custkey = c.c_custkey GROUP BY c.c_custkey, c.c_name ORDER BY combined_total_price DESC LIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "customer",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2288,
+    "output_tokens": 113,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002853,
+    "elapsed_s": 1.15
+   },
+   {
+    "id": "m05",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(s.s_suppkey) AS supplier_count\nFROM region r\nLEFT JOIN nation n ON n.n_regionkey = r.r_regionkey\nLEFT JOIN supplier s ON s.s_nationkey = n.n_nationkey\nGROUP BY r.r_name\nORDER BY r.r_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1887,
+    "output_tokens": 165,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00027120000000000003,
+    "elapsed_s": 1.34
+   },
+   {
+    "id": "m06",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT p.p_brand AS brand, AVG(ps.ps_supplycost) AS avg_supply_cost FROM part AS p INNER JOIN partsupp AS ps ON ps.ps_partkey = p.p_partkey WHERE p.p_mfgr = 'Manufacturer#1' GROUP BY p.p_brand ORDER BY p.p_brand",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part",
+     "partsupp"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2263,
+    "output_tokens": 196,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0003243,
+    "elapsed_s": 1.9
+   },
+   {
+    "id": "m07",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(c.c_custkey) AS customer_count FROM customer c INNER JOIN nation n ON c.c_nationkey = n.n_nationkey GROUP BY n.n_name HAVING COUNT(c.c_custkey) > 70 ORDER BY customer_count DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2060,
+    "output_tokens": 117,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002645,
+    "elapsed_s": 1.02
+   },
+   {
+    "id": "m08",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT o_orderpriority AS order_priority, COUNT(*) AS order_count FROM orders WHERE o_orderdate >= DATE '1996-01-01' AND o_orderdate < DATE '1997-01-01' GROUP BY o_orderpriority ORDER BY o_orderpriority",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2203,
+    "output_tokens": 106,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00027330000000000003,
+    "elapsed_s": 1.08
+   },
+   {
+    "id": "m09",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name, SUM(ps.ps_availqty) AS total_available_qty FROM partsupp ps INNER JOIN supplier s ON ps.ps_suppkey = s.s_suppkey GROUP BY s.s_suppkey, s.s_name ORDER BY total_available_qty DESC LIMIT 1",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "partsupp",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2258,
+    "output_tokens": 124,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002878,
+    "elapsed_s": 0.9
+   },
+   {
+    "id": "m10",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS late_line_items\nFROM lineitem\nWHERE l_receiptdate > l_commitdate",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2255,
+    "output_tokens": 47,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.000249,
+    "elapsed_s": 0.88
+   },
+   {
+    "id": "m11",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT p.p_brand AS brand, COUNT(*) AS line_item_count\nFROM lineitem l\nINNER JOIN part p ON l.l_partkey = p.p_partkey\nGROUP BY p.p_brand\nORDER BY line_item_count DESC\nLIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2257,
+    "output_tokens": 103,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00027720000000000007,
+    "elapsed_s": 1.49
+   },
+   {
+    "id": "m12",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT l_shipmode AS ship_mode, AVG(l_discount) AS avg_discount FROM lineitem WHERE l_shipdate >= DATE '1994-01-01' AND l_shipdate < DATE '1995-01-01' GROUP BY l_shipmode ORDER BY l_shipmode",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "orders",
+     "part",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2378,
+    "output_tokens": 110,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002928,
+    "elapsed_s": 0.83
+   },
+   {
+    "id": "m13",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c.c_mktsegment AS market_segment, COUNT(*) AS customer_count FROM customer c INNER JOIN nation n ON c.c_nationkey = n.n_nationkey WHERE n.n_name = 'GERMANY' GROUP BY c.c_mktsegment ORDER BY c.c_mktsegment",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2202,
+    "output_tokens": 118,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00027920000000000006,
+    "elapsed_s": 0.99
+   },
+   {
+    "id": "m14",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT EXTRACT(MONTH FROM o_orderdate) AS month_number, COUNT(*) AS order_count FROM orders WHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01' GROUP BY EXTRACT(MONTH FROM o_orderdate) ORDER BY month_number",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2209,
+    "output_tokens": 129,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002854,
+    "elapsed_s": 1.07
+   },
+   {
+    "id": "h01",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue FROM lineitem AS l INNER JOIN orders AS o ON l.l_orderkey = o.o_orderkey INNER JOIN customer AS c ON o.o_custkey = c.c_custkey INNER JOIN nation AS n ON c.c_nationkey = n.n_nationkey INNER JOIN region AS r ON n.n_regionkey = r.r_regionkey WHERE o.o_orderdate >= DATE '1995-01-01' AND o.o_orderdate < DATE '1996-01-01' GROUP BY r.r_name ORDER BY revenue DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2487,
+    "output_tokens": 326,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00041170000000000003,
+    "elapsed_s": 1.64
+   },
+   {
+    "id": "h02",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name, n.n_name AS nation_name, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue FROM lineitem l INNER JOIN supplier s ON l.l_suppkey = s.s_suppkey INNER JOIN nation n ON s.s_nationkey = n.n_nationkey WHERE l.l_shipdate >= DATE '1996-01-01' AND l.l_shipdate < DATE '1997-01-01' GROUP BY s.s_name, n.n_name ORDER BY revenue DESC LIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "orders",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2596,
+    "output_tokens": 212,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0003656,
+    "elapsed_s": 1.4
+   },
+   {
+    "id": "h03",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT\n  l_returnflag AS return_flag,\n  l_linestatus AS line_status,\n  SUM(l_quantity) AS total_quantity,\n  SUM(l_extendedprice) AS total_extended_price,\n  SUM(l_extendedprice * (1 - l_discount)) AS total_discounted_price,\n  AVG(l_discount) AS average_discount,\n  COUNT(*) AS number_of_line_items\nFROM lineitem\nWHERE l_shipdate <= DATE '1998-09-02'\nGROUP BY l_returnflag, l_linestatus\nORDER BY l_returnflag, l_linestatus",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2330,
+    "output_tokens": 220,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.000343,
+    "elapsed_s": 1.44
+   },
+   {
+    "id": "h04",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT o.o_orderkey AS order_key,\n       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue,\n       o.o_orderdate AS order_date\nFROM customer c\nINNER JOIN orders o ON o.o_custkey = c.c_custkey\nINNER JOIN lineitem l ON l.l_orderkey = o.o_orderkey\nWHERE c.c_mktsegment = 'BUILDING'\n  AND o.o_orderdate < DATE '1995-03-15'\n  AND l.l_shipdate > DATE '1995-03-15'\nGROUP BY o.o_orderkey, o.o_orderdate\nORDER BY revenue DESC\nLIMIT 10",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2440,
+    "output_tokens": 252,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00037,
+    "elapsed_s": 1.48
+   },
+   {
+    "id": "h05",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": false,
+    "sql": null,
+    "error": null,
+    "cannot_answer": "The schema has no region table, so \"ASIA\" cannot be mapped to a region key; nation only stores n_regionkey as a number.",
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region",
+     "supplier"
+    ],
+    "retrieval_recall": false,
+    "input_tokens": 2635,
+    "output_tokens": 415,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.000471,
+    "elapsed_s": 2.61
+   },
+   {
+    "id": "h06",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT SUM(l_extendedprice * l_discount) AS revenue_change\nFROM lineitem\nWHERE l_shipdate >= DATE '1994-01-01'\n  AND l_shipdate < DATE '1995-01-01'\n  AND l_discount BETWEEN 0.05 AND 0.07\n  AND l_quantity < 24",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "orders",
+     "part",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2393,
+    "output_tokens": 121,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002998,
+    "elapsed_s": 0.96
+   },
+   {
+    "id": "h07",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customers_without_orders\nFROM customer c\nLEFT JOIN orders o ON o.o_custkey = c.c_custkey\nWHERE o.o_orderkey IS NULL",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2187,
+    "output_tokens": 76,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00025670000000000006,
+    "elapsed_s": 0.87
+   },
+   {
+    "id": "h08",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year,\n       100.0 * SUM(CASE WHEN o_orderpriority = '1-URGENT' THEN 1 ELSE 0 END) / COUNT(*) AS urgent_pct\nFROM orders\nGROUP BY EXTRACT(YEAR FROM o_orderdate)\nORDER BY order_year",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2293,
+    "output_tokens": 142,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00030030000000000004,
+    "elapsed_s": 1.13
+   },
+   {
+    "id": "h09",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, SUM(ps.ps_supplycost * ps.ps_availqty) AS inventory_value FROM partsupp ps INNER JOIN supplier s ON ps.ps_suppkey = s.s_suppkey INNER JOIN nation n ON s.s_nationkey = n.n_nationkey GROUP BY n.n_name ORDER BY inventory_value DESC LIMIT 3",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2141,
+    "output_tokens": 152,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002901,
+    "elapsed_s": 1.08
+   },
+   {
+    "id": "h10",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "WITH ranked AS (\n  SELECT\n    c_mktsegment AS market_segment,\n    c_name AS customer_name,\n    c_acctbal AS account_balance,\n    ROW_NUMBER() OVER (PARTITION BY c_mktsegment ORDER BY c_acctbal DESC, c_custkey) AS rn\n  FROM customer\n)\nSELECT market_segment, customer_name, account_balance\nFROM ranked\nWHERE rn <= 3\nORDER BY market_segment, account_balance DESC, customer_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2270,
+    "output_tokens": 248,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.000351,
+    "elapsed_s": 1.6
+   },
+   {
+    "id": "h11",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "WITH basket AS (\n  SELECT l_orderkey, COUNT(*) AS line_count\n  FROM lineitem\n  GROUP BY l_orderkey\n)\nSELECT o.o_orderstatus AS order_status,\n       AVG(b.line_count) AS avg_line_items_per_order\nFROM orders o\nINNER JOIN basket b ON o.o_orderkey = b.l_orderkey\nGROUP BY o.o_orderstatus\nORDER BY o.o_orderstatus",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2343,
+    "output_tokens": 372,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0004203,
+    "elapsed_s": 2.04
+   },
+   {
+    "id": "h12",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "WITH yearly AS (\n  SELECT EXTRACT(YEAR FROM o.o_orderdate) AS order_year,\n         SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\n  FROM lineitem l\n  INNER JOIN orders o ON l.l_orderkey = o.o_orderkey\n  GROUP BY 1\n)\nSELECT order_year,\n       revenue,\n       (revenue - LAG(revenue) OVER (ORDER BY order_year)) * 100.0\n         / LAG(revenue) OVER (ORDER BY order_year) AS pct_change\nFROM yearly\nORDER BY order_year",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2418,
+    "output_tokens": 631,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0005572999999999999,
+    "elapsed_s": 2.75
+   }
+  ],
+  "claude-sonnet-5-5/retrieved+glossary": [
+   {
+    "id": "e01",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customer_count FROM customer",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2183,
+    "output_tokens": 24,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004606,
+    "elapsed_s": 1.16
+   },
+   {
+    "id": "e02",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS order_count\nFROM orders\nWHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2188,
+    "output_tokens": 68,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005056,
+    "elapsed_s": 2.43
+   },
+   {
+    "id": "e03",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r_name AS region_name FROM region ORDER BY r_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "gold_tables": [
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1655,
+    "output_tokens": 27,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00358,
+    "elapsed_s": 1.16
+   },
+   {
+    "id": "e04",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c_mktsegment AS market_segment, COUNT(*) AS customer_count\nFROM customer\nGROUP BY c_mktsegment\nORDER BY customer_count DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2196,
+    "output_tokens": 67,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005062,
+    "elapsed_s": 1.28
+   },
+   {
+    "id": "e05",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT AVG(c_acctbal) AS avg_account_balance FROM customer WHERE c_mktsegment = 'AUTOMOBILE'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2259,
+    "output_tokens": 55,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005068,
+    "elapsed_s": 1.15
+   },
+   {
+    "id": "e06",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS suppliers_with_negative_balance\nFROM supplier\nWHERE s_acctbal < 0",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1613,
+    "output_tokens": 48,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.003706,
+    "elapsed_s": 1.13
+   },
+   {
+    "id": "e07",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS part_count FROM part WHERE p_brand = 'Brand#23'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2237,
+    "output_tokens": 39,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004864,
+    "elapsed_s": 1.15
+   },
+   {
+    "id": "e08",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT SUM(o_totalprice) AS total_price_fulfilled_orders FROM orders WHERE o_orderstatus = 'F'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2270,
+    "output_tokens": 52,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00506,
+    "elapsed_s": 1.3
+   },
+   {
+    "id": "e09",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT l_shipmode AS ship_mode, COUNT(*) AS line_item_count\nFROM lineitem\nGROUP BY l_shipmode\nORDER BY line_item_count DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2534,
+    "output_tokens": 70,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005768,
+    "elapsed_s": 1.02
+   },
+   {
+    "id": "e10",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT MAX(p_retailprice) AS highest_retail_price FROM part",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2235,
+    "output_tokens": 30,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00477,
+    "elapsed_s": 1.12
+   },
+   {
+    "id": "e11",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS urgent_order_count FROM orders WHERE o_orderpriority = '1-URGENT'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2245,
+    "output_tokens": 47,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00496,
+    "elapsed_s": 1.13
+   },
+   {
+    "id": "e12",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT p_name AS part_name, p_retailprice AS retail_price\nFROM part\nORDER BY p_retailprice DESC\nLIMIT 3",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2254,
+    "output_tokens": 56,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005068,
+    "elapsed_s": 1.41
+   },
+   {
+    "id": "e13",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS returned_line_items FROM lineitem WHERE l_returnflag = 'R'",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2236,
+    "output_tokens": 43,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004902,
+    "elapsed_s": 1.28
+   },
+   {
+    "id": "e14",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT AVG(l_quantity) AS avg_quantity_per_line_item FROM lineitem",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2264,
+    "output_tokens": 37,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004898,
+    "elapsed_s": 1.11
+   },
+   {
+    "id": "m01",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(c.c_custkey) AS customer_count\nFROM nation n\nLEFT JOIN customer c ON c.c_nationkey = n.n_nationkey\nGROUP BY n.n_name\nORDER BY customer_count DESC, nation_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2058,
+    "output_tokens": 106,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005176,
+    "elapsed_s": 1.3
+   },
+   {
+    "id": "m02",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(n.n_nationkey) AS nation_count\nFROM region r\nLEFT JOIN nation n ON n.n_regionkey = r.r_regionkey\nGROUP BY r.r_name\nORDER BY r.r_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1884,
+    "output_tokens": 98,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004748,
+    "elapsed_s": 1.46
+   },
+   {
+    "id": "m03",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c.c_mktsegment AS market_segment,\n       SUM(o.o_totalprice) AS total_order_price\nFROM orders o\nJOIN customer c ON o.o_custkey = c.c_custkey\nWHERE o.o_orderdate >= DATE '1997-01-01'\n  AND o.o_orderdate < DATE '1998-01-01'\nGROUP BY c.c_mktsegment\nORDER BY total_order_price DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "customer",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2284,
+    "output_tokens": 157,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006138,
+    "elapsed_s": 1.69
+   },
+   {
+    "id": "m04",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c.c_name AS customer_name, SUM(o.o_totalprice) AS total_price\nFROM customer c\nJOIN orders o ON o.o_custkey = c.c_custkey\nGROUP BY c.c_custkey, c.c_name\nORDER BY total_price DESC\nLIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "customer",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2288,
+    "output_tokens": 109,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005666,
+    "elapsed_s": 1.36
+   },
+   {
+    "id": "m05",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(s.s_suppkey) AS supplier_count\nFROM region r\nLEFT JOIN nation n ON n.n_regionkey = r.r_regionkey\nLEFT JOIN supplier s ON s.s_nationkey = n.n_nationkey\nGROUP BY r.r_name\nORDER BY r.r_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1887,
+    "output_tokens": 131,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005084,
+    "elapsed_s": 1.54
+   },
+   {
+    "id": "m06",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT p.p_brand AS brand, AVG(ps.ps_supplycost) AS avg_supply_cost\nFROM part p\nJOIN partsupp ps ON ps.ps_partkey = p.p_partkey\nWHERE p.p_mfgr = 'Manufacturer#1'\nGROUP BY p.p_brand\nORDER BY p.p_brand",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "part",
+     "partsupp"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2263,
+    "output_tokens": 129,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005816,
+    "elapsed_s": 1.4
+   },
+   {
+    "id": "m07",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(*) AS customer_count\nFROM customer c\nJOIN nation n ON c.c_nationkey = n.n_nationkey\nGROUP BY n.n_name\nHAVING COUNT(*) > 70\nORDER BY customer_count DESC, nation_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2060,
+    "output_tokens": 111,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00523,
+    "elapsed_s": 1.61
+   },
+   {
+    "id": "m08",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT o_orderpriority AS order_priority, COUNT(*) AS order_count\nFROM orders\nWHERE o_orderdate >= DATE '1996-01-01' AND o_orderdate < DATE '1997-01-01'\nGROUP BY o_orderpriority\nORDER BY o_orderpriority",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2203,
+    "output_tokens": 110,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005506,
+    "elapsed_s": 1.47
+   },
+   {
+    "id": "m09",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name, SUM(ps.ps_availqty) AS total_available_quantity\nFROM partsupp ps\nJOIN supplier s ON ps.ps_suppkey = s.s_suppkey\nGROUP BY s.s_suppkey, s.s_name\nORDER BY total_available_quantity DESC\nLIMIT 1",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "partsupp",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2258,
+    "output_tokens": 128,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005796,
+    "elapsed_s": 1.5
+   },
+   {
+    "id": "m10",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS late_line_items\nFROM lineitem\nWHERE l_receiptdate > l_commitdate",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2255,
+    "output_tokens": 47,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00498,
+    "elapsed_s": 1.23
+   },
+   {
+    "id": "m11",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT p.p_brand AS brand, COUNT(*) AS line_item_count\nFROM lineitem l\nJOIN part p ON l.l_partkey = p.p_partkey\nGROUP BY p.p_brand\nORDER BY line_item_count DESC\nLIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "part",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "part"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2257,
+    "output_tokens": 100,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005514,
+    "elapsed_s": 1.95
+   },
+   {
+    "id": "m12",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT l_shipmode AS ship_mode, AVG(l_discount) AS avg_discount\nFROM lineitem\nWHERE l_shipdate >= DATE '1994-01-01' AND l_shipdate < DATE '1995-01-01'\nGROUP BY l_shipmode\nORDER BY l_shipmode",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "orders",
+     "part",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2378,
+    "output_tokens": 114,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005896,
+    "elapsed_s": 1.42
+   },
+   {
+    "id": "m13",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c.c_mktsegment AS market_segment, COUNT(*) AS customer_count\nFROM customer c\nJOIN nation n ON c.c_nationkey = n.n_nationkey\nWHERE n.n_name = 'GERMANY'\nGROUP BY c.c_mktsegment\nORDER BY c.c_mktsegment",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2202,
+    "output_tokens": 120,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005604,
+    "elapsed_s": 1.72
+   },
+   {
+    "id": "m14",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT EXTRACT(MONTH FROM o_orderdate) AS month_number, COUNT(*) AS order_count\nFROM orders\nWHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'\nGROUP BY EXTRACT(MONTH FROM o_orderdate)\nORDER BY month_number",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2209,
+    "output_tokens": 133,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005748,
+    "elapsed_s": 1.61
+   },
+   {
+    "id": "h01",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name,\n       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM lineitem l\nJOIN orders o ON l.l_orderkey = o.o_orderkey\nJOIN customer c ON o.o_custkey = c.c_custkey\nJOIN nation n ON c.c_nationkey = n.n_nationkey\nJOIN region r ON n.n_regionkey = r.r_regionkey\nWHERE o.o_orderdate >= DATE '1995-01-01' AND o.o_orderdate < DATE '1996-01-01'\nGROUP BY r.r_name\nORDER BY revenue DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2487,
+    "output_tokens": 237,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007344,
+    "elapsed_s": 2.16
+   },
+   {
+    "id": "h02",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name, n.n_name AS nation_name, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM lineitem l\nJOIN supplier s ON l.l_suppkey = s.s_suppkey\nJOIN nation n ON s.s_nationkey = n.n_nationkey\nWHERE l.l_shipdate >= DATE '1996-01-01' AND l.l_shipdate < DATE '1997-01-01'\nGROUP BY s.s_suppkey, s.s_name, n.n_name\nORDER BY revenue DESC\nLIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "orders",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2596,
+    "output_tokens": 222,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007412,
+    "elapsed_s": 2.41
+   },
+   {
+    "id": "h03",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT\n  l_returnflag AS return_flag,\n  l_linestatus AS line_status,\n  SUM(l_quantity) AS total_quantity,\n  SUM(l_extendedprice) AS total_extended_price,\n  SUM(l_extendedprice * (1 - l_discount)) AS total_discounted_price,\n  AVG(l_discount) AS average_discount,\n  COUNT(*) AS line_item_count\nFROM lineitem\nWHERE l_shipdate <= DATE '1998-09-02'\nGROUP BY l_returnflag, l_linestatus\nORDER BY l_returnflag, l_linestatus",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2330,
+    "output_tokens": 218,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00684,
+    "elapsed_s": 1.93
+   },
+   {
+    "id": "h04",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT l.l_orderkey AS order_key,\n       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue,\n       o.o_orderdate AS order_date\nFROM customer c\nJOIN orders o ON o.o_custkey = c.c_custkey\nJOIN lineitem l ON l.l_orderkey = o.o_orderkey\nWHERE c.c_mktsegment = 'BUILDING'\n  AND o.o_orderdate < DATE '1995-03-15'\n  AND l.l_shipdate > DATE '1995-03-15'\nGROUP BY l.l_orderkey, o.o_orderdate\nORDER BY revenue DESC\nLIMIT 10",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2440,
+    "output_tokens": 246,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00734,
+    "elapsed_s": 2.0
+   },
+   {
+    "id": "h05",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM lineitem l\nJOIN orders o ON l.l_orderkey = o.o_orderkey\nJOIN customer c ON o.o_custkey = c.c_custkey\nJOIN supplier s ON l.l_suppkey = s.s_suppkey\nJOIN nation n ON c.c_nationkey = n.n_nationkey\nWHERE c.c_nationkey = s.s_nationkey\n  AND n.n_regionkey = 2\n  AND o.o_orderdate >= DATE '1994-01-01'\n  AND o.o_orderdate < DATE '1995-01-01'\nGROUP BY n.n_name\nORDER BY revenue DESC",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": true,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region",
+     "supplier"
+    ],
+    "retrieval_recall": false,
+    "input_tokens": 5732,
+    "output_tokens": 819,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.019653999999999998,
+    "elapsed_s": 8.29
+   },
+   {
+    "id": "h06",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT SUM(l_extendedprice * l_discount) AS revenue\nFROM lineitem\nWHERE l_shipdate >= DATE '1994-01-01'\n  AND l_shipdate < DATE '1995-01-01'\n  AND l_discount BETWEEN 0.05 AND 0.07\n  AND l_quantity < 24",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "orders",
+     "part",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2393,
+    "output_tokens": 119,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005976,
+    "elapsed_s": 2.05
+   },
+   {
+    "id": "h07",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customers_without_orders\nFROM customer c\nLEFT JOIN orders o ON o.o_custkey = c.c_custkey\nWHERE o.o_orderkey IS NULL",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2187,
+    "output_tokens": 76,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005134,
+    "elapsed_s": 1.32
+   },
+   {
+    "id": "h08",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year,\n       100.0 * SUM(CASE WHEN o_orderpriority = '1-URGENT' THEN 1 ELSE 0 END) / COUNT(*) AS urgent_order_pct\nFROM orders\nGROUP BY EXTRACT(YEAR FROM o_orderdate)\nORDER BY order_year",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2293,
+    "output_tokens": 144,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006026,
+    "elapsed_s": 1.72
+   },
+   {
+    "id": "h09",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, SUM(ps.ps_supplycost * ps.ps_availqty) AS inventory_value\nFROM partsupp ps\nJOIN supplier s ON ps.ps_suppkey = s.s_suppkey\nJOIN nation n ON s.s_nationkey = n.n_nationkey\nGROUP BY n.n_name\nORDER BY inventory_value DESC\nLIMIT 3",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2141,
+    "output_tokens": 152,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005802,
+    "elapsed_s": 1.59
+   },
+   {
+    "id": "h10",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT c_mktsegment AS market_segment, c_name AS customer_name, c_acctbal AS account_balance\nFROM (\n  SELECT c_mktsegment, c_name, c_acctbal,\n         ROW_NUMBER() OVER (PARTITION BY c_mktsegment ORDER BY c_acctbal DESC, c_custkey) AS rn\n  FROM customer\n) t\nWHERE rn <= 3\nORDER BY c_mktsegment, c_acctbal DESC, c_name",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2270,
+    "output_tokens": 177,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00631,
+    "elapsed_s": 3.3
+   },
+   {
+    "id": "h11",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "WITH basket AS (\n  SELECT l_orderkey, COUNT(*) AS line_count\n  FROM lineitem\n  GROUP BY l_orderkey\n)\nSELECT o.o_orderstatus AS order_status,\n       AVG(b.line_count) AS average_basket_size\nFROM orders o\nJOIN basket b ON b.l_orderkey = o.o_orderkey\nGROUP BY o.o_orderstatus\nORDER BY o.o_orderstatus",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2343,
+    "output_tokens": 166,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006346,
+    "elapsed_s": 1.93
+   },
+   {
+    "id": "h12",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "WITH yearly AS (\n  SELECT EXTRACT(YEAR FROM o.o_orderdate) AS order_year,\n         SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\n  FROM orders o\n  JOIN lineitem l ON l.l_orderkey = o.o_orderkey\n  GROUP BY EXTRACT(YEAR FROM o.o_orderdate)\n)\nSELECT order_year,\n       revenue,\n       (revenue - LAG(revenue) OVER (ORDER BY order_year)) * 100.0 / LAG(revenue) OVER (ORDER BY order_year) AS pct_change\nFROM yearly\nORDER BY order_year",
+    "error": null,
+    "cannot_answer": null,
+    "clarification": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "orders",
+     "partsupp"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2418,
+    "output_tokens": 247,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007306,
+    "elapsed_s": 1.94
+   }
+  ]
+ }
+}
