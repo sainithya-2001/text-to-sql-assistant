@@ -8,7 +8,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+# Repo root (holds data/, glossary.yaml, eval/). T2S_HOME overrides it for non-editable installs.
+PROJECT_ROOT = Path(os.environ.get("T2S_HOME") or Path(__file__).resolve().parents[2])
 
 SNOWFLAKE_VARS = ("SNOWFLAKE_ACCOUNT", "SNOWFLAKE_USER", "SNOWFLAKE_PASSWORD", "SNOWFLAKE_WAREHOUSE")
 

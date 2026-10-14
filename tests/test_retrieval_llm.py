@@ -206,3 +206,18 @@ def test_budget_projection_learns_token_ratio_and_max_output():
     after = g.projected("claude-sonnet-5-5", 3000)
     assert after > before
     assert after >= cost_usd("claude-sonnet-5-5", Usage(input_tokens=1500, output_tokens=2000))
+
+
+def test_missing_credentials_become_llm_error():
+    class NoAuth:
+        def __init__(self):
+            self.messages = self
+
+        def create(self, **kwargs):
+            # what anthropic 1.x raises when no api key / token / profile is available
+            raise TypeError('"Could not resolve authentication method. Expected one of api_key, ..."')
+
+    from text_to_sql.llm.client import Message
+
+    with pytest.raises(LLMError, match="ANTHROPIC_API_KEY"):
+        ClaudeLLM("claude-haiku-5-5", client=NoAuth()).complete("S", [Message("user", "q")])

@@ -81,6 +81,13 @@ class ClaudeLLM(LLM):
             raise LLMError(f"Claude API error {e.status_code}: {e.message}") from e
         except self._anthropic.APIConnectionError as e:
             raise LLMError(f"cannot reach Claude API: {e}") from e
+        except self._anthropic.AnthropicError as e:
+            raise LLMError(f"Claude client error: {e}") from e
+        except TypeError as e:
+            # The SDK raises TypeError("Could not resolve authentication method ...") with no credentials.
+            if "authentication" not in str(e):
+                raise
+            raise LLMError("no Claude credentials: set ANTHROPIC_API_KEY (see .env.example)") from e
 
         usage = Usage.from_api(resp.usage)
         cost = (

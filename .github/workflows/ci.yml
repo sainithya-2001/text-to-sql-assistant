@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Original Dify exports must never be committed
+        run: |
+          if [ -n "$(git ls-files prototype/)" ]; then
+            echo "::error::prototype/ (unsanitized exports) is tracked"; exit 1
+          fi
+      - name: Sanitized exports contain no credentials
+        run: python scripts/check_sanitized.py prototype-sanitized
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, python: "3.10" }
+          - { os: ubuntu-latest, python: "3.12" }
+          - { os: windows-latest, python: "3.11" }
+    env:
+      T2S_EMBEDDER: hash  # tests are offline; no embedding model download
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: pip install -e ".[dev,ui]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pytest
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: [test, secrets-check]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          push: false
+          tags: text-to-sql:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: CLI works in the image (no API key needed)
+        run: |
+          docker run --rm text-to-sql:ci t2s schema region nation
+          docker run --rm text-to-sql:ci t2s ask "Who are our biggest customers?" < /dev/null
+      - name: UI serves
+        run: |
+          docker run -d --name ui -p 8501:8501 text-to-sql:ci
+          for i in $(seq 1 30); do
+            curl -fsS http://localhost:8501/_stcore/health && exit 0
+            sleep 2
+          done
+          docker logs ui; exit 1
