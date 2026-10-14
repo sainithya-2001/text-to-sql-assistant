@@ -92,3 +92,25 @@ def test_settings_snowflake_off_without_keys(monkeypatch):
     monkeypatch.setenv("T2S_BACKEND", "snowflake")
     with pytest.raises(ValueError, match="SNOWFLAKE_ACCOUNT"):
         Settings.from_env(load_dotenv_file=False)
+
+
+def test_join_path_is_deterministic_across_hash_seeds(tpch_path):
+    import os
+    import subprocess
+    import sys
+
+    code = (
+        "from text_to_sql.db import DuckDBBackend; from text_to_sql.schema.catalog import Catalog;"
+        f"c = Catalog.from_backend(DuckDBBackend(r'{tpch_path}'));"
+        "print(sorted(c.join_path({'lineitem', 'region'})))"
+    )
+    outs = {
+        subprocess.run(
+            [sys.executable, "-c", code],
+            capture_output=True,
+            text=True,
+            env={**os.environ, "PYTHONHASHSEED": str(seed)},
+        ).stdout
+        for seed in range(6)
+    }
+    assert len(outs) == 1, outs

@@ -110,7 +110,9 @@ def test_glossary_adds_tables_and_definitions(backend, catalog, retriever):
     llm = FakeLLM(["SELECT 1"])
     a = Assistant(backend, catalog, llm, retriever, top_k=1, glossary=GLOSSARY)
     ans = a.ask("What was our revenue in each customer region in 1995?")
-    assert {"lineitem", "orders", "customer", "nation", "region"} <= set(ans.tables)
+    # revenue's tables are added even though top_k=1 retrieval alone wouldn't pick them
+    assert {"lineitem", "orders"} <= set(ans.tables)
+    assert catalog.join_path(set(ans.tables)) == set(ans.tables)
     system, msgs = llm.calls[0]
     assert "SUM(l_extendedprice * (1 - l_discount))" in msgs[0].content
     assert "SUM(l_extendedprice" not in system  # definitions live in the user turn

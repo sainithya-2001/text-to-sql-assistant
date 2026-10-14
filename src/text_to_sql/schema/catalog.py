@@ -75,7 +75,7 @@ class Catalog:
         remaining = tables - connected
         while remaining:
             # BFS from the connected component to the nearest remaining table
-            frontier = {t: [t] for t in connected}
+            frontier = {t: [t] for t in sorted(connected)}  # sorted: set order varies per process
             seen = set(connected)
             found = None
             while frontier and not found:
