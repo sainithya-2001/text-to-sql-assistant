@@ -33,7 +33,10 @@ def test_check_sql_allowed_keeps_existing_limit(db_env, capsys):
     [
         ("DELETE FROM orders", "BLOCKED (policy, never retried): only SELECT"),
         ("SELECT * FROM read_csv('/etc/passwd')", "BLOCKED (policy, never retried): table functions"),
-        ("SELECT * FROM nation; DROP TABLE nation", "BLOCKED (fixable"),
+        (
+            "SELECT * FROM nation; DROP TABLE nation",
+            "BLOCKED (policy, never retried): only SELECT queries are allowed (got DROP)",
+        ),
         ("SELECT * FROM employees", "BLOCKED (fixable, the model would get one retry): unknown table"),
         ("SELECT 'oops FROM nation", "BLOCKED (fixable, the model would get one retry): could not parse"),
     ],

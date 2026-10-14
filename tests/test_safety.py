@@ -65,8 +65,16 @@ def test_allowed(guard, sql):
         ("SELECT version()", False),
         ("SELECT current_user", False),
         ("SELECT * FROM region WHERE r_regionkey IN (SELECT 1 FROM pragma_table_info('nation'))", False),
+        # a disallowed operation in any statement is a policy block, even with several statements
+        ("SELECT * FROM nation; DROP TABLE nation", False),
+        ("SELECT * FROM nation; DELETE FROM orders", False),
+        ("DROP TABLE nation; SELECT * FROM nation", False),
+        ("SELECT 1; SELECT getenv('HOME')", False),
+        ("SELECT 1; SELECT * FROM read_csv('x.csv')", False),
+        ("SELECT getenv('HOME') FROM employees", False),  # policy wins over a fixable unknown table
         # fixable mistakes go back to the model once
         ("SELECT 1; SELECT 2", True),
+        ("SELECT * FROM nation; SELECT * FROM region", True),
         ("SELEC 1", True),
         ("SELECT 'unterminated FROM region", True),  # TokenError, not ParseError: crashed a paid eval run
         ("SELECT * FROM employees", True),

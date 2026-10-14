@@ -75,6 +75,8 @@ docs/              prototype.md, architecture diagram
 - **Guard** rejects: parse failures, more than one statement, any root that isn't `Select`/`Union`/
   `Intersect`/`Except`/`With`-wrapping-a-select, and any `Insert/Update/Delete/Merge/Create/Drop/Alter/
   Command/Copy/Pragma/Attach/Set` node anywhere in the tree. Read-only connection is the second layer.
+  Policy checks run on every statement *before* the one-statement rule, so `SELECT ...; DROP ...` is
+  a policy block (never retried), while `SELECT 1; SELECT 2` stays a fixable error.
 - **Generation**: Claude must output SQL only (we still strip fences defensively). If the retrieved schema
   cannot answer the question, the model replies `CANNOT_ANSWER: <reason>` instead of guessing (the
   prototype's "no context, no SQL" rule).

@@ -71,27 +71,18 @@ class SqlGuard:
             statements = [s for s in sqlglot.parse(text, read=self.dialect) if s is not None]
         except SqlglotError as e:  # ParseError and TokenError (e.g. an unterminated string)
             raise GuardError(f"could not parse SQL: {_first_line(e)}", retryable=True) from e
+        # Policy checks run on every statement before the one-statement rule, so a smuggled
+        # "SELECT ...; DROP TABLE ..." is blocked outright instead of handed back as fixable.
+        for statement in statements:
+            self._check_policy(statement)
         if len(statements) != 1:
             raise GuardError(f"expected exactly one statement, got {len(statements)}", retryable=True)
         tree = statements[0]
 
-        if not isinstance(tree, (exp.Select, exp.SetOperation)):
-            raise GuardError(f"only SELECT queries are allowed (got {tree.key.upper()})")
-        for node in tree.walk():
-            if isinstance(node, FORBIDDEN_NODES):
-                raise GuardError(f"{node.key.upper()} is not allowed in a read-only query")
-            if isinstance(node, exp.Select) and node.args.get("into"):
-                raise GuardError("SELECT ... INTO is not allowed")
-
         cte_names = {cte.alias_or_name.lower() for cte in tree.find_all(exp.CTE)}
         used: set[str] = set()
         for table in tree.find_all(exp.Table):
-            if not isinstance(table.this, exp.Identifier):
-                raise GuardError(f"table functions are not allowed: {table.this.sql(self.dialect)}")
             name = table.name.lower()
-            if table.args.get("db") or table.args.get("catalog"):
-                if name in cte_names or table.db.lower() not in {"main", "tpch_sf1"}:
-                    raise GuardError(f"only the business tables are queryable, not {table.sql()}")
             if name in cte_names:
                 continue
             if name not in self.allowed_tables:
@@ -101,11 +92,6 @@ class SqlGuard:
                 )
             used.add(name)
 
-        for func in tree.find_all(exp.Func):
-            fname = func.name if isinstance(func, exp.Anonymous) else func.sql_name()
-            if FORBIDDEN_FUNCTION.match(fname or ""):
-                raise GuardError(f"function {fname}() is not allowed")
-
         limit_added = False
         if tree.args.get("limit") is None:
             # Cap the work the database does; fetch one extra row so truncation is detectable.
@@ -113,6 +99,29 @@ class SqlGuard:
             limit_added = True
         out = tree.sql(dialect=self.dialect) if limit_added else text
         return GuardedSQL(sql=out, original=sql, limit_added=limit_added, tables=frozenset(used))
+
+    def _check_policy(self, tree: exp.Expression) -> None:
+        """Raise a non-retryable GuardError for writes, table functions or system access."""
+        if not isinstance(tree, (exp.Select, exp.SetOperation)):
+            raise GuardError(f"only SELECT queries are allowed (got {tree.key.upper()})")
+        for node in tree.walk():
+            if isinstance(node, FORBIDDEN_NODES):
+                raise GuardError(f"{node.key.upper()} is not allowed in a read-only query")
+            if isinstance(node, exp.Select) and node.args.get("into"):
+                raise GuardError("SELECT ... INTO is not allowed")
+
+        cte_names = {cte.alias_or_name.lower() for cte in tree.find_all(exp.CTE)}
+        for table in tree.find_all(exp.Table):
+            if not isinstance(table.this, exp.Identifier):
+                raise GuardError(f"table functions are not allowed: {table.this.sql(self.dialect)}")
+            if table.args.get("db") or table.args.get("catalog"):
+                if table.name.lower() in cte_names or table.db.lower() not in {"main", "tpch_sf1"}:
+                    raise GuardError(f"only the business tables are queryable, not {table.sql()}")
+
+        for func in tree.find_all(exp.Func):
+            fname = func.name if isinstance(func, exp.Anonymous) else func.sql_name()
+            if FORBIDDEN_FUNCTION.match(fname or ""):
+                raise GuardError(f"function {fname}() is not allowed")
 
 
 def _first_line(e: Exception) -> str:
