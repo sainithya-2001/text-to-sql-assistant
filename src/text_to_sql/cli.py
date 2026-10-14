@@ -10,6 +10,7 @@ from .db import build_tpch, open_backend
 from .llm.client import ClaudeLLM
 from .llm.cost import BudgetExceeded, BudgetGuard
 from .pipeline import Answer, Assistant
+from .safety.guard import GuardError, SqlGuard
 from .schema.catalog import Catalog
 from .schema.embed import make_embedder
 from .schema.glossary import Glossary
@@ -103,6 +104,27 @@ def cmd_schema(args: argparse.Namespace, settings: Settings) -> int:
     return 0
 
 
+def cmd_check_sql(args: argparse.Namespace, settings: Settings) -> int:
+    """Run SQL through the guard only: no model, no execution. Exit 0 if allowed, 1 if blocked."""
+    sql = sys.stdin.read() if args.sql == "-" else args.sql
+    backend = open_backend(settings)
+    try:
+        tables = set(Catalog.from_backend(backend).names())
+        guard = SqlGuard(tables, backend.dialect, max_rows=settings.max_rows)
+    finally:
+        backend.close()
+    try:
+        g = guard.check(sql)
+    except GuardError as e:
+        kind = "fixable, the model would get one retry" if e.retryable else "policy, never retried"
+        print(f"BLOCKED ({kind}): {e}")
+        return 1
+    print(f"ALLOWED: tables {', '.join(sorted(g.tables)) or '(none)'}")
+    if g.limit_added:
+        print(f"LIMIT added; would run:\n{g.sql}")
+    return 0
+
+
 def resolve_interactively(assistant: Assistant, ans: Answer, schema_mode: str, choices: dict) -> Answer:
     """In a terminal, let the user pick a meaning for each ambiguous term, then re-ask."""
     while ans.clarification and ans.clarification.options and sys.stdin.isatty():
@@ -177,6 +199,10 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("schema", help="print the schema as the model sees it")
     s.add_argument("tables", nargs="*")
     s.set_defaults(func=cmd_schema)
+
+    s = sub.add_parser("check-sql", help="run SQL through the safety guard only (no LLM, no execution)")
+    s.add_argument("sql", help="the SQL to check, or - to read it from stdin")
+    s.set_defaults(func=cmd_check_sql)
 
     s = sub.add_parser("ask", help="answer a question")
     s.add_argument("question")

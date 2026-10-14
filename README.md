@@ -70,6 +70,7 @@ t2s ask "Which 5 nations had the most orders placed in 1996?"
 t2s ask "Who are our biggest customers?"               # asks what "biggest" means
 t2s ask "Who are our biggest customers?" --choose "biggest customers=by revenue"
 t2s chat                                               # interactive, $0.25 session cap
+t2s check-sql "DELETE FROM orders"                    # guard only: no LLM, no execution
 streamlit run app/streamlit_app.py                     # UI on :8501
 ```
 

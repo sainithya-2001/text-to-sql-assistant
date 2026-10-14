@@ -51,7 +51,7 @@ src/text_to_sql/
     cost.py        price table, usage -> dollars (incl. cache read/write), BudgetGuard
   safety/guard.py  sqlglot validation + LIMIT injection
   pipeline.py      Assistant.ask(question, schema_mode="retrieved"|"full") -> Answer
-  cli.py           `t2s ask "..."`, `t2s init-db`, `t2s schema`, `t2s eval ...`
+  cli.py           `t2s ask "..."`, `t2s init-db`, `t2s schema`, `t2s check-sql "..."`, `t2s eval ...`
 app/streamlit_app.py  minimal UI: question box, toggles (model, schema mode), SQL + table + cost
 glossary.yaml      business terms, synonyms, definitions, SQL; ambiguous terms with interpretations
 eval/
