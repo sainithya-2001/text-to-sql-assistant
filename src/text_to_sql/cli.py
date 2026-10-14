@@ -8,7 +8,7 @@ import sys
 from .config import Settings
 from .db import build_tpch, open_backend
 from .llm.client import ClaudeLLM
-from .llm.cost import BudgetGuard
+from .llm.cost import BudgetExceeded, BudgetGuard
 from .pipeline import Answer, Assistant
 from .schema.catalog import Catalog
 from .schema.embed import make_embedder
@@ -103,16 +103,66 @@ def cmd_schema(args: argparse.Namespace, settings: Settings) -> int:
     return 0
 
 
+def resolve_interactively(assistant: Assistant, ans: Answer, schema_mode: str, choices: dict) -> Answer:
+    """In a terminal, let the user pick a meaning for each ambiguous term, then re-ask."""
+    while ans.clarification and ans.clarification.options and sys.stdin.isatty():
+        c = ans.clarification
+        print(f"{c.question}")
+        for i, o in enumerate(c.options, 1):
+            print(f"  {i}. {o}")
+        try:
+            pick = input("choose a number (enter to cancel): ").strip()
+        except EOFError:  # isatty() can be wrong under some Windows terminals
+            break
+        if not pick.isdigit() or not 1 <= int(pick) <= len(c.options):
+            break
+        choices[c.term] = c.options[int(pick) - 1]
+        ans = assistant.ask(ans.question, schema_mode=schema_mode, choices=choices)
+    return ans
+
+
 def cmd_ask(args: argparse.Namespace, settings: Settings) -> int:
     budget = BudgetGuard(cap_usd=args.budget)
     assistant = build_assistant(settings, model=args.model, budget=budget, glossary=not args.no_glossary)
     choices = dict(c.split("=", 1) for c in args.choose)
     try:
         ans = assistant.ask(args.question, schema_mode=args.schema, choices=choices)
+        ans = resolve_interactively(assistant, ans, args.schema, choices)
     finally:
         assistant.backend.close()
     print_answer(ans, verbose=args.verbose)
     return 0 if ans.ok or ans.cannot_answer or ans.clarification else 1
+
+
+def cmd_chat(args: argparse.Namespace, settings: Settings) -> int:
+    budget = BudgetGuard(cap_usd=args.budget)
+    assistant = build_assistant(settings, model=args.model, budget=budget, glossary=not args.no_glossary)
+    print(f"{assistant.llm.model}, {args.schema} schema, budget ${args.budget:.2f}. Empty line to quit.")
+    try:
+        while True:
+            try:
+                q = input("\n? ").strip()
+            except EOFError:
+                break
+            if not q:
+                break
+            try:
+                ans = assistant.ask(q, schema_mode=args.schema, choices={})
+                ans = resolve_interactively(assistant, ans, args.schema, {})
+            except BudgetExceeded as e:
+                print(f"Stopping: {e}")
+                break
+            print_answer(ans, verbose=args.verbose)
+            print(f"session spend ${budget.spent_usd:.4f}")
+    finally:
+        assistant.backend.close()
+    return 0
+
+
+def cmd_eval(args: argparse.Namespace, settings: Settings) -> int:
+    from .eval_cli import main as eval_main
+
+    return eval_main(args.eval_args)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -139,10 +189,27 @@ def build_parser() -> argparse.ArgumentParser:
         "--choose", action="append", default=[], metavar="TERM=MEANING", help="answer a clarification"
     )
     s.set_defaults(func=cmd_ask)
+
+    s = sub.add_parser("chat", help="interactive session (keeps the embedding model loaded)")
+    s.add_argument("--model", help="e.g. claude-sonnet-5-5 or claude-haiku-5-5")
+    s.add_argument("--schema", choices=["retrieved", "full"], default="retrieved")
+    s.add_argument("--budget", type=float, default=0.25, help="max dollars for the session (default 0.25)")
+    s.add_argument("-v", "--verbose", action="store_true")
+    s.add_argument("--no-glossary", action="store_true")
+    s.set_defaults(func=cmd_chat)
+
+    s = sub.add_parser("eval", help="run the eval (see `t2s eval -- --help`)", add_help=False)
+    s.add_argument("eval_args", nargs=argparse.REMAINDER)
+    s.set_defaults(func=cmd_eval)
     return p
 
 
 def main(argv: list[str] | None = None) -> int:
+    argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ["eval"]:  # pass everything through untouched, including --help
+        from .eval_cli import main as eval_main
+
+        return eval_main([a for a in argv[1:] if a != "--"])
     args = build_parser().parse_args(argv)
     return args.func(args, Settings.from_env())
 

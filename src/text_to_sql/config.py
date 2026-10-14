@@ -34,7 +34,7 @@ class Settings:
 
     @classmethod
     def from_env(cls, *, load_dotenv_file: bool = True) -> Settings:
-        if load_dotenv_file:
+        if load_dotenv_file and not os.environ.get("T2S_NO_DOTENV"):  # tests set T2S_NO_DOTENV
             load_dotenv(PROJECT_ROOT / ".env", override=False)
         snowflake = {k: os.environ[k] for k in SNOWFLAKE_VARS if os.environ.get(k)}
         backend = _env("T2S_BACKEND", "duckdb")
