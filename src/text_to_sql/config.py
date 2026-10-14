@@ -28,6 +28,8 @@ class Settings:
     timeout_s: float = 15.0
     top_k_tables: int = 4
     embedder: str = "fastembed"  # "fastembed" | "hash"
+    glossary_path: Path = PROJECT_ROOT / "glossary.yaml"
+    use_glossary: bool = True
     snowflake: dict[str, str] = field(default_factory=dict)
 
     @classmethod
@@ -49,6 +51,8 @@ class Settings:
             timeout_s=float(_env("T2S_TIMEOUT_S", str(cls.timeout_s))),
             top_k_tables=int(_env("T2S_TOP_K", str(cls.top_k_tables))),
             embedder=_env("T2S_EMBEDDER", cls.embedder),
+            glossary_path=Path(_env("T2S_GLOSSARY_PATH", str(cls.glossary_path))),
+            use_glossary=_env("T2S_GLOSSARY", "on").lower() not in ("off", "0", "false", "no"),
             snowflake=snowflake,
         )
 

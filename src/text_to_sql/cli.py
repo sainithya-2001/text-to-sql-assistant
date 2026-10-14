@@ -12,10 +12,18 @@ from .llm.cost import BudgetGuard
 from .pipeline import Answer, Assistant
 from .schema.catalog import Catalog
 from .schema.embed import make_embedder
+from .schema.glossary import Glossary
 from .schema.retriever import SchemaRetriever
 
 
-def build_assistant(settings: Settings, *, model: str | None = None, budget: BudgetGuard | None = None):
+def build_assistant(
+    settings: Settings,
+    *,
+    model: str | None = None,
+    budget: BudgetGuard | None = None,
+    glossary: bool | None = None,
+):
+    use_glossary = settings.use_glossary if glossary is None else glossary
     backend = open_backend(settings)
     catalog = Catalog.from_backend(backend)
     retriever = SchemaRetriever(catalog, make_embedder(settings.embedder))
@@ -28,6 +36,7 @@ def build_assistant(settings: Settings, *, model: str | None = None, budget: Bud
         top_k=settings.top_k_tables,
         max_rows=settings.max_rows,
         timeout_s=settings.timeout_s,
+        glossary=Glossary.load(settings.glossary_path) if use_glossary else None,
     )
 
 
@@ -49,6 +58,14 @@ def print_answer(ans: Answer, verbose: bool = False) -> None:
         top = ", ".join(f"{t}={s:.2f}" for t, s in ans.retrieval.ranked[:6])
         bridges = f" | bridges: {ans.retrieval.bridges}" if ans.retrieval.bridges else ""
         print(f"retrieval: {top}{bridges}")
+    if ans.clarification:
+        c = ans.clarification
+        print(f"Clarification needed: {c.question}")
+        for o in c.options:
+            print(f'  --choose "{c.term}={o}"')
+        return
+    if ans.glossary_terms:
+        print(f"glossary: {', '.join(ans.glossary_terms)}")
     print(f"schema ({ans.schema_mode}): {', '.join(ans.tables)}")
     for i, a in enumerate(ans.attempts, 1):
         print(f"\n-- attempt {i}\n{a.sql}")
@@ -88,13 +105,14 @@ def cmd_schema(args: argparse.Namespace, settings: Settings) -> int:
 
 def cmd_ask(args: argparse.Namespace, settings: Settings) -> int:
     budget = BudgetGuard(cap_usd=args.budget)
-    assistant = build_assistant(settings, model=args.model, budget=budget)
+    assistant = build_assistant(settings, model=args.model, budget=budget, glossary=not args.no_glossary)
+    choices = dict(c.split("=", 1) for c in args.choose)
     try:
-        ans = assistant.ask(args.question, schema_mode=args.schema)
+        ans = assistant.ask(args.question, schema_mode=args.schema, choices=choices)
     finally:
         assistant.backend.close()
     print_answer(ans, verbose=args.verbose)
-    return 0 if ans.ok or ans.cannot_answer else 1
+    return 0 if ans.ok or ans.cannot_answer or ans.clarification else 1
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -116,6 +134,10 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--schema", choices=["retrieved", "full"], default="retrieved")
     s.add_argument("--budget", type=float, default=0.05, help="max dollars for this command (default 0.05)")
     s.add_argument("-v", "--verbose", action="store_true", help="show retrieval scores")
+    s.add_argument("--no-glossary", action="store_true", help="ignore glossary.yaml")
+    s.add_argument(
+        "--choose", action="append", default=[], metavar="TERM=MEANING", help="answer a clarification"
+    )
     s.set_defaults(func=cmd_ask)
     return p
 

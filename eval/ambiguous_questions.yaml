@@ -1,0 +1,72 @@
+# Ambiguity handling. Items with expect_clarification: true score correct only if the assistant asks a
+# clarifying question instead of answering. The others contain a cue that settles the meaning, so the
+# assistant should answer (and match the gold result) without asking.
+
+- id: a01
+  difficulty: medium
+  category: ambiguous
+  question: Who are our biggest customers?
+  expect_clarification: true
+
+- id: a02
+  difficulty: medium
+  category: ambiguous
+  question: Show me the large orders from 1995.
+  expect_clarification: true
+
+- id: a03
+  difficulty: medium
+  category: ambiguous
+  question: What are the best-selling parts?
+  expect_clarification: true
+
+- id: a04
+  difficulty: medium
+  category: ambiguous
+  question: How many recent orders are there?
+  expect_clarification: true
+
+- id: a05
+  difficulty: hard
+  category: ambiguous
+  # not in the glossary: tests the model's own CLARIFY behaviour
+  question: Which region is performing best?
+  expect_clarification: true
+
+- id: a06
+  difficulty: hard
+  category: ambiguous
+  question: Who are our top 5 customers by revenue? Return the customer name and revenue, highest first.
+  gold_sql: |
+    SELECT c.c_name, sum(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+    FROM customer c
+    JOIN orders o ON o.o_custkey = c.c_custkey
+    JOIN lineitem l ON l.l_orderkey = o.o_orderkey
+    GROUP BY c.c_name
+    ORDER BY revenue DESC
+    LIMIT 5
+  order_matters: true
+  order_key: revenue
+
+- id: a07
+  difficulty: medium
+  category: ambiguous
+  # top 4, not 5: the 5th and 6th tie at 1273 units
+  question: What are the 4 best-selling parts by units sold? Return the part name and units sold, highest first.
+  gold_sql: |
+    SELECT p.p_name, sum(l.l_quantity) AS units
+    FROM lineitem l JOIN part p ON l.l_partkey = p.p_partkey
+    GROUP BY p.p_name
+    ORDER BY units DESC
+    LIMIT 4
+  order_matters: true
+  order_key: units
+
+- id: a08
+  difficulty: medium
+  category: ambiguous
+  question: How many large orders by value were placed in 1995?
+  gold_sql: |
+    SELECT count(*) FROM orders
+    WHERE o_totalprice > 300000
+      AND o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'

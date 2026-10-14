@@ -14,6 +14,7 @@ from .llm.client import LLM
 from .llm.cost import BudgetExceeded, BudgetGuard
 from .pipeline import Answer, Assistant
 from .schema.catalog import Catalog
+from .schema.glossary import Glossary
 from .schema.retriever import SchemaRetriever
 
 
@@ -21,10 +22,11 @@ from .schema.retriever import SchemaRetriever
 class Config:
     model: str
     schema_mode: str  # "full" | "retrieved"
+    glossary: bool = False
 
     @property
     def name(self) -> str:
-        return f"{self.model}/{self.schema_mode}"
+        return f"{self.model}/{self.schema_mode}" + ("+glossary" if self.glossary else "")
 
 
 @dataclass
@@ -36,6 +38,7 @@ class ItemResult:
     sql: str | None
     error: str | None
     cannot_answer: str | None
+    clarification: str | None
     blocked: bool
     retried: bool
     tables: list[str]
@@ -71,8 +74,8 @@ class RunResult:
 
 def score(item: EvalItem, ans: Answer, gold: QueryResult | None) -> bool:
     if item.expect_clarification:
-        return getattr(ans, "clarification", None) is not None
-    if not ans.ok or gold is None:
+        return ans.clarification is not None
+    if ans.clarification is not None or not ans.ok or gold is None:
         return False
     return results_match(ans.result.rows, gold.rows, order_matters=item.order_matters)
 
@@ -90,6 +93,7 @@ def run_eval(
     top_k: int = 4,
     progress: Callable[[str], None] = print,
     assistant_kwargs: dict | None = None,
+    glossary: Glossary | None = None,
 ) -> RunResult:
     run = RunResult(
         started=dt.datetime.now().isoformat(timespec="seconds"),
@@ -111,6 +115,7 @@ def run_eval(
                 top_k=top_k,
                 max_rows=1000,
                 timeout_s=30,
+                glossary=glossary if cfg.glossary else None,
                 **(assistant_kwargs or {}),
             )
             results = run.items.setdefault(cfg.name, [])
@@ -129,6 +134,7 @@ def run_eval(
                         sql=ans.sql,
                         error=ans.error,
                         cannot_answer=ans.cannot_answer,
+                        clarification=ans.clarification.question if ans.clarification else None,
                         blocked=ans.blocked,
                         retried=ans.retried,
                         tables=ans.tables,
@@ -143,7 +149,7 @@ def run_eval(
                     )
                 )
                 run.spent_usd = budget.spent_usd
-                mark = "ok " if ok else "ERR" if ans.error and not ans.cannot_answer else "x  "
+                mark = "ok " if ok else "ERR" if ans.error else "?  " if ans.clarification else "x  "
                 progress(
                     f"[{cfg.name}] {it.id} {mark} retry={int(ans.retried)} "
                     f"${ans.cost_usd:.4f} total=${budget.spent_usd:.4f}"
@@ -211,7 +217,11 @@ def failures(run_json: dict) -> str:
         for r in rs:
             if r["correct"]:
                 continue
-            if r["cannot_answer"]:
+            if r.get("clarification"):
+                why = f"asked instead of answering: {r['clarification'][:80]}"
+            elif r["category"] == "ambiguous" and not r["gold_tables"]:
+                why = "answered instead of asking for clarification"
+            elif r["cannot_answer"]:
                 why = f"declined: {r['cannot_answer'][:80]}"
             elif r["error"]:
                 why = f"error: {r['error'][:80]}"

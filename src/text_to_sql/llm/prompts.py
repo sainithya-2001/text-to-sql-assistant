@@ -4,6 +4,7 @@ docs/prototype.md), minus the Snowflake-only and upper-case-everything rules."""
 from __future__ import annotations
 
 CANNOT_ANSWER = "CANNOT_ANSWER"
+CLARIFY = "CLARIFY"
 
 DIALECT_NOTES = {
     "duckdb": "DuckDB SQL. Dates: DATE '1995-01-01', EXTRACT(YEAR FROM d), date_trunc('month', d), "
@@ -34,6 +35,19 @@ Rules:
 
 Output only the SQL. No explanation, no comments, no markdown fences."""
 
+# Per-question glossary definitions go in the user turn, not the system prompt, so the system prompt
+# stays byte-identical across questions and full-schema prompt caching keeps working.
+GLOSSARY_USER_TEMPLATE = """Business definitions for this question (use them exactly):
+{terms}
+
+Question: {question}"""
+
+CLARIFY_SECTION = """
+
+If the question uses a business term or criterion that is not defined above and has several reasonable
+meanings that would give different results, reply with `{clarify}: <one short question to the user>`
+and nothing else. Do not ask when one reading is clearly intended or the schema comments settle it."""
+
 REPAIR_TEMPLATE = """Your previous query failed.
 
 Question: {question}
@@ -47,10 +61,19 @@ Error:
 Write a corrected query that follows the same rules. Output only the SQL."""
 
 
-def system_prompt(schema_text: str, dialect: str) -> str:
-    return SYSTEM_TEMPLATE.format(
+def system_prompt(schema_text: str, dialect: str, *, allow_clarify: bool = False) -> str:
+    out = SYSTEM_TEMPLATE.format(
         dialect_notes=DIALECT_NOTES.get(dialect, dialect), schema=schema_text, cannot=CANNOT_ANSWER
     )
+    if allow_clarify:
+        out += CLARIFY_SECTION.format(clarify=CLARIFY)
+    return out
+
+
+def user_message(question: str, glossary_text: str = "") -> str:
+    if not glossary_text:
+        return question
+    return GLOSSARY_USER_TEMPLATE.format(terms=glossary_text, question=question)
 
 
 def repair_prompt(question: str, sql: str, error: str) -> str:

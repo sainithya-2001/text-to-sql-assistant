@@ -21,6 +21,7 @@ from text_to_sql.llm.client import ClaudeLLM
 from text_to_sql.llm.cost import BudgetGuard
 from text_to_sql.schema.catalog import Catalog
 from text_to_sql.schema.embed import make_embedder
+from text_to_sql.schema.glossary import Glossary
 from text_to_sql.schema.retriever import SchemaRetriever
 
 EVAL_DIR = PROJECT_ROOT / "eval"
@@ -42,6 +43,7 @@ def main(argv=None) -> int:
     p.add_argument("--questions", default="questions.yaml", help="comma-separated files in eval/")
     p.add_argument("--models", default="claude-haiku-5-5,claude-sonnet-5-5")
     p.add_argument("--modes", default="full,retrieved")
+    p.add_argument("--glossary", choices=["off", "on", "both"], default="off")
     p.add_argument("--budget", type=float, default=1.0, help="hard cap in dollars for this run")
     p.add_argument("--pilot", type=int, default=0, help="run only N questions and extrapolate cost")
     p.add_argument("--ids", help="comma-separated question ids")
@@ -58,7 +60,10 @@ def main(argv=None) -> int:
     all_items = items
     if args.pilot:
         items = pick_pilot(items, args.pilot)
-    configs = [Config(m, mode) for m in args.models.split(",") for mode in args.modes.split(",")]
+    gloss = {"off": [False], "on": [True], "both": [False, True]}[args.glossary]
+    configs = [
+        Config(m, mode, g) for m in args.models.split(",") for mode in args.modes.split(",") for g in gloss
+    ]
     n_calls = len(items) * len(configs)
 
     print(f"{len(items)} questions x {len(configs)} configs = {n_calls} runs; cap ${args.budget:.2f}")
@@ -83,6 +88,7 @@ def main(argv=None) -> int:
         budget=budget,
         out_path=out,
         top_k=settings.top_k_tables,
+        glossary=Glossary.load(settings.glossary_path),
     )
     data = json.loads(out.read_text(encoding="utf-8"))
     md = f"# Eval: {name}\n\n{summarize(data)}\n\n## Failures\n\n{failures(data)}\n"

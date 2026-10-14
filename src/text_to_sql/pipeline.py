@@ -9,9 +9,10 @@ from dataclasses import dataclass, field
 from .db.base import Backend, QueryError, QueryResult
 from .llm.client import LLM, LLMError, Message
 from .llm.cost import Usage
-from .llm.prompts import CANNOT_ANSWER, repair_prompt, system_prompt
+from .llm.prompts import CANNOT_ANSWER, CLARIFY, repair_prompt, system_prompt, user_message
 from .safety.guard import GuardError, SqlGuard
 from .schema.catalog import Catalog
+from .schema.glossary import Clarification, Glossary
 from .schema.retriever import Retrieval, SchemaRetriever
 
 _FENCE = re.compile(r"^```[a-zA-Z]*\s*|\s*```$")
@@ -42,6 +43,8 @@ class Answer:
     error: str | None = None
     blocked: bool = False  # refused by policy (writes, system access); not retried
     cannot_answer: str | None = None
+    clarification: Clarification | None = None  # the assistant needs the user to pick a meaning
+    glossary_terms: list[str] = field(default_factory=list)
     schema_mode: str = "retrieved"
     tables: list[str] = field(default_factory=list)
     retrieval: Retrieval | None = None
@@ -72,6 +75,7 @@ class Assistant:
         max_rows: int = 200,
         timeout_s: float = 15.0,
         max_retries: int = 1,
+        glossary: Glossary | None = None,
     ):
         self.backend = backend
         self.catalog = catalog
@@ -81,6 +85,7 @@ class Assistant:
         self.max_rows = max_rows
         self.timeout_s = timeout_s
         self.max_retries = max_retries
+        self.glossary = glossary
         # The guard allows every catalog table, not just the retrieved ones: a real table the model
         # knows about is still a valid query.
         self.guard = SqlGuard(set(catalog.names()), backend.dialect, max_rows=max_rows)
@@ -95,20 +100,36 @@ class Assistant:
         r = self.retriever.retrieve(question, self.top_k)
         return r.tables, r
 
-    def ask(self, question: str, *, schema_mode: str = "retrieved") -> Answer:
+    def ask(
+        self, question: str, *, schema_mode: str = "retrieved", choices: dict[str, str] | None = None
+    ) -> Answer:
+        """Answer `question`. `choices` maps an ambiguous glossary term to the meaning the user picked."""
         start = time.perf_counter()
+        ans = Answer(question=question, sql=None, result=None, schema_mode=schema_mode, model=self.llm.model)
+
+        glossary_text = ""
+        extra_tables: set[str] = set()
+        if self.glossary:
+            match = self.glossary.match(question, choices)
+            ans.clarification = match.clarification()
+            if ans.clarification:  # ask before spending a model call on a guess
+                ans.elapsed_s = time.perf_counter() - start
+                return ans
+            ans.glossary_terms = [r.term for r in match.resolved]
+            glossary_text = match.render()
+            extra_tables = match.tables & set(self.catalog.names())
+
         tables, retrieval = self.select_schema(question, schema_mode)
-        ans = Answer(
-            question=question,
-            sql=None,
-            result=None,
-            schema_mode=schema_mode,
-            tables=tables,
-            retrieval=retrieval,
-            model=self.llm.model,
+        if extra_tables:
+            tables = sorted(self.catalog.join_path(set(tables) | extra_tables))
+        ans.tables, ans.retrieval = tables, retrieval
+
+        system = system_prompt(
+            self.catalog.render(tables),
+            self.backend.dialect,
+            allow_clarify=self.glossary is not None,
         )
-        system = system_prompt(self.catalog.render(tables), self.backend.dialect)
-        messages = [Message("user", question)]
+        messages = [Message("user", user_message(question, glossary_text))]
         try:
             self._run(ans, system, messages, cache=schema_mode == "full")
         finally:
@@ -126,6 +147,10 @@ class Assistant:
             ans.cost_usd += resp.cost_usd
 
             text = resp.text.strip()
+            if text.startswith(CLARIFY):
+                ans.clarification = Clarification(text[len(CLARIFY) :].lstrip(": ").strip())
+                ans.error = None
+                return
             if text.startswith(CANNOT_ANSWER):
                 ans.cannot_answer = text[len(CANNOT_ANSWER) :].lstrip(": ").strip() or "not answerable"
                 ans.error = None

@@ -1,0 +1,128 @@
+# Questions that use business terms *without* defining them. Without the glossary the model has to
+# guess what "revenue", "late" or "lifetime value" mean; with it, the definitions come from glossary.yaml.
+# Gold SQL follows the glossary definitions.
+
+- id: g01
+  difficulty: hard
+  category: glossary
+  question: What was our revenue in each customer region in 1995?
+  gold_sql: |
+    SELECT r.r_name, sum(l.l_extendedprice * (1 - l.l_discount))
+    FROM lineitem l
+    JOIN orders o ON l.l_orderkey = o.o_orderkey
+    JOIN customer c ON o.o_custkey = c.c_custkey
+    JOIN nation n ON c.c_nationkey = n.n_nationkey
+    JOIN region r ON n.n_regionkey = r.r_regionkey
+    WHERE o.o_orderdate >= DATE '1995-01-01' AND o.o_orderdate < DATE '1996-01-01'
+    GROUP BY r.r_name
+
+- id: g02
+  difficulty: medium
+  category: glossary
+  question: How many line items shipped in 1996 were late shipments?
+  gold_sql: |
+    SELECT count(*) FROM lineitem
+    WHERE l_shipdate >= DATE '1996-01-01' AND l_shipdate < DATE '1997-01-01'
+      AND l_receiptdate > l_commitdate
+
+- id: g03
+  difficulty: medium
+  category: glossary
+  question: What is the on-time delivery rate for each ship mode? Return the ship mode and the rate.
+  gold_sql: |
+    SELECT l_shipmode, 100.0 * count(*) FILTER (WHERE l_receiptdate <= l_commitdate) / count(*)
+    FROM lineitem
+    GROUP BY l_shipmode
+
+- id: g04
+  difficulty: hard
+  category: glossary
+  question: What was the profit by supplier nation for orders placed in 1997? Return the nation name and profit.
+  gold_sql: |
+    SELECT n.n_name, sum(l.l_extendedprice * (1 - l.l_discount) - ps.ps_supplycost * l.l_quantity)
+    FROM lineitem l
+    JOIN partsupp ps ON ps.ps_partkey = l.l_partkey AND ps.ps_suppkey = l.l_suppkey
+    JOIN supplier s ON l.l_suppkey = s.s_suppkey
+    JOIN nation n ON s.s_nationkey = n.n_nationkey
+    JOIN orders o ON l.l_orderkey = o.o_orderkey
+    WHERE o.o_orderdate >= DATE '1997-01-01' AND o.o_orderdate < DATE '1998-01-01'
+    GROUP BY n.n_name
+
+- id: g05
+  difficulty: hard
+  category: glossary
+  question: Which 5 customers have the highest lifetime value? Return the customer name and lifetime value, highest first.
+  gold_sql: |
+    SELECT c.c_name, sum(l.l_extendedprice * (1 - l.l_discount)) AS ltv
+    FROM customer c
+    JOIN orders o ON o.o_custkey = c.c_custkey
+    JOIN lineitem l ON l.l_orderkey = o.o_orderkey
+    GROUP BY c.c_name
+    ORDER BY ltv DESC
+    LIMIT 5
+  order_matters: true
+  order_key: ltv
+
+- id: g06
+  difficulty: medium
+  category: glossary
+  question: What is the average order value for each market segment? Return the segment and the average order value.
+  gold_sql: |
+    SELECT c.c_mktsegment, avg(o.o_totalprice)
+    FROM orders o JOIN customer c ON o.o_custkey = c.c_custkey
+    GROUP BY c.c_mktsegment
+
+- id: g07
+  difficulty: medium
+  category: glossary
+  question: How many open high-priority orders are there?
+  gold_sql: |
+    SELECT count(*) FROM orders
+    WHERE o_orderstatus = 'O' AND o_orderpriority IN ('1-URGENT', '2-HIGH')
+
+- id: g08
+  difficulty: hard
+  category: glossary
+  question: What is our inventory value in each supplier region? Return the region name and inventory value.
+  gold_sql: |
+    SELECT r.r_name, sum(ps.ps_supplycost * ps.ps_availqty)
+    FROM partsupp ps
+    JOIN supplier s ON ps.ps_suppkey = s.s_suppkey
+    JOIN nation n ON s.s_nationkey = n.n_nationkey
+    JOIN region r ON n.n_regionkey = r.r_regionkey
+    GROUP BY r.r_name
+
+- id: g09
+  difficulty: easy
+  category: glossary
+  question: How many returned items were there for each ship mode? Return the ship mode and the count.
+  gold_sql: |
+    SELECT l_shipmode, count(*) FROM lineitem WHERE l_returnflag = 'R' GROUP BY l_shipmode
+
+- id: g10
+  difficulty: medium
+  category: glossary
+  question: What is the average shipping time per ship mode? Return the ship mode and the average in days.
+  gold_sql: |
+    SELECT l.l_shipmode, avg(date_diff('day', o.o_orderdate, l.l_shipdate))
+    FROM lineitem l JOIN orders o ON l.l_orderkey = o.o_orderkey
+    GROUP BY l.l_shipmode
+
+- id: g11
+  difficulty: medium
+  category: glossary
+  question: What was the total amount billed for orders placed in 1998?
+  gold_sql: |
+    SELECT sum(l.l_extendedprice * (1 - l.l_discount) * (1 + l.l_tax))
+    FROM lineitem l JOIN orders o ON l.l_orderkey = o.o_orderkey
+    WHERE o.o_orderdate >= DATE '1998-01-01'
+
+- id: g12
+  difficulty: medium
+  category: glossary
+  question: What is the average basket size for each order priority? Return the priority and the average.
+  gold_sql: |
+    SELECT o.o_orderpriority, avg(n)
+    FROM orders o
+    JOIN (SELECT l_orderkey, count(*) AS n FROM lineitem GROUP BY l_orderkey) li ON li.l_orderkey = o.o_orderkey
+    GROUP BY o.o_orderpriority

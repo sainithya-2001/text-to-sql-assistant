@@ -53,8 +53,11 @@ src/text_to_sql/
   pipeline.py      Assistant.ask(question, schema_mode="retrieved"|"full") -> Answer
   cli.py           `t2s ask "..."`, `t2s init-db`, `t2s schema`, `t2s eval ...`
 app/streamlit_app.py  minimal UI: question box, toggles (model, schema mode), SQL + table + cost
+glossary.yaml      business terms, synonyms, definitions, SQL; ambiguous terms with interpretations
 eval/
   questions.yaml   40 items: id, difficulty (easy/medium/hard), question, gold_sql, order_matters
+  glossary_questions.yaml   12 items using undefined business terms
+  ambiguous_questions.yaml  8 items: 5 should get a clarifying question, 3 have a cue and should answer
   run_eval.py      runs configs, compares result sets, writes eval/results/*.json + summary.md
 tests/             pytest, offline
 prototype-sanitized/  sanitized Dify exports (v1..v4)
@@ -85,6 +88,12 @@ docs/              prototype.md, architecture diagram
 - **Prompt caching**: `cache_control` on the system block **only in full-schema mode**. Retrieved schemas
   differ per question, so caching them pays the 1.25x write premium for nothing. Measured (Sonnet 5.5):
   full-schema 3.2K-token prompt costs $0.0099 on the cache write, $0.0024 on a cache read.
+
+- **Glossary** (`glossary.yaml`, `schema/glossary.py`): phrase match on word stems (numbers ignored, longest
+  phrase wins). Matched terms add their tables to the retrieved set and their definitions to the *user*
+  turn (the system prompt must stay byte-identical for caching). Ambiguous terms list interpretations
+  with cue words; with no cue and no `choices`, `ask()` returns a `Clarification` without calling the
+  model. With the glossary on, the model may also reply `CLARIFY: ...`. Glossary off == Phase 4 pipeline.
 
 ## Models and cost
 

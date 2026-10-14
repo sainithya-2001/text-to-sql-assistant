@@ -1,0 +1,183 @@
+# Business glossary for the TPC-H data.
+#
+# Maps the words people use ("revenue", "late shipments", "biggest customers") to exact definitions.
+# When a question uses a term, the assistant adds the term's tables to the retrieved schema and its
+# definition to the prompt. Ambiguous terms list their interpretations; if the question doesn't say
+# which one it means (via a cue word), the assistant asks instead of guessing.
+#
+# Fields
+#   term          canonical name
+#   synonyms      other phrasings (matched on word stems, so "shipments" matches "shipment")
+#   definition    plain-English meaning, shown to the model
+#   sql           SQL expression or condition implementing it
+#   tables        tables the definition needs
+#   interpretations (ambiguous terms only): label, cues, definition, sql, tables
+#   clarify       question to ask when an ambiguous term is unresolved
+
+terms:
+  - term: revenue
+    synonyms: [net revenue, sales, net sales, turnover, income]
+    definition: >-
+      Money received after discounts, summed over line items. Unless the question says "shipped",
+      attribute revenue to the order date (orders.o_orderdate).
+    sql: SUM(l_extendedprice * (1 - l_discount))
+    tables: [lineitem, orders]
+
+  - term: gross revenue
+    synonyms: [gross sales, list revenue, revenue before discount]
+    definition: Line-item value before discounts.
+    sql: SUM(l_extendedprice)
+    tables: [lineitem]
+
+  - term: amount billed
+    synonyms: [total charge, billed amount, invoiced amount, charged]
+    definition: What the customer was charged, after discount and including tax.
+    sql: SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax))
+    tables: [lineitem]
+
+  - term: profit
+    synonyms: [margin, gross profit, profitability]
+    definition: >-
+      Revenue minus the supplier's cost for the quantity sold. Join partsupp on both
+      ps_partkey = l_partkey and ps_suppkey = l_suppkey.
+    sql: SUM(l_extendedprice * (1 - l_discount) - ps_supplycost * l_quantity)
+    tables: [lineitem, partsupp]
+
+  - term: discount amount
+    synonyms: [discounts given, money given away in discounts]
+    definition: Dollar value of discounts granted.
+    sql: SUM(l_extendedprice * l_discount)
+    tables: [lineitem]
+
+  - term: late shipment
+    synonyms: [late delivery, late deliveries, delivered late, delayed shipment, late line item, arrived late]
+    definition: A line item the customer received after the date the supplier committed to.
+    sql: l_receiptdate > l_commitdate
+    tables: [lineitem]
+
+  - term: on-time delivery
+    synonyms: [on time, delivered on time, on-time rate]
+    definition: A line item received on or before the committed date. "Rate" means the percentage (0-100) of line items.
+    sql: l_receiptdate <= l_commitdate
+    tables: [lineitem]
+
+  - term: returned item
+    synonyms: [returned items, returned line items, were returned, was returned]
+    definition: A line item with return flag 'R'.
+    sql: l_returnflag = 'R'
+    tables: [lineitem]
+
+  - term: open order
+    synonyms: [unfulfilled order, pending order, open]
+    definition: An order with status 'O'.
+    sql: o_orderstatus = 'O'
+    tables: [orders]
+
+  - term: high-priority order
+    synonyms: [high priority, priority order]
+    definition: An order with priority '1-URGENT' or '2-HIGH'.
+    sql: o_orderpriority IN ('1-URGENT', '2-HIGH')
+    tables: [orders]
+
+  - term: inventory value
+    synonyms: [stock value, value of inventory]
+    definition: Supplier cost times available quantity, summed over partsupp rows.
+    sql: SUM(ps_supplycost * ps_availqty)
+    tables: [partsupp]
+
+  - term: local supplier
+    synonyms: [domestic supplier, local suppliers, same nation supplier]
+    definition: A line item whose supplier is in the same nation as the ordering customer.
+    sql: c_nationkey = s_nationkey
+    tables: [customer, supplier, lineitem, orders]
+
+  - term: average order value
+    synonyms: [aov, average order size in dollars]
+    definition: Average order total price.
+    sql: AVG(o_totalprice)
+    tables: [orders]
+
+  - term: shipping time
+    synonyms: [days to ship, lead time, time to ship]
+    definition: Days from the order date to the line item's ship date.
+    sql: date_diff('day', o_orderdate, l_shipdate)
+    tables: [lineitem, orders]
+
+  - term: basket size
+    synonyms: [items per order, line items per order, order size]
+    definition: Number of line items on an order; "average basket size" averages that count over orders.
+    sql: COUNT(*) per l_orderkey
+    tables: [lineitem, orders]
+
+  - term: lifetime value
+    synonyms: [customer lifetime value, clv, ltv, lifetime spend]
+    definition: A customer's total revenue across all their orders (see revenue).
+    sql: SUM(l_extendedprice * (1 - l_discount)) per customer
+    tables: [customer, orders, lineitem]
+
+  # --- ambiguous terms: the assistant asks unless a cue word settles the meaning ---
+
+  - term: biggest customers
+    synonyms: [top customers, best customers, largest customers, most valuable customers, key customers]
+    clarify: When you say biggest customers, how should they be ranked?
+    interpretations:
+      - label: by revenue
+        cues: [revenue, sales, spend, spent, value, lifetime]
+        definition: Rank customers by revenue (lifetime value).
+        sql: SUM(l_extendedprice * (1 - l_discount)) per customer
+        tables: [customer, orders, lineitem]
+      - label: by number of orders
+        cues: [number of orders, order count, most orders, orders placed]
+        definition: Rank customers by how many orders they placed.
+        sql: COUNT(*) of orders per customer
+        tables: [customer, orders]
+      - label: by account balance
+        cues: [balance, account]
+        definition: Rank customers by account balance.
+        sql: c_acctbal
+        tables: [customer]
+
+  - term: large orders
+    synonyms: [big orders, large order, huge orders, bulk orders]
+    clarify: What makes an order large?
+    interpretations:
+      - label: by value (total price above $300,000)
+        cues: [value, price, dollar, dollars, expensive, worth]
+        definition: Orders with total price above 300,000.
+        sql: o_totalprice > 300000
+        tables: [orders]
+      - label: by size (6 or more line items)
+        cues: [line items, items, lines, size]
+        definition: Orders with 6 or more line items.
+        sql: orders with COUNT(*) >= 6 line items
+        tables: [orders, lineitem]
+
+  - term: best-selling parts
+    synonyms: [best selling, top selling, top-selling, best sellers, bestsellers, most popular parts, sell best]
+    clarify: Should best-selling be measured by units sold or by revenue?
+    interpretations:
+      - label: by units sold
+        cues: [units, quantity, volume]
+        definition: Rank parts by total quantity sold.
+        sql: SUM(l_quantity) per part
+        tables: [part, lineitem]
+      - label: by revenue
+        cues: [revenue, sales value, dollars]
+        definition: Rank parts by revenue.
+        sql: SUM(l_extendedprice * (1 - l_discount)) per part
+        tables: [part, lineitem]
+
+  - term: recent orders
+    synonyms: [recent, recently, latest orders, lately]
+    clarify: The data runs to 1998-08-02. Which period counts as recent?
+    interpretations:
+      - label: last 90 days of data
+        cues: [90 days, three months, last quarter]
+        definition: Orders on or after 1998-05-04 (90 days before the last order date).
+        sql: o_orderdate >= DATE '1998-05-04'
+        tables: [orders]
+      - label: calendar year 1998
+        cues: ["1998", this year]
+        definition: Orders placed in 1998.
+        sql: o_orderdate >= DATE '1998-01-01'
+        tables: [orders]
