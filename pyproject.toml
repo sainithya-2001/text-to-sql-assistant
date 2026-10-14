@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "text-to-sql"
+version = "0.2.0"
+description = "Schema-aware text-to-SQL assistant over TPC-H (DuckDB or Snowflake) using Claude and FAISS retrieval"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "anthropic>=1.0",
+    "duckdb>=1.1",
+    "sqlglot>=25",
+    "faiss-cpu>=1.8",
+    "numpy>=1.26",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+embed = ["fastembed>=0.4"]
+ui = ["streamlit>=1.38"]
+snowflake = ["snowflake-connector-python>=3.12"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+t2s = "text_to_sql.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

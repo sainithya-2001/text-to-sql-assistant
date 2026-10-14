@@ -41,7 +41,7 @@ src/text_to_sql/
   schema/
     catalog.py     table/column metadata from the backend + hand-written TPC-H descriptions
     descriptions.py  business descriptions for the 8 TPC-H tables and their columns
-    embed.py       Embedder protocol; HashEmbedder (tests/CI); real embedder (see Dependencies)
+    embed.py       Embedder protocol; HashEmbedder (tests/CI, offline); FastEmbedder (bge-small)
     retriever.py   FAISS IndexFlatIP over normalized vectors; doc-per-table and doc-per-column,
                    column hits roll up to their table; FK-neighbour expansion for join paths
   llm/
@@ -110,8 +110,8 @@ docs/              prototype.md, architecture diagram
 ## Dependencies
 
 Runtime: `anthropic`, `duckdb`, `sqlglot`, `faiss-cpu`, `numpy`, `python-dotenv`, `pyyaml`.
-Extras: `[ui]` `streamlit`; `[snowflake]` `snowflake-connector-python`; `[embed]` real embedding model
-(pending owner choice). Dev: `pytest`, `ruff`.
+Extras: `[ui]` `streamlit`; `[snowflake]` `snowflake-connector-python`; `[embed]` `fastembed`
+(BAAI/bge-small-en-v1.5, ONNX, ~70 MB model fetched on first use). Dev: `pytest`, `ruff`.
 Everything else must be approved first.
 
 ## Commands
@@ -133,5 +133,9 @@ streamlit run app/streamlit_app.py
 2. Schema RAG (embedder, FAISS retriever) + Claude generator
 3. Safety guard, executor limits, self-correction
 4. Eval set (40 Qs + gold SQL) + runner + cost cap; run with approval
-5. CLI + Streamlit
-6. Tests, CI (GitHub Actions: ruff, pytest, sanitized check), Dockerfile, README (diagram, story, results)
+5. Business glossary: `glossary.yaml` of TPC-H business terms (e.g. revenue = extendedprice*(1-discount),
+   "large order", "late shipment", regions/segments) retrieved alongside schema; ambiguous questions get a
+   clarifying question instead of a guess; glossary + ambiguity items added to the eval
+6. CLI + Streamlit
+7. Tests, CI (GitHub Actions: ruff, pytest, sanitized check, `docker build` since Docker isn't available
+   locally), Dockerfile, README (diagram, story, results)
