@@ -75,7 +75,13 @@ docs/              prototype.md, architecture diagram
 - **Generation**: Claude must output SQL only (we still strip fences defensively). If the retrieved schema
   cannot answer the question, the model replies `CANNOT_ANSWER: <reason>` instead of guessing (the
   prototype's "no context, no SQL" rule).
-- **Self-correction**: exactly one retry, on guard rejection or execution error, with the error text.
+- **Guard allowlists, not just denylists**: every table reference must be a plain identifier naming a
+  catalog table or a CTE, which rejects table functions (`read_csv`, `duckdb_settings()`, `query()`),
+  quoted file paths and system schemas. Scalar system functions (`getenv`, `current_setting`,
+  `version()` -> `CURRENT_VERSION`) are denied by name.
+- **Self-correction**: exactly one retry with the failed SQL and error text, for *fixable* failures
+  (parse error, unknown table/column, DB error, timeout). Policy violations (writes, system access) are
+  `blocked` immediately and never handed back to the model to "fix".
 - **Prompt caching**: `cache_control` on the system block **only in full-schema mode**. Retrieved schemas
   differ per question, so caching them pays the 1.25x write premium for nothing. Measured (Sonnet 5.5):
   full-schema 3.2K-token prompt costs $0.0099 on the cache write, $0.0024 on a cache read.

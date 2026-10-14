@@ -122,7 +122,7 @@ def test_pipeline_cannot_answer(backend, catalog, retriever):
 
 
 def test_pipeline_reports_sql_error(backend, catalog, retriever):
-    llm = FakeLLM(["SELECT no_such_col FROM region"])
+    llm = FakeLLM(["SELECT no_such_col FROM region", "SELECT no_such_col FROM region"])
     ans = Assistant(backend, catalog, llm, retriever).ask("regions")
     assert not ans.ok and "no_such_col" in ans.error
 
