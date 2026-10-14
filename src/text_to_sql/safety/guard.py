@@ -12,7 +12,7 @@ from dataclasses import dataclass
 
 import sqlglot
 from sqlglot import exp
-from sqlglot.errors import ParseError
+from sqlglot.errors import SqlglotError
 
 
 class GuardError(ValueError):
@@ -69,7 +69,7 @@ class SqlGuard:
             raise GuardError("empty query", retryable=True)
         try:
             statements = [s for s in sqlglot.parse(text, read=self.dialect) if s is not None]
-        except ParseError as e:
+        except SqlglotError as e:  # ParseError and TokenError (e.g. an unterminated string)
             raise GuardError(f"could not parse SQL: {_first_line(e)}", retryable=True) from e
         if len(statements) != 1:
             raise GuardError(f"expected exactly one statement, got {len(statements)}", retryable=True)

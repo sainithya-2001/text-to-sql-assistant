@@ -28,6 +28,12 @@ class Config:
     def name(self) -> str:
         return f"{self.model}/{self.schema_mode}" + ("+glossary" if self.glossary else "")
 
+    @classmethod
+    def parse(cls, name: str) -> Config:
+        model, rest = name.split("/", 1)
+        mode, _, flag = rest.partition("+")
+        return cls(model, mode, flag == "glossary")
+
 
 @dataclass
 class ItemResult:
@@ -94,12 +100,21 @@ def run_eval(
     progress: Callable[[str], None] = print,
     assistant_kwargs: dict | None = None,
     glossary: Glossary | None = None,
+    resume: dict | None = None,
 ) -> RunResult:
+    """`resume` is a saved run (to_json()); its finished (config, question) pairs are kept, not re-run."""
     run = RunResult(
         started=dt.datetime.now().isoformat(timespec="seconds"),
         configs=[c.name for c in configs],
         budget_cap_usd=budget.cap_usd,
     )
+    prior_spent = 0.0
+    if resume:
+        run.started = resume["started"]
+        prior_spent = resume["spent_usd"]
+        for name, rows in resume["items"].items():
+            run.items[name] = [ItemResult(**r) for r in rows]
+        run.configs = list(dict.fromkeys(resume["configs"] + run.configs))
     golds: dict[str, QueryResult | None] = {}
     for it in items:
         golds[it.id] = backend.execute(it.gold_sql, max_rows=10_000, timeout_s=60) if it.gold_sql else None
@@ -119,8 +134,17 @@ def run_eval(
                 **(assistant_kwargs or {}),
             )
             results = run.items.setdefault(cfg.name, [])
+            done = {r.id for r in results}
             for it in items:
-                ans = assistant.ask(it.question, schema_mode=cfg.schema_mode)
+                if it.id in done:
+                    continue
+                try:
+                    ans = assistant.ask(it.question, schema_mode=cfg.schema_mode)
+                except BudgetExceeded:
+                    raise
+                except Exception as e:  # one bad item must not end a paid run
+                    ans = Answer(it.question, None, None, error=f"crash: {type(e).__name__}: {e}")
+                    ans.model = cfg.model
                 gt = sorted(gold_tables(it.gold_sql, backend.dialect)) if it.gold_sql else []
                 ok = score(it, ans, golds[it.id])
                 recall = set(gt) <= set(ans.tables) if cfg.schema_mode == "retrieved" and gt else None
@@ -148,7 +172,7 @@ def run_eval(
                         elapsed_s=round(ans.elapsed_s, 2),
                     )
                 )
-                run.spent_usd = budget.spent_usd
+                run.spent_usd = prior_spent + budget.spent_usd
                 mark = "ok " if ok else "ERR" if ans.error else "?  " if ans.clarification else "x  "
                 progress(
                     f"[{cfg.name}] {it.id} {mark} retry={int(ans.retried)} "
@@ -159,7 +183,9 @@ def run_eval(
     except BudgetExceeded as e:
         run.stopped_reason = str(e)
         progress(f"STOPPED: {e}")
-    run.spent_usd = budget.spent_usd
+    run.spent_usd = prior_spent + budget.spent_usd
+    if resume:  # effective cap = what was already spent + this session's cap
+        run.budget_cap_usd = prior_spent + budget.cap_usd
     if out_path:
         _save(run, out_path)
     return run

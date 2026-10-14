@@ -123,3 +123,54 @@ def test_runner_stops_at_budget(backend, catalog):
     assert 0 < len(run.items["fake/full"]) < 10
     with pytest.raises(BudgetExceeded):
         budget.check("claude-sonnet-5-5", 300_000)
+
+
+def test_config_parse_roundtrip():
+    for c in [Config("m", "full"), Config("m", "retrieved", True)]:
+        assert Config.parse(c.name) == c
+
+
+def test_resume_skips_finished_pairs(backend, catalog):
+    by_q = {q.question: q.gold_sql for q in QUESTIONS}
+    calls = []
+
+    def make_llm(model, budget):
+        def respond(system, msgs):
+            calls.append(msgs[0].content)
+            return by_q[msgs[0].content]
+
+        return FakeLLM(respond, model=model)
+
+    common = dict(
+        backend=backend, catalog=catalog, retriever=None, make_llm=make_llm, progress=lambda s: None
+    )
+    first = run_eval(QUESTIONS[:2], [Config("fake", "full")], budget=BudgetGuard(1.0), **common)
+    calls.clear()
+    second = run_eval(
+        QUESTIONS[:4], [Config("fake", "full")], budget=BudgetGuard(1.0), resume=first.to_json(), **common
+    )
+    assert len(calls) == 2  # only the two new questions ran
+    assert [r.id for r in second.items["fake/full"]] == [q.id for q in QUESTIONS[:4]]
+
+
+def test_runner_survives_an_item_that_raises(backend, catalog):
+    def make_llm(model, budget):
+        def respond(system, msgs):
+            if "customers are there" in msgs[0].content:
+                raise RuntimeError("boom")
+            return "SELECT 1"
+
+        return FakeLLM(respond, model=model)
+
+    run = run_eval(
+        QUESTIONS[:3],
+        [Config("fake", "full")],
+        backend=backend,
+        catalog=catalog,
+        retriever=None,
+        make_llm=make_llm,
+        budget=BudgetGuard(1.0),
+        progress=lambda s: None,
+    )
+    rs = run.items["fake/full"]
+    assert len(rs) == 3 and "crash: RuntimeError" in rs[0].error and not rs[0].correct

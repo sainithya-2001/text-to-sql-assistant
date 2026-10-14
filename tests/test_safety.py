@@ -68,6 +68,7 @@ def test_allowed(guard, sql):
         # fixable mistakes go back to the model once
         ("SELECT 1; SELECT 2", True),
         ("SELEC 1", True),
+        ("SELECT 'unterminated FROM region", True),  # TokenError, not ParseError: crashed a paid eval run
         ("SELECT * FROM employees", True),
         ("SELECT * FROM 'file.parquet'", True),
         ("", True),

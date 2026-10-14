@@ -52,6 +52,10 @@ def main(argv=None) -> int:
     p.add_argument("--ids", help="comma-separated question ids")
     p.add_argument("--name", default=None, help="output name (default: pilot or full)")
     p.add_argument("--yes", action="store_true", help="skip the confirmation prompt")
+    p.add_argument(
+        "--configs", help="explicit configs, e.g. claude-sonnet-5-5/full+glossary (overrides above)"
+    )
+    p.add_argument("--resume", action="store_true", help="keep finished results in eval/results/<name>.json")
     args = p.parse_args(argv)
 
     items = []
@@ -67,6 +71,8 @@ def main(argv=None) -> int:
     configs = [
         Config(m, mode, g) for m in args.models.split(",") for mode in args.modes.split(",") for g in gloss
     ]
+    if args.configs:
+        configs = [Config.parse(c.strip()) for c in args.configs.split(",")]
     n_calls = len(items) * len(configs)
 
     print(f"{len(items)} questions x {len(configs)} configs = {n_calls} runs; cap ${args.budget:.2f}")
@@ -80,6 +86,9 @@ def main(argv=None) -> int:
     budget = BudgetGuard(cap_usd=args.budget)
     name = args.name or ("pilot" if args.pilot else "full")
     out = EVAL_DIR / "results" / f"{name}.json"
+    resume = json.loads(out.read_text(encoding="utf-8")) if args.resume and out.exists() else None
+    if resume:
+        print(f"resuming {out.name}: ${resume['spent_usd']:.4f} already spent; finished pairs are skipped")
 
     run = run_eval(
         items,
@@ -92,6 +101,7 @@ def main(argv=None) -> int:
         out_path=out,
         top_k=settings.top_k_tables,
         glossary=Glossary.load(settings.glossary_path),
+        resume=resume,
     )
     data = json.loads(out.read_text(encoding="utf-8"))
     md = f"# Eval: {name}\n\n{summarize(data)}\n\n## Failures\n\n{failures(data)}\n"
