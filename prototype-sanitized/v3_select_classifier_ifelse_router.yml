@@ -1,0 +1,804 @@
+# SANITIZED Dify export (original: prototype app, Nov 2025).
+# Credentials, user identifiers and knowledge-base IDs replaced with <PLACEHOLDERS>.
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: advanced text to sql
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.2.6@e2665624a156f52160927bceac9e169bd7e5ae6b936ae82575e14c90af390e6e
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.5.12@2a2bf8f78552bd52b1d2e51995daaa7b7c04b2572b29e661b14c1b773ab8d45a
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: hankookncompany/snowflake:0.0.1@78f354968ce5fc2fff8f6c89b012cc134326fd4ea533e83758ae0adf01985499
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1761962288238-source-1761495209559-target
+      selected: false
+      source: '1761962288238'
+      sourceHandle: source
+      target: '1761495209559'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: question-classifier
+      id: 17619750696410-source-1762546995518-target
+      selected: false
+      source: '17619750696410'
+      sourceHandle: source
+      target: '1762546995518'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: answer
+      id: 1762546995518-1-1762547440712-target
+      selected: false
+      source: '1762546995518'
+      sourceHandle: '1'
+      target: '1762547440712'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 17625477488530-source-1761962288238-target
+      selected: false
+      source: '17625477488530'
+      sourceHandle: source
+      target: '1761962288238'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: code
+      id: 17625474179990-source-17625477488530-target
+      selected: false
+      source: '17625474179990'
+      sourceHandle: source
+      target: '17625477488530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1762552027651-source-17619750696410-target
+      selected: false
+      source: '1762552027651'
+      sourceHandle: source
+      target: '17619750696410'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: code
+      id: 17625561399170-source-17625477488530-target
+      selected: false
+      source: '17625561399170'
+      sourceHandle: source
+      target: '17625477488530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: code
+      id: 17625566252820-source-17625477488530-target
+      selected: false
+      source: '17625566252820'
+      sourceHandle: source
+      target: '17625477488530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1761412414498-source-1762552027651-target
+      source: '1761412414498'
+      sourceHandle: source
+      target: '1762552027651'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: if-else
+      id: 1762546995518-1762561802769-1763097759087-target
+      source: '1762546995518'
+      sourceHandle: '1762561802769'
+      target: '1763097759087'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1763097759087-true-17625474179990-target
+      source: '1763097759087'
+      sourceHandle: 'true'
+      target: '17625474179990'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1763097759087-855a2e7e-4ec1-4d3b-9c0d-6a9b5e5e6e2e-17625566252820-target
+      source: '1763097759087'
+      sourceHandle: 855a2e7e-4ec1-4d3b-9c0d-6a9b5e5e6e2e
+      target: '17625566252820'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1763097759087-7ff636ba-5ca4-4880-93a3-662384a0e041-17625561399170-target
+      source: '1763097759087'
+      sourceHandle: 7ff636ba-5ca4-4880-93a3-662384a0e041
+      target: '17625561399170'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: Login_ID
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: Login_ID
+        - default: ''
+          hint: ''
+          label: Login_password
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: Login_password
+      height: 113
+      id: '1761412414498'
+      position:
+        x: -337.57825619021327
+        y: -2390.8800521671615
+      positionAbsolute:
+        x: -337.57825619021327
+        y: -2390.8800521671615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '{{#1761962288238.text#}}'
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 101
+      id: '1761495209559'
+      position:
+        x: 2115.5509065509746
+        y: -2365.355179236822
+      positionAbsolute:
+        x: 2115.5509065509746
+        y: -2365.355179236822
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17625477488530'
+          - result
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.5-flash
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 05ef7e3b-7ed6-41df-8d81-84cfcdbb9d32
+          role: system
+          text: 'You will be given a variable called {{#17625477488530.result#}}which
+            contains the fetched result from an SQL query. if it is blank or contains
+            error key in json dont helucante just tell its blank and if it has error
+            message just display the error message
+
+
+
+
+            Notes:
+
+            The value of {{#17625477488530.result#}}is a string representation of
+            a Python list or dictionary.
+
+            If you remove the outer square brackets [], it becomes valid JSON.
+
+            Treat this as query output data for {{#sys.query#}},some times it may
+            hve extra info in the json exclude them and summarise only for the asked
+            question {{#sys.query#}}. but  you have some extra info from them fetched
+            query. so aske them do u need any info on those columns
+
+            Your task is to understand the  json and five me the only answers i dontwant
+            any summary
+
+
+            '
+        selected: false
+        title: LLM 3
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761962288238'
+      position:
+        x: 1834.9217265672419
+        y: -2365.355179236822
+      positionAbsolute:
+        x: 1834.9217265672419
+        y: -2365.355179236822
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1762552027651'
+          - result
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.5-flash
+          provider: langgenius/gemini/google
+        prompt_config:
+          jinja2_variables: []
+        prompt_template:
+        - edition_type: basic
+          id: b26179d4-3a32-481f-9ac4-7a7c6564368c
+          role: system
+          text: "Convert the natural-language question {{#sys.query#}} into a single,\
+            \ syntactically correct Snowflake SQL query.infer ccolumns and table from\
+            \ {{#context#}}/ and if it is empty just mention no objeccts present in\
+            \ knowledge base and dont helucante and dont give any sql query\nRules\
+            \ & Constraints:\nAlways fully qualify every table or view as ECOMMERCE.E_SCHEMA.<table_or_view>;\
+            \ if you want to fetch data for metadata use informationscchema dont use\
+            \ any database if you use information_schema\nUse only Snowflake SQL syntax\
+            \ and functions. always write a query in CAPITAL LETTERS.if you are using\
+            \ any string values use UPPER funcction for the ccolumns in where clause\n\
+            If specific columns are not mentioned, infer plausible ones from context\
+            \ or use * , ensuring the query remains coherent. \nPrefer SELECT statements\
+            \ unless the question explicitly requires another type (INSERT, UPDATE,\
+            \ DELETE, DDL, etc.).\nUse ANSI JOINs (no implicit joins). Qualify all\
+            \ column references where helpful.\nIf relevant, include aggregation,\
+            \ filtering, window functions, or subqueries.\nHandle all dates/times\
+            \ with Snowflake functions like CURRENT_DATE, DATEADD, TO_DATE.\nQuote\
+            \ identifiers only when required (e.g., if they contain spaces or are\
+            \ reserved words).\nAlways end the query with a semicolon.\nOutput only\
+            \ the SQL query — no explanations, comments, markdown, or formatting like\
+            \ ```sql. just only query no heading"
+        selected: false
+        title: LLM (1)
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '17619750696410'
+      position:
+        x: 275.5529911270146
+        y: -2390.8800521671615
+      positionAbsolute:
+        x: 275.5529911270146
+        y: -2390.8800521671615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        classes:
+        - id: '1'
+          name: 'if {{#17619750696410.text#}} contains "update" or "delete" or "alter"
+            except select
+
+
+            '
+        - id: '1762561802769'
+          name: If it contains only select
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - '17619750696410'
+        - text
+        selected: false
+        title: user based Classifier
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 187
+      id: '1762546995518'
+      position:
+        x: 601.1395315915123
+        y: -2390.8800521671615
+      positionAbsolute:
+        x: 601.1395315915123
+        y: -2390.8800521671615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL statement to be executed
+            ja_JP: The SQL statement to be executed
+            pt_BR: The SQL statement to be executed
+            zh_Hans: 需要执行的 SQL 语句
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL 查询
+          llm_description: The SQL statement to run on Snowflake.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          query: ''
+        provider_id: hankookncompany/snowflake/snowflake
+        provider_name: hankookncompany/snowflake/snowflake
+        provider_type: builtin
+        selected: false
+        title: SQL (2)
+        tool_configurations: {}
+        tool_description: SQL Query Executor
+        tool_label: SQL
+        tool_name: sql
+        tool_node_version: '2'
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#17619750696410.text#}}'
+        type: tool
+      height: 51
+      id: '17625474179990'
+      position:
+        x: 1241.1533799891336
+        y: -2549.6890702029646
+      positionAbsolute:
+        x: 1241.1533799891336
+        y: -2549.6890702029646
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: You are trying to manipulate the data, it's not allowed.
+        selected: false
+        title: unsafe sql contains DML
+        type: answer
+        variables: []
+      height: 115
+      id: '1762547440712'
+      position:
+        x: 905.5710053440644
+        y: -2686.147717133742
+      positionAbsolute:
+        x: 905.5710053440644
+        y: -2686.147717133742
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "\ndef main(arg1, arg2, arg3):\n    # Convert all args safely to strings\n\
+          \    safe_arg1 = str(arg1) if arg1 is not None else \"\"\n    safe_arg2\
+          \ = str(arg2) if arg2 is not None else \"\"\n    safe_arg3 = str(arg3) if\
+          \ arg3 is not None else \"\"\n\n    # Combine them using f-string\n    return\
+          \ {\n        \"result\": f\"{safe_arg1}{safe_arg2}{safe_arg3}\",\n    }\n\
+          arg1=None\narg2=None\narg3=None"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Code
+        type: code
+        variables:
+        - value_selector:
+          - '17625561399170'
+          - json
+          value_type: array[object]
+          variable: arg1
+        - value_selector:
+          - '17625474179990'
+          - json
+          value_type: array[object]
+          variable: arg2
+        - value_selector:
+          - '17625566252820'
+          - json
+          value_type: array[object]
+          variable: arg3
+      height: 51
+      id: '17625477488530'
+      position:
+        x: 1555.393501242627
+        y: -2365.355179236822
+      positionAbsolute:
+        x: 1555.393501242627
+        y: -2365.355179236822
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - <REDACTED_DATASET_ID>
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-large
+              embedding_provider_name: langgenius/openai/openai
+              vector_weight: 0.7
+            weight_type: customized
+        query_variable_selector:
+        - sys
+        - query
+        retrieval_mode: multiple
+        selected: false
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 89
+      id: '1762552027651'
+      position:
+        x: -48.42737242115396
+        y: -2390.8800521671615
+      positionAbsolute:
+        x: -48.42737242115396
+        y: -2390.8800521671615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL statement to be executed
+            ja_JP: The SQL statement to be executed
+            pt_BR: The SQL statement to be executed
+            zh_Hans: 需要执行的 SQL 语句
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL 查询
+          llm_description: The SQL statement to run on Snowflake.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          query: ''
+        provider_id: hankookncompany/snowflake/snowflake
+        provider_name: hankookncompany/snowflake/snowflake
+        provider_type: builtin
+        selected: false
+        title: SQL (3)
+        tool_configurations: {}
+        tool_description: SQL Query Executor
+        tool_label: SQL
+        tool_name: sql
+        tool_node_version: '2'
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#17619750696410.text#}}'
+        type: tool
+      height: 51
+      id: '17625561399170'
+      position:
+        x: 1241.1533799891336
+        y: -2180.234883022242
+      positionAbsolute:
+        x: 1241.1533799891336
+        y: -2180.234883022242
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL statement to be executed
+            ja_JP: The SQL statement to be executed
+            pt_BR: The SQL statement to be executed
+            zh_Hans: 需要执行的 SQL 语句
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL 查询
+          llm_description: The SQL statement to run on Snowflake.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          query: ''
+        provider_id: hankookncompany/snowflake/snowflake
+        provider_name: hankookncompany/snowflake/snowflake
+        provider_type: builtin
+        selected: false
+        title: SQL (4)
+        tool_configurations: {}
+        tool_description: SQL Query Executor
+        tool_label: SQL
+        tool_name: sql
+        tool_node_version: '2'
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#17619750696410.text#}}'
+        type: tool
+      height: 51
+      id: '17625566252820'
+      position:
+        x: 1241.1533799891336
+        y: -2365.355179236822
+      positionAbsolute:
+        x: 1241.1533799891336
+        y: -2365.355179236822
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 8e463252-1436-4d3b-9ff6-b8dde1f4a7e5
+            value: admin_user
+            varType: string
+            variable_selector:
+            - '1761412414498'
+            - Login_ID
+          - comparison_operator: is
+            id: f9199441-379f-4a47-96ca-52b2fadd21c9
+            value: <REDACTED>
+            varType: string
+            variable_selector:
+            - '1761412414498'
+            - Login_password
+          id: 'true'
+          logical_operator: and
+        - case_id: 855a2e7e-4ec1-4d3b-9c0d-6a9b5e5e6e2e
+          conditions:
+          - comparison_operator: is
+            id: de06c6df-2833-4133-850e-75dba02876f8
+            value: analyst_user
+            varType: string
+            variable_selector:
+            - '1761412414498'
+            - Login_ID
+          - comparison_operator: is
+            id: 02971c9f-6c86-4caf-b080-ec59bfd8cdeb
+            value: <REDACTED>
+            varType: string
+            variable_selector:
+            - '1761412414498'
+            - Login_password
+          id: 855a2e7e-4ec1-4d3b-9c0d-6a9b5e5e6e2e
+          logical_operator: and
+        - case_id: 7ff636ba-5ca4-4880-93a3-662384a0e041
+          conditions:
+          - comparison_operator: is
+            id: dd4134d6-1110-4f29-b622-246f74f3fab7
+            value: finance_user
+            varType: string
+            variable_selector:
+            - '1761412414498'
+            - Login_ID
+          - comparison_operator: is
+            id: c1cf62df-680f-44cd-af9c-0f1da44adc7a
+            value: <REDACTED>
+            varType: string
+            variable_selector:
+            - '1761412414498'
+            - Login_password
+          id: 7ff636ba-5ca4-4880-93a3-662384a0e041
+          logical_operator: and
+        selected: true
+        title: IF/ELSE
+        type: if-else
+      height: 297
+      id: '1763097759087'
+      position:
+        x: 914.7097879267408
+        y: -2390.8800521671615
+      positionAbsolute:
+        x: 914.7097879267408
+        y: -2390.8800521671615
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: 295.9419904593367
+      y: 1315.4139249136076
+      zoom: 0.43839017174444594
+  rag_pipeline_variables: []
