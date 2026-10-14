@@ -117,3 +117,16 @@ FOREIGN_KEYS: list[tuple[str, str, str, str]] = [
     ("lineitem", "l_partkey", "partsupp", "ps_partkey"),
     ("lineitem", "l_suppkey", "partsupp", "ps_suppkey"),
 ]
+
+# Words a user is likely to use for each table's entity (singular stems). Used by the keyword half of
+# hybrid retrieval. Business metrics (e.g. "revenue") belong in the glossary, not here.
+TABLE_ALIASES: dict[str, list[str]] = {
+    "region": ["region", "continent"],
+    "nation": ["nation", "country"],
+    "customer": ["customer", "client", "buyer"],
+    "supplier": ["supplier", "vendor"],
+    "part": ["part", "product"],
+    "partsupp": ["inventory", "stock", "availability", "supply"],
+    "orders": ["order", "purchase"],
+    "lineitem": ["lineitem", "line", "shipment", "ship", "return", "discount", "quantity"],
+}

@@ -42,8 +42,9 @@ src/text_to_sql/
     catalog.py     table/column metadata from the backend + hand-written TPC-H descriptions
     descriptions.py  business descriptions for the 8 TPC-H tables and their columns
     embed.py       Embedder protocol; HashEmbedder (tests/CI, offline); FastEmbedder (bge-small)
-    retriever.py   FAISS IndexFlatIP over normalized vectors; doc-per-table and doc-per-column,
-                   column hits roll up to their table; FK-neighbour expansion for join paths
+    retriever.py   hybrid retrieval: 0.7 x FAISS (IndexFlatIP, doc-per-table + doc-per-column, columns roll
+                   up to their table) + 0.3 x keyword (table name/alias hit + description overlap), the
+                   prototype's weighting; top-k then FK join-path bridging
   llm/
     client.py      thin wrapper over anthropic.Anthropic; FakeLLM for tests
     prompts.py     system prompt (ported from the prototype's SQL-writer rules) + repair prompt
@@ -75,8 +76,9 @@ docs/              prototype.md, architecture diagram
   cannot answer the question, the model replies `CANNOT_ANSWER: <reason>` instead of guessing (the
   prototype's "no context, no SQL" rule).
 - **Self-correction**: exactly one retry, on guard rejection or execution error, with the error text.
-- **Prompt caching**: `cache_control` on the system block. Full-schema prompts share a prefix across
-  questions; per-question retrieved schemas don't, which the eval's cost column will show.
+- **Prompt caching**: `cache_control` on the system block **only in full-schema mode**. Retrieved schemas
+  differ per question, so caching them pays the 1.25x write premium for nothing. Measured (Sonnet 5.5):
+  full-schema 3.2K-token prompt costs $0.0099 on the cache write, $0.0024 on a cache read.
 
 ## Models and cost
 
@@ -92,14 +94,17 @@ docs/              prototype.md, architecture diagram
 - `BudgetGuard` tracks dollars from `response.usage` (`input_tokens`, `output_tokens`,
   `cache_creation_input_tokens`, `cache_read_input_tokens`) and refuses the next call once
   spent + projected cost of the next call would exceed the cap (default $1.00 for the eval).
-- Estimated eval cost: 40 questions x 2 schema modes x 2 models = 160 calls (+ retries). Haiku is under
-  $0.05; Sonnet is about $0.5-0.8 at low effort. The run starts with a 3-question pilot and extrapolates.
+- Estimated eval cost: 40 questions x 2 schema modes x 2 models = 160 calls (+ retries). Smoke test on
+  Sonnet 5.5 at low effort: ~$0.005/question retrieved, ~$0.0024 full (cached), so Sonnet ~$0.30 and
+  Haiku ~$0.02. The run starts with a 3-question pilot and extrapolates.
 
 ## Eval
 
 - 40 questions over TPC-H: 14 easy (single table, filter/aggregate), 14 medium (2-3 table joins,
   group by/having), 12 hard (4+ joins, subqueries, windows, TPC-H-style analytics).
 - Gold SQL is checked into `eval/questions.yaml` and verified by a test that runs every gold query.
+- No ties at a "top N" cutoff: a test checks that the gold query's Nth and (N+1)th rows differ on the
+  ordering key, otherwise equally-correct queries return different rows (seen in the smoke test).
 - **Execution accuracy**: predicted and gold result sets match as multisets of rows (or as ordered lists
   when `order_matters`), after normalizing floats (round to 2 dp), Decimals, dates and NULLs. Column
   names and column order are ignored, but the column count must match.
