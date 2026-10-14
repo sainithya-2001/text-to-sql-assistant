@@ -1,0 +1,363 @@
+# Text-to-SQL eval set over TPC-H (DuckDB, sf=0.01).
+#
+# Each question names the columns it wants and defines any metric it uses, so a correct query has one
+# right answer. Business shorthand ("revenue", "late") is deliberately spelled out here; the glossary
+# phase adds questions that rely on those terms instead (eval/glossary_questions.yaml).
+#
+# Fields: id, difficulty (easy|medium|hard), question, gold_sql, order_matters (default false),
+#         order_key (result column whose values must not tie at a LIMIT cutoff; checked by tests)
+
+- id: e01
+  difficulty: easy
+  question: How many customers are there?
+  gold_sql: SELECT count(*) FROM customer
+
+- id: e02
+  difficulty: easy
+  question: How many orders were placed in 1995?
+  gold_sql: SELECT count(*) FROM orders WHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'
+
+- id: e03
+  difficulty: easy
+  question: List all region names in alphabetical order.
+  gold_sql: SELECT r_name FROM region ORDER BY r_name
+  order_matters: true
+
+- id: e04
+  difficulty: easy
+  question: How many customers are in each market segment? Return the segment and the count.
+  gold_sql: SELECT c_mktsegment, count(*) FROM customer GROUP BY c_mktsegment
+
+- id: e05
+  difficulty: easy
+  question: What is the average account balance of customers in the AUTOMOBILE market segment?
+  gold_sql: SELECT avg(c_acctbal) FROM customer WHERE c_mktsegment = 'AUTOMOBILE'
+
+- id: e06
+  difficulty: easy
+  question: How many suppliers have a negative account balance?
+  gold_sql: SELECT count(*) FROM supplier WHERE s_acctbal < 0
+
+- id: e07
+  difficulty: easy
+  question: How many parts are of brand Brand#23?
+  gold_sql: SELECT count(*) FROM part WHERE p_brand = 'Brand#23'
+
+- id: e08
+  difficulty: easy
+  question: What is the combined total price of all fulfilled orders?
+  gold_sql: SELECT sum(o_totalprice) FROM orders WHERE o_orderstatus = 'F'
+
+- id: e09
+  difficulty: easy
+  question: How many line items were shipped with each ship mode? Return the ship mode and the count.
+  gold_sql: SELECT l_shipmode, count(*) FROM lineitem GROUP BY l_shipmode
+
+- id: e10
+  difficulty: easy
+  question: What is the highest retail price of any part?
+  gold_sql: SELECT max(p_retailprice) FROM part
+
+- id: e11
+  difficulty: easy
+  question: How many orders have urgent priority?
+  gold_sql: SELECT count(*) FROM orders WHERE o_orderpriority = '1-URGENT'
+
+- id: e12
+  difficulty: easy
+  question: Which 3 parts have the highest retail price? Return the part name and retail price, most expensive first.
+  gold_sql: SELECT p_name, p_retailprice FROM part ORDER BY p_retailprice DESC LIMIT 3
+  # 2nd and 3rd tie at 1899.99, so only the set of the top 3 is well defined
+  order_key: p_retailprice
+
+- id: e13
+  difficulty: easy
+  question: How many line items were returned?
+  gold_sql: SELECT count(*) FROM lineitem WHERE l_returnflag = 'R'
+
+- id: e14
+  difficulty: easy
+  question: What is the average quantity per line item?
+  gold_sql: SELECT avg(l_quantity) FROM lineitem
+
+- id: m01
+  difficulty: medium
+  question: How many customers are there in each nation? Return the nation name and the number of customers.
+  gold_sql: |
+    SELECT n.n_name, count(*)
+    FROM customer c JOIN nation n ON c.c_nationkey = n.n_nationkey
+    GROUP BY n.n_name
+
+- id: m02
+  difficulty: medium
+  question: How many nations are in each region? Return the region name and the count.
+  gold_sql: |
+    SELECT r.r_name, count(*)
+    FROM nation n JOIN region r ON n.n_regionkey = r.r_regionkey
+    GROUP BY r.r_name
+
+- id: m03
+  difficulty: medium
+  question: What was the total order price per customer market segment for orders placed in 1997? Return the segment and the total.
+  gold_sql: |
+    SELECT c.c_mktsegment, sum(o.o_totalprice)
+    FROM orders o JOIN customer c ON o.o_custkey = c.c_custkey
+    WHERE o.o_orderdate >= DATE '1997-01-01' AND o.o_orderdate < DATE '1998-01-01'
+    GROUP BY c.c_mktsegment
+
+- id: m04
+  difficulty: medium
+  question: Which 5 customers have the highest combined total price across all their orders? Return the customer name and that total, highest first.
+  gold_sql: |
+    SELECT c.c_name, sum(o.o_totalprice) AS total
+    FROM orders o JOIN customer c ON o.o_custkey = c.c_custkey
+    GROUP BY c.c_name
+    ORDER BY total DESC
+    LIMIT 5
+  order_matters: true
+  order_key: total
+
+- id: m05
+  difficulty: medium
+  question: How many suppliers are there in each region? Return the region name and the count.
+  gold_sql: |
+    SELECT r.r_name, count(*)
+    FROM supplier s
+    JOIN nation n ON s.s_nationkey = n.n_nationkey
+    JOIN region r ON n.n_regionkey = r.r_regionkey
+    GROUP BY r.r_name
+
+- id: m06
+  difficulty: medium
+  question: For parts made by Manufacturer#1, what is the average supplier cost per brand? Return the brand and the average supply cost.
+  gold_sql: |
+    SELECT p.p_brand, avg(ps.ps_supplycost)
+    FROM partsupp ps JOIN part p ON ps.ps_partkey = p.p_partkey
+    WHERE p.p_mfgr = 'Manufacturer#1'
+    GROUP BY p.p_brand
+
+- id: m07
+  difficulty: medium
+  question: Which nations have more than 70 customers? Return the nation name and the number of customers.
+  gold_sql: |
+    SELECT n.n_name, count(*)
+    FROM customer c JOIN nation n ON c.c_nationkey = n.n_nationkey
+    GROUP BY n.n_name
+    HAVING count(*) > 70
+
+- id: m08
+  difficulty: medium
+  question: For each order priority, how many orders were placed in 1996? Return the priority and the count.
+  gold_sql: |
+    SELECT o_orderpriority, count(*)
+    FROM orders
+    WHERE o_orderdate >= DATE '1996-01-01' AND o_orderdate < DATE '1997-01-01'
+    GROUP BY o_orderpriority
+
+- id: m09
+  difficulty: medium
+  question: Which supplier has the largest total available quantity across all the parts it supplies? Return the supplier name and that total.
+  gold_sql: |
+    SELECT s.s_name, sum(ps.ps_availqty) AS total
+    FROM partsupp ps JOIN supplier s ON ps.ps_suppkey = s.s_suppkey
+    GROUP BY s.s_name
+    ORDER BY total DESC
+    LIMIT 1
+  order_key: total
+
+- id: m10
+  difficulty: medium
+  question: How many line items were received by the customer after the date the supplier committed to?
+  gold_sql: SELECT count(*) FROM lineitem WHERE l_receiptdate > l_commitdate
+
+- id: m11
+  difficulty: medium
+  question: What are the top 5 part brands by number of line items sold? Return the brand and the number of line items, highest first.
+  gold_sql: |
+    SELECT p.p_brand, count(*) AS n
+    FROM lineitem l JOIN part p ON l.l_partkey = p.p_partkey
+    GROUP BY p.p_brand
+    ORDER BY n DESC
+    LIMIT 5
+  order_matters: true
+  order_key: n
+
+- id: m12
+  difficulty: medium
+  question: What was the average discount for each ship mode, for line items shipped in 1994? Return the ship mode and the average discount.
+  gold_sql: |
+    SELECT l_shipmode, avg(l_discount)
+    FROM lineitem
+    WHERE l_shipdate >= DATE '1994-01-01' AND l_shipdate < DATE '1995-01-01'
+    GROUP BY l_shipmode
+
+- id: m13
+  difficulty: medium
+  question: How many customers from GERMANY are in each market segment? Return the segment and the count.
+  gold_sql: |
+    SELECT c.c_mktsegment, count(*)
+    FROM customer c JOIN nation n ON c.c_nationkey = n.n_nationkey
+    WHERE n.n_name = 'GERMANY'
+    GROUP BY c.c_mktsegment
+
+- id: m14
+  difficulty: medium
+  question: How many orders were placed in each month of 1995? Return the month number (1-12) and the count, in month order.
+  gold_sql: |
+    SELECT extract(month FROM o_orderdate) AS month, count(*)
+    FROM orders
+    WHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'
+    GROUP BY month
+    ORDER BY month
+  order_matters: true
+
+- id: h01
+  difficulty: hard
+  question: What was the revenue in each customer region for orders placed in 1995, where revenue is the sum of extended price times (1 - discount) over the line items? Return the region name and revenue.
+  gold_sql: |
+    SELECT r.r_name, sum(l.l_extendedprice * (1 - l.l_discount))
+    FROM lineitem l
+    JOIN orders o ON l.l_orderkey = o.o_orderkey
+    JOIN customer c ON o.o_custkey = c.c_custkey
+    JOIN nation n ON c.c_nationkey = n.n_nationkey
+    JOIN region r ON n.n_regionkey = r.r_regionkey
+    WHERE o.o_orderdate >= DATE '1995-01-01' AND o.o_orderdate < DATE '1996-01-01'
+    GROUP BY r.r_name
+
+- id: h02
+  difficulty: hard
+  question: Which 5 suppliers generated the most revenue from line items shipped in 1996, where revenue is extended price times (1 - discount)? Return the supplier name, the supplier's nation name and the revenue, highest first.
+  gold_sql: |
+    SELECT s.s_name, n.n_name, sum(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+    FROM lineitem l
+    JOIN supplier s ON l.l_suppkey = s.s_suppkey
+    JOIN nation n ON s.s_nationkey = n.n_nationkey
+    WHERE l.l_shipdate >= DATE '1996-01-01' AND l.l_shipdate < DATE '1997-01-01'
+    GROUP BY s.s_name, n.n_name
+    ORDER BY revenue DESC
+    LIMIT 5
+  order_matters: true
+  order_key: revenue
+
+- id: h03
+  difficulty: hard
+  question: For line items shipped on or before 1998-09-02, grouped by return flag and line status, report the total quantity, total extended price, total discounted price (extended price times (1 - discount)), average discount and number of line items. Order by return flag then line status.
+  gold_sql: |
+    SELECT l_returnflag, l_linestatus,
+           sum(l_quantity), sum(l_extendedprice), sum(l_extendedprice * (1 - l_discount)),
+           avg(l_discount), count(*)
+    FROM lineitem
+    WHERE l_shipdate <= DATE '1998-09-02'
+    GROUP BY l_returnflag, l_linestatus
+    ORDER BY l_returnflag, l_linestatus
+  order_matters: true
+
+- id: h04
+  difficulty: hard
+  question: Among orders from BUILDING segment customers placed before 1995-03-15, considering only their line items shipped after 1995-03-15, which 10 orders have the highest revenue (extended price times (1 - discount))? Return the order key, the revenue and the order date, highest revenue first.
+  gold_sql: |
+    SELECT o.o_orderkey, sum(l.l_extendedprice * (1 - l.l_discount)) AS revenue, o.o_orderdate
+    FROM customer c
+    JOIN orders o ON c.c_custkey = o.o_custkey
+    JOIN lineitem l ON l.l_orderkey = o.o_orderkey
+    WHERE c.c_mktsegment = 'BUILDING'
+      AND o.o_orderdate < DATE '1995-03-15'
+      AND l.l_shipdate > DATE '1995-03-15'
+    GROUP BY o.o_orderkey, o.o_orderdate
+    ORDER BY revenue DESC
+    LIMIT 10
+  order_matters: true
+  order_key: revenue
+
+- id: h05
+  difficulty: hard
+  question: For orders placed in 1994 in the ASIA region, what was the revenue (extended price times (1 - discount)) per nation, counting only line items where the customer and the supplier are in the same nation? Return the nation name and revenue.
+  gold_sql: |
+    SELECT n.n_name, sum(l.l_extendedprice * (1 - l.l_discount))
+    FROM customer c
+    JOIN orders o ON c.c_custkey = o.o_custkey
+    JOIN lineitem l ON l.l_orderkey = o.o_orderkey
+    JOIN supplier s ON l.l_suppkey = s.s_suppkey AND c.c_nationkey = s.s_nationkey
+    JOIN nation n ON s.s_nationkey = n.n_nationkey
+    JOIN region r ON n.n_regionkey = r.r_regionkey
+    WHERE r.r_name = 'ASIA'
+      AND o.o_orderdate >= DATE '1994-01-01' AND o.o_orderdate < DATE '1995-01-01'
+    GROUP BY n.n_name
+
+- id: h06
+  difficulty: hard
+  question: What is the sum of extended price times discount for line items shipped in 1994 with a discount between 0.05 and 0.07 inclusive and a quantity below 24?
+  gold_sql: |
+    SELECT sum(l_extendedprice * l_discount)
+    FROM lineitem
+    WHERE l_shipdate >= DATE '1994-01-01' AND l_shipdate < DATE '1995-01-01'
+      AND l_discount BETWEEN 0.05 AND 0.07
+      AND l_quantity < 24
+
+- id: h07
+  difficulty: hard
+  question: How many customers have never placed an order?
+  gold_sql: |
+    SELECT count(*) FROM customer c
+    WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.o_custkey = c.c_custkey)
+
+- id: h08
+  difficulty: hard
+  question: For each year, what percentage (0-100) of that year's orders had urgent priority? Return the year and the percentage, in year order.
+  gold_sql: |
+    SELECT extract(year FROM o_orderdate) AS year,
+           100.0 * count(*) FILTER (WHERE o_orderpriority = '1-URGENT') / count(*)
+    FROM orders
+    GROUP BY year
+    ORDER BY year
+  order_matters: true
+
+- id: h09
+  difficulty: hard
+  question: Which 3 supplier nations hold the highest total inventory value, where inventory value is supply cost times available quantity? Return the nation name and the value, highest first.
+  gold_sql: |
+    SELECT n.n_name, sum(ps.ps_supplycost * ps.ps_availqty) AS value
+    FROM partsupp ps
+    JOIN supplier s ON ps.ps_suppkey = s.s_suppkey
+    JOIN nation n ON s.s_nationkey = n.n_nationkey
+    GROUP BY n.n_name
+    ORDER BY value DESC
+    LIMIT 3
+  order_matters: true
+  order_key: value
+
+- id: h10
+  difficulty: hard
+  question: For each market segment, who are the 3 customers with the highest account balance? Return the segment, customer name and account balance.
+  gold_sql: |
+    SELECT c_mktsegment, c_name, c_acctbal
+    FROM (
+      SELECT c_mktsegment, c_name, c_acctbal,
+             row_number() OVER (PARTITION BY c_mktsegment ORDER BY c_acctbal DESC) AS rn
+      FROM customer
+    ) t
+    WHERE rn <= 3
+
+- id: h11
+  difficulty: hard
+  question: What is the average number of line items per order for each order status? Return the order status and the average.
+  gold_sql: |
+    SELECT o.o_orderstatus, avg(cnt)
+    FROM orders o
+    JOIN (SELECT l_orderkey, count(*) AS cnt FROM lineitem GROUP BY l_orderkey) li
+      ON li.l_orderkey = o.o_orderkey
+    GROUP BY o.o_orderstatus
+
+- id: h12
+  difficulty: hard
+  question: For each order year, what was the total revenue (extended price times (1 - discount)) and the percentage change from the previous year? Return the year, revenue and percentage change (0-100 scale, empty for the first year), in year order.
+  gold_sql: |
+    WITH y AS (
+      SELECT extract(year FROM o.o_orderdate) AS year, sum(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+      FROM lineitem l JOIN orders o ON l.l_orderkey = o.o_orderkey
+      GROUP BY year
+    )
+    SELECT year, revenue, 100.0 * (revenue - lag(revenue) OVER (ORDER BY year)) / lag(revenue) OVER (ORDER BY year)
+    FROM y
+    ORDER BY year
+  order_matters: true

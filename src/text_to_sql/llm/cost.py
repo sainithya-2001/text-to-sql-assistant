@@ -60,21 +60,24 @@ class BudgetExceeded(RuntimeError):
 class BudgetGuard:
     """Refuses a call when spent + projected cost of that call would pass the cap.
 
-    The projection uses the input size (chars/3, a conservative token estimate) and the larger of the
-    running average output for that model and `min_output_tokens`.
+    The projection errs high: input tokens are estimated at chars/3 or the highest tokens-per-char
+    ratio seen for that model, whichever is larger, priced as uncached input; output tokens are the
+    largest output seen so far (or `min_output_tokens`). Both are then multiplied by `margin`.
     """
 
     cap_usd: float
     spent_usd: float = 0.0
     calls: int = 0
     min_output_tokens: int = 600
-    _out_tokens: dict[str, list[int]] = field(default_factory=dict)
+    margin: float = 1.25
+    _max_out: dict[str, int] = field(default_factory=dict)
+    _tok_per_char: dict[str, float] = field(default_factory=dict)
 
     def projected(self, model: str, prompt_chars: int) -> float:
-        seen = self._out_tokens.get(model) or []
-        avg_out = sum(seen) / len(seen) if seen else 0
-        est = Usage(input_tokens=prompt_chars // 3, output_tokens=int(max(avg_out, self.min_output_tokens)))
-        return cost_usd(model, est)
+        ratio = max(1 / 3, self._tok_per_char.get(model, 0.0))
+        out = max(self._max_out.get(model, 0), self.min_output_tokens)
+        est = Usage(input_tokens=int(prompt_chars * ratio), output_tokens=out)
+        return cost_usd(model, est) * self.margin
 
     def check(self, model: str, prompt_chars: int) -> None:
         nxt = self.projected(model, prompt_chars)
@@ -83,9 +86,12 @@ class BudgetGuard:
                 f"budget cap ${self.cap_usd:.2f} reached: spent ${self.spent_usd:.4f}, next call ~${nxt:.4f}"
             )
 
-    def record(self, model: str, usage: Usage) -> float:
+    def record(self, model: str, usage: Usage, prompt_chars: int | None = None) -> float:
         c = cost_usd(model, usage)
         self.spent_usd += c
         self.calls += 1
-        self._out_tokens.setdefault(model, []).append(usage.output_tokens)
+        self._max_out[model] = max(self._max_out.get(model, 0), usage.output_tokens)
+        if prompt_chars:
+            total_in = usage.input_tokens + usage.cache_creation_input_tokens + usage.cache_read_input_tokens
+            self._tok_per_char[model] = max(self._tok_per_char.get(model, 0.0), total_in / prompt_chars)
         return c

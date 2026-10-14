@@ -1,0 +1,752 @@
+{
+ "started": "2026-10-14T17:17:07",
+ "configs": [
+  "claude-haiku-5-5/full",
+  "claude-haiku-5-5/retrieved",
+  "claude-sonnet-5-5/full",
+  "claude-sonnet-5-5/retrieved"
+ ],
+ "stopped_reason": null,
+ "budget_cap_usd": 0.1,
+ "spent_usd": 0.046339,
+ "items": {
+  "claude-haiku-5-5/full": [
+   {
+    "id": "e01",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customer_count FROM customer",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 13,
+    "output_tokens": 24,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 4.586e-05,
+    "elapsed_s": 1.14
+   },
+   {
+    "id": "m01",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(c.c_custkey) AS customer_count FROM nation AS n LEFT JOIN customer AS c ON c.c_nationkey = n.n_nationkey GROUP BY n.n_name ORDER BY customer_count DESC",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 30,
+    "output_tokens": 101,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 8.606e-05,
+    "elapsed_s": 1.05
+   },
+   {
+    "id": "h01",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name,\n       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM lineitem AS l\nINNER JOIN orders AS o ON l.l_orderkey = o.o_orderkey\nINNER JOIN customer AS c ON o.o_custkey = c.c_custkey\nINNER JOIN nation AS n ON c.c_nationkey = n.n_nationkey\nINNER JOIN region AS r ON n.n_regionkey = r.r_regionkey\nWHERE o.o_orderdate >= DATE '1995-01-01'\n  AND o.o_orderdate < DATE '1996-01-01'\nGROUP BY r.r_name\nORDER BY revenue DESC",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 62,
+    "output_tokens": 365,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00022125999999999998,
+    "elapsed_s": 1.84
+   },
+   {
+    "id": "e02",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS order_count FROM orders WHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 18,
+    "output_tokens": 66,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 6.736e-05,
+    "elapsed_s": 0.78
+   },
+   {
+    "id": "m02",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(n.n_nationkey) AS nation_count\nFROM region r\nINNER JOIN nation n ON n.n_regionkey = r.r_regionkey\nGROUP BY r.r_name\nORDER BY region_name",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 24,
+    "output_tokens": 95,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 8.246e-05,
+    "elapsed_s": 0.91
+   },
+   {
+    "id": "h02",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name, n.n_name AS nation_name, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue FROM lineitem l INNER JOIN supplier s ON l.l_suppkey = s.s_suppkey INNER JOIN nation n ON s.s_nationkey = n.n_nationkey WHERE l.l_shipdate >= DATE '1996-01-01' AND l.l_shipdate < DATE '1997-01-01' GROUP BY s.s_suppkey, s.s_name, n.n_name ORDER BY revenue DESC LIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 76,
+    "output_tokens": 221,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00015066,
+    "elapsed_s": 1.17
+   }
+  ],
+  "claude-haiku-5-5/retrieved": [
+   {
+    "id": "e01",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customer_count FROM customer",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2095,
+    "output_tokens": 24,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002215,
+    "elapsed_s": 0.69
+   },
+   {
+    "id": "m01",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(c.c_custkey) AS customer_count FROM nation n LEFT JOIN customer c ON c.c_nationkey = n.n_nationkey GROUP BY n.n_name ORDER BY customer_count DESC",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1970,
+    "output_tokens": 97,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0002455,
+    "elapsed_s": 0.93
+   },
+   {
+    "id": "h01",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM lineitem l\nINNER JOIN orders o ON l.l_orderkey = o.o_orderkey\nINNER JOIN customer c ON o.o_custkey = c.c_custkey\nINNER JOIN nation n ON c.c_nationkey = n.n_nationkey\nINNER JOIN region r ON n.n_regionkey = r.r_regionkey\nWHERE o.o_orderdate >= DATE '1995-01-01' AND o.o_orderdate < DATE '1996-01-01'\nGROUP BY r.r_name\nORDER BY revenue DESC",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2303,
+    "output_tokens": 247,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00035380000000000003,
+    "elapsed_s": 1.45
+   },
+   {
+    "id": "e02",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS order_count\nFROM orders\nWHERE o_orderdate >= DATE '1995-01-01'\n  AND o_orderdate < DATE '1996-01-01'",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2100,
+    "output_tokens": 70,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.000245,
+    "elapsed_s": 0.94
+   },
+   {
+    "id": "m02",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(n.n_nationkey) AS nation_count FROM region r INNER JOIN nation n ON n.n_regionkey = r.r_regionkey GROUP BY r.r_name ORDER BY r.r_name",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1796,
+    "output_tokens": 93,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00022610000000000002,
+    "elapsed_s": 1.01
+   },
+   {
+    "id": "h02",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name, n.n_name AS nation_name, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue FROM lineitem l INNER JOIN supplier s ON l.l_suppkey = s.s_suppkey INNER JOIN nation n ON s.s_nationkey = n.n_nationkey WHERE l.l_shipdate >= DATE '1996-01-01' AND l.l_shipdate < DATE '1997-01-01' GROUP BY s.s_suppkey, s.s_name, n.n_name ORDER BY revenue DESC LIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2001,
+    "output_tokens": 221,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0003106,
+    "elapsed_s": 1.41
+   }
+  ],
+  "claude-sonnet-5-5/full": [
+   {
+    "id": "e01",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customer_count FROM customer",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 13,
+    "output_tokens": 24,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0009172000000000001,
+    "elapsed_s": 1.74
+   },
+   {
+    "id": "m01",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(c.c_custkey) AS customer_count\nFROM nation n\nLEFT JOIN customer c ON c.c_nationkey = n.n_nationkey\nGROUP BY n.n_name\nORDER BY customer_count DESC, nation_name",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 30,
+    "output_tokens": 106,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0017712000000000001,
+    "elapsed_s": 1.44
+   },
+   {
+    "id": "h01",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name,\n       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM orders o\nJOIN customer c ON o.o_custkey = c.c_custkey\nJOIN nation n ON c.c_nationkey = n.n_nationkey\nJOIN region r ON n.n_regionkey = r.r_regionkey\nJOIN lineitem l ON l.l_orderkey = o.o_orderkey\nWHERE o.o_orderdate >= DATE '1995-01-01'\n  AND o.o_orderdate < DATE '1996-01-01'\nGROUP BY r.r_name\nORDER BY revenue DESC",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 62,
+    "output_tokens": 239,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0031652,
+    "elapsed_s": 1.87
+   },
+   {
+    "id": "e02",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS order_count\nFROM orders\nWHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 18,
+    "output_tokens": 68,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0013672,
+    "elapsed_s": 1.19
+   },
+   {
+    "id": "m02",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(n.n_nationkey) AS nation_count\nFROM region r\nLEFT JOIN nation n ON n.n_regionkey = r.r_regionkey\nGROUP BY r.r_name\nORDER BY r.r_name",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 24,
+    "output_tokens": 98,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0016792,
+    "elapsed_s": 1.65
+   },
+   {
+    "id": "h02",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name,\n       n.n_name AS nation_name,\n       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM lineitem l\nJOIN supplier s ON l.l_suppkey = s.s_suppkey\nJOIN nation n ON s.s_nationkey = n.n_nationkey\nWHERE l.l_shipdate >= DATE '1996-01-01'\n  AND l.l_shipdate < DATE '1997-01-01'\nGROUP BY s.s_suppkey, s.s_name, n.n_name\nORDER BY revenue DESC\nLIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "part",
+     "partsupp",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "retrieval_recall": null,
+    "input_tokens": 76,
+    "output_tokens": 228,
+    "cache_read_tokens": 3256,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0030832,
+    "elapsed_s": 2.0
+   }
+  ],
+  "claude-sonnet-5-5/retrieved": [
+   {
+    "id": "e01",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS customer_count FROM customer",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "customer"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2095,
+    "output_tokens": 24,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00443,
+    "elapsed_s": 1.17
+   },
+   {
+    "id": "m01",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT n.n_name AS nation_name, COUNT(c.c_custkey) AS customer_count\nFROM nation n\nLEFT JOIN customer c ON c.c_nationkey = n.n_nationkey\nGROUP BY n.n_name\nORDER BY customer_count DESC, nation_name",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "gold_tables": [
+     "customer",
+     "nation"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1970,
+    "output_tokens": 106,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005,
+    "elapsed_s": 1.49
+   },
+   {
+    "id": "h01",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name,\n       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM orders o\nJOIN customer c ON o.o_custkey = c.c_custkey\nJOIN nation n ON c.c_nationkey = n.n_nationkey\nJOIN region r ON n.n_regionkey = r.r_regionkey\nJOIN lineitem l ON l.l_orderkey = o.o_orderkey\nWHERE o.o_orderdate >= DATE '1995-01-01'\n  AND o.o_orderdate < DATE '1996-01-01'\nGROUP BY r.r_name\nORDER BY revenue DESC",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "gold_tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2303,
+    "output_tokens": 239,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006996,
+    "elapsed_s": 2.06
+   },
+   {
+    "id": "e02",
+    "difficulty": "easy",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT COUNT(*) AS order_count\nFROM orders\nWHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "customer",
+     "lineitem",
+     "nation",
+     "orders"
+    ],
+    "gold_tables": [
+     "orders"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2100,
+    "output_tokens": 68,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00488,
+    "elapsed_s": 0.96
+   },
+   {
+    "id": "m02",
+    "difficulty": "medium",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT r.r_name AS region_name, COUNT(n.n_nationkey) AS nation_count\nFROM region r\nLEFT JOIN nation n ON n.n_regionkey = r.r_regionkey\nGROUP BY r.r_name\nORDER BY r.r_name",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "region",
+     "supplier"
+    ],
+    "gold_tables": [
+     "nation",
+     "region"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 1796,
+    "output_tokens": 98,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004572,
+    "elapsed_s": 1.32
+   },
+   {
+    "id": "h02",
+    "difficulty": "hard",
+    "category": "core",
+    "correct": true,
+    "sql": "SELECT s.s_name AS supplier_name, n.n_name AS nation_name, SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue\nFROM lineitem l\nJOIN supplier s ON l.l_suppkey = s.s_suppkey\nJOIN nation n ON s.s_nationkey = n.n_nationkey\nWHERE l.l_shipdate >= DATE '1996-01-01' AND l.l_shipdate < DATE '1997-01-01'\nGROUP BY s.s_suppkey, s.s_name, n.n_name\nORDER BY revenue DESC\nLIMIT 5",
+    "error": null,
+    "cannot_answer": null,
+    "blocked": false,
+    "retried": false,
+    "tables": [
+     "lineitem",
+     "nation",
+     "partsupp",
+     "supplier"
+    ],
+    "gold_tables": [
+     "lineitem",
+     "nation",
+     "supplier"
+    ],
+    "retrieval_recall": true,
+    "input_tokens": 2001,
+    "output_tokens": 222,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006222,
+    "elapsed_s": 1.84
+   }
+  ]
+ }
+}

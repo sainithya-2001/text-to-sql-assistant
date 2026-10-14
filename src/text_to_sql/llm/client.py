@@ -64,8 +64,9 @@ class ClaudeLLM(LLM):
         self.budget = budget
 
     def complete(self, system: str, messages: list[Message], *, cache: bool = False) -> LLMResponse:
+        prompt_chars = len(system) + sum(len(m.content) for m in messages)
         if self.budget:
-            self.budget.check(self.model, len(system) + sum(len(m.content) for m in messages))
+            self.budget.check(self.model, prompt_chars)
         try:
             resp = self.client.messages.create(
                 model=self.model,
@@ -82,7 +83,11 @@ class ClaudeLLM(LLM):
             raise LLMError(f"cannot reach Claude API: {e}") from e
 
         usage = Usage.from_api(resp.usage)
-        cost = self.budget.record(self.model, usage) if self.budget else cost_usd(self.model, usage)
+        cost = (
+            self.budget.record(self.model, usage, prompt_chars)
+            if self.budget
+            else cost_usd(self.model, usage)
+        )
         if resp.stop_reason == "refusal":
             raise LLMError("Claude declined this request (refusal)")
         if resp.stop_reason == "max_tokens":

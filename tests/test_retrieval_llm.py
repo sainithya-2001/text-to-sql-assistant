@@ -196,3 +196,13 @@ def test_stemming():
     from text_to_sql.schema.retriever import keywords
 
     assert {"order", "country", "supplier"} <= keywords("orders by countries and suppliers")
+
+
+def test_budget_projection_learns_token_ratio_and_max_output():
+    g = BudgetGuard(cap_usd=10)
+    before = g.projected("claude-sonnet-5-5", 3000)
+    # observed: 3000 chars -> 1500 tokens (0.5/char, above the 1/3 default) and a long 2000-token output
+    g.record("claude-sonnet-5-5", Usage(input_tokens=1500, output_tokens=2000), prompt_chars=3000)
+    after = g.projected("claude-sonnet-5-5", 3000)
+    assert after > before
+    assert after >= cost_usd("claude-sonnet-5-5", Usage(input_tokens=1500, output_tokens=2000))
