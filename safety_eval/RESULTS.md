@@ -4,6 +4,11 @@ Setup, threat model and metrics: [`README.md`](README.md). Every number below co
 [`results/summary.md`](results/summary.md), regenerated from the raw JSON in `results/`.
 Environment: DuckDB 1.5.5, sqlglot 30.25.0, Python 3.13, TPC-H sf=0.01. No API calls.
 
+> **Status:** both fixes are now in `SqlGuard` (on by default). In the tables below, `guard_only` and
+> `guard+ro` are the **pre-fix** guard (reproduced with `scoped_ctes=False, parser_agreement=False`);
+> `hardened+ro` is what production runs today. Rerunning the study after the move gave identical
+> results.
+
 ## Summary
 
 Treating the model's SQL as untrusted, the production configuration (`SqlGuard` + read-only
@@ -115,7 +120,7 @@ and no measured cost here, so this study gives no evidence for adopting it.
 
 ## Recommendations
 
-1. Upstream the hardened checks (scoped CTE resolution, DuckDB parser agreement) into `SqlGuard`.
+1. ~~Upstream the hardened checks into `SqlGuard`.~~ Done: both are on by default.
 2. Keep both layers; Finding 1 shows each covers attacks the other misses.
 3. Allow `range`/`generate_series` with literal arguments to recover calendar queries.
 4. Add a column-level deny list (or restricted views) for PII, and a per-session query budget.

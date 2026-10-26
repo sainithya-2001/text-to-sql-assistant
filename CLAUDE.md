@@ -84,6 +84,13 @@ docs/              prototype.md, architecture diagram
   catalog table or a CTE, which rejects table functions (`read_csv`, `duckdb_settings()`, `query()`),
   quoted file paths and system schemas. Scalar system functions (`getenv`, `current_setting`,
   `version()` -> `CURRENT_VERSION`) are denied by name.
+- **CTE names are scoped** (`scoped_ctes`): a table reference counts as a CTE only where that CTE is in
+  scope (enclosing WITH, earlier sibling, itself under RECURSIVE). Collecting CTE names tree-wide let
+  `... WHERE EXISTS (WITH duckdb_databases AS (SELECT 1) SELECT 1)` read the real system view.
+- **DuckDB must agree** (`parser_agreement`, duckdb dialect only): `duckdb.extract_statements` on the
+  SQL that will run must be exactly one SELECT (`SELECT * FROM (PIVOT ...)` is CREATE TYPE + SELECT).
+  Both found by `safety_eval/`; `SqlGuard(..., scoped_ctes=False, parser_agreement=False)` is the
+  pre-fix guard the study's `guard_only`/`guard+ro` configs reproduce.
 - **Self-correction**: exactly one retry with the failed SQL and error text, for *fixable* failures
   (parse error, unknown table/column, DB error, timeout). Policy violations (writes, system access) are
   `blocked` immediately and never handed back to the model to "fix".

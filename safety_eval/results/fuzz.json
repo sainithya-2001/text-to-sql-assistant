@@ -3,7 +3,7 @@
   "python": "3.13.17",
   "duckdb": "1.5.5",
   "sqlglot": "30.25.0",
-  "timestamp": "2026-10-26T15:43:29"
+  "timestamp": "2026-10-26T17:07:49"
  },
  "params": {
   "per_seed": 25,
@@ -25078,13 +25078,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_8x73fc_j/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_8x73fc_j/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q5 LIMIT 201"
+     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_d48omb_y/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_d48omb_y/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q5 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_49e3ci4g/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_49e3ci4g/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_49e3ci4g/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q5 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_tvcfmspg/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_tvcfmspg/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_tvcfmspg/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q5 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -25112,13 +25112,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_yw__9yp0/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_yw__9yp0/secrets.csv\") AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_ml4bwnue/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_ml4bwnue/secrets.csv\") AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_lnxyoobo/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_lnxyoobo/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_lnxyoobo/secrets.csv\") AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_opm4pu3o/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_opm4pu3o/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_opm4pu3o/secrets.csv\") AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -25231,13 +25231,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_rfprjyze/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_rfprjyze/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_vec1kyal/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_vec1kyal/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_lh45ctmr/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_lh45ctmr/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_lh45ctmr/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_je6542xa/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_je6542xa/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_je6542xa/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -25324,13 +25324,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_xmnsi19p/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_xmnsi19p/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q1 LIMIT 201"
+     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_dvvxfgws/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_dvvxfgws/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q1 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_xjr4fr4q/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_xjr4fr4q/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_xjr4fr4q/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q1 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_h31mcmss/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_h31mcmss/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_h31mcmss/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q1 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -25359,13 +25359,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_xoqybdpl/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH w AS (SELECT * FROM \"/tmp/t2s_trial_xoqybdpl/secrets.csv\") SELECT * FROM w) AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_rvc11j7a/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH w AS (SELECT * FROM \"/tmp/t2s_trial_rvc11j7a/secrets.csv\") SELECT * FROM w) AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_9ujzd2l3/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_9ujzd2l3/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH w AS (SELECT * FROM \"/tmp/t2s_trial_9ujzd2l3/secrets.csv\") SELECT * FROM w) AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_oz9fsm6x/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_oz9fsm6x/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH w AS (SELECT * FROM \"/tmp/t2s_trial_oz9fsm6x/secrets.csv\") SELECT * FROM w) AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -25537,13 +25537,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_fsb5_m6e/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_fsb5_m6e/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_hddb79dh/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_hddb79dh/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_aiwu7n_1/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_aiwu7n_1/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_aiwu7n_1/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_qzyf62sg/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_qzyf62sg/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_qzyf62sg/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -25601,13 +25601,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_u8mxd1d9/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_u8mxd1d9/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial__r4aj3lb/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial__r4aj3lb/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_pwihygnm/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_pwihygnm/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_pwihygnm/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_4izhgelc/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_4izhgelc/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_4izhgelc/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -25693,13 +25693,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial__8wh4i4g/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial__8wh4i4g/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9 LIMIT 201"
+     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_0tud1dww/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_0tud1dww/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_8ap6ex3m/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_8ap6ex3m/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_8ap6ex3m/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_1z4rlnz0/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_1z4rlnz0/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_1z4rlnz0/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50462,13 +50462,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_9eauma6j/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_9eauma6j/secrets.csv\") AS q8 LIMIT 201"
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_grmqgmxq/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_grmqgmxq/secrets.csv\") AS q8 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vhhafcxz/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_vhhafcxz/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_vhhafcxz/secrets.csv\") AS q8 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_qzjij59z/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_qzjij59z/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_qzjij59z/secrets.csv\") AS q8 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50497,13 +50497,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT\r\n*\r\nFROM\r\n(WITH\r\n\"/tmp/t2s_trial_uqqe8w84/secrets.csv\"\r\nAS\r\n(SELECT\r\n1)\r\nSELECT\r\n1)\r\ns,\r\n\"/tmp/t2s_trial_uqqe8w84/secrets.csv\" LIMIT 5"
+     "executed_sql": "SELECT\r\n*\r\nFROM\r\n(WITH\r\n\"/tmp/t2s_trial_f416yi0y/secrets.csv\"\r\nAS\r\n(SELECT\r\n1)\r\nSELECT\r\n1)\r\ns,\r\n\"/tmp/t2s_trial_f416yi0y/secrets.csv\" LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_epws1jmu/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT\r\n*\r\nFROM\r\n(WITH\r\n\"/tmp/t2s_trial_epws1jmu/secrets.csv\"\r\nAS\r\n(SELECT\r\n1)\r\nSELECT\r\n1)\r\ns,\r\n\"/tmp/t2s_trial_epws1jmu/secrets.csv\" LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_9jvvh3qb/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT\r\n*\r\nFROM\r\n(WITH\r\n\"/tmp/t2s_trial_9jvvh3qb/secrets.csv\"\r\nAS\r\n(SELECT\r\n1)\r\nSELECT\r\n1)\r\ns,\r\n\"/tmp/t2s_trial_9jvvh3qb/secrets.csv\" LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50532,13 +50532,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_fghpuekf/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_fghpuekf/secrets.csv\") SELECT * FROM w LIMIT 201"
+     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_ad04wsv0/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ad04wsv0/secrets.csv\") SELECT * FROM w LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_g1p6t3wy/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_g1p6t3wy/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_g1p6t3wy/secrets.csv\") SELECT * FROM w LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_rwsr5p6y/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_rwsr5p6y/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_rwsr5p6y/secrets.csv\") SELECT * FROM w LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50566,13 +50566,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_ne561q8g/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ne561q8g/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_t5x5u7hz/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_t5x5u7hz/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_2sowh1uy/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_2sowh1uy/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_2sowh1uy/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_re5dnklu/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_re5dnklu/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_re5dnklu/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50601,13 +50601,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELeCt * FrOM (WiTH \"/tmp/t2s_trial_8ko9avi1/secrets.csv\" aS (seLeCT 1) SElecT 1) s, \"/tmp/t2s_trial_8ko9avi1/secrets.csv\" LIMIT 5"
+     "executed_sql": "SELeCt * FrOM (WiTH \"/tmp/t2s_trial_7bfukul5/secrets.csv\" aS (seLeCT 1) SElecT 1) s, \"/tmp/t2s_trial_7bfukul5/secrets.csv\" LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial__7u66gdi/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELeCt * FrOM (WiTH \"/tmp/t2s_trial__7u66gdi/secrets.csv\" aS (seLeCT 1) SElecT 1) s, \"/tmp/t2s_trial__7u66gdi/secrets.csv\" LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vt0b63ta/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELeCt * FrOM (WiTH \"/tmp/t2s_trial_vt0b63ta/secrets.csv\" aS (seLeCT 1) SElecT 1) s, \"/tmp/t2s_trial_vt0b63ta/secrets.csv\" LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50636,13 +50636,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_hzt07dq8/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_hzt07dq8/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_6ez59nu6/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_6ez59nu6/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_o_v_jmjw/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_o_v_jmjw/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_o_v_jmjw/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_gx085hq_/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_gx085hq_/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_gx085hq_/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50670,13 +50670,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_ug7igp4o/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ug7igp4o/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_6dw014hz/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_6dw014hz/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_jxea4xeh/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_jxea4xeh/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_jxea4xeh/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_w9m5tnwe/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_w9m5tnwe/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_w9m5tnwe/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50704,13 +50704,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_8kjaiyja/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_8kjaiyja/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_ipwlgi43/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ipwlgi43/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_oi127vzg/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_oi127vzg/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_oi127vzg/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_z4ou2d__/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_z4ou2d__/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_z4ou2d__/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50739,13 +50739,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "/* DROP */ SELECT * /* DROP */ FROM (WITH \"/tmp/t2s_trial_fnw5h9a3/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_fnw5h9a3/secrets.csv\" LIMIT 201"
+     "executed_sql": "/* DROP */ SELECT * /* DROP */ FROM (WITH \"/tmp/t2s_trial_y51bymw_/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_y51bymw_/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_814le59d/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "/* DROP */ SELECT * /* DROP */ FROM (WITH \"/tmp/t2s_trial_814le59d/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_814le59d/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_zd3uji7_/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "/* DROP */ SELECT * /* DROP */ FROM (WITH \"/tmp/t2s_trial_zd3uji7_/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_zd3uji7_/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50775,13 +50775,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_t8qvhpc4/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_t8qvhpc4/secrets.csv\") AS q6 LIMIT 201"
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_ykr1lz97/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ykr1lz97/secrets.csv\") AS q6 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_uoyzmw7y/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_uoyzmw7y/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_uoyzmw7y/secrets.csv\") AS q6 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_izd9nm94/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_izd9nm94/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_izd9nm94/secrets.csv\") AS q6 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50810,13 +50810,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_8zy954ei/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_8zy954ei/secrets.csv\") SELECT * FROM w LIMIT 201"
+     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_9k7n5vvq/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_9k7n5vvq/secrets.csv\") SELECT * FROM w LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_r4g8btts/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_r4g8btts/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_r4g8btts/secrets.csv\") SELECT * FROM w LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_bl3_hi_0/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH w AS (SELECT * FROM (WITH \"/tmp/t2s_trial_bl3_hi_0/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_bl3_hi_0/secrets.csv\") SELECT * FROM w LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50844,13 +50844,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_roudi_fk/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_roudi_fk/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_dih5jwbr/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_dih5jwbr/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_hf1duema/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_hf1duema/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_hf1duema/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_8yce0pd7/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_8yce0pd7/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_8yce0pd7/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50878,13 +50878,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_mt6b_9m2/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_mt6b_9m2/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_b5vas9mj/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_b5vas9mj/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_qxyao9o_/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_qxyao9o_/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_qxyao9o_/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_r16uxneo/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_r16uxneo/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_r16uxneo/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50912,13 +50912,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_0xy8mddw/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_0xy8mddw/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_nibn5t7j/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_nibn5t7j/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_1uuwvjzc/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_1uuwvjzc/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_1uuwvjzc/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ffjtee8z/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_ffjtee8z/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ffjtee8z/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50946,13 +50946,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_tb57g0u9/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_tb57g0u9/secrets.csv\") AS q5 LIMIT 201"
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_qfthldsz/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_qfthldsz/secrets.csv\") AS q5 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_loq5avyk/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_loq5avyk/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_loq5avyk/secrets.csv\") AS q5 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vismrhlz/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_vismrhlz/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_vismrhlz/secrets.csv\") AS q5 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -50981,13 +50981,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_jot4bvle/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_jot4bvle/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_m_7d5vds/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_m_7d5vds/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0u83mavf/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_0u83mavf/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_0u83mavf/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_kpl7wdnv/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_kpl7wdnv/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_kpl7wdnv/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51016,13 +51016,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_1vci3etb/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_1vci3etb/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_h91gf58u/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_h91gf58u/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_u20be0c5/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_u20be0c5/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_u20be0c5/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_fizavl_a/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_fizavl_a/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_fizavl_a/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51051,13 +51051,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_h2moh9gv/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_h2moh9gv/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_jrlguu6d/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_jrlguu6d/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_zlnh3nn9/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_zlnh3nn9/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_zlnh3nn9/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_bexa4ty2/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_bexa4ty2/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_bexa4ty2/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51086,13 +51086,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_b50ozpuh/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_b50ozpuh/secrets.csv\" /* end */ LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_stg5v22i/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_stg5v22i/secrets.csv\" /* end */ LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0z55uxv9/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_0z55uxv9/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_0z55uxv9/secrets.csv\" /* end */ LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_i646i92b/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_i646i92b/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_i646i92b/secrets.csv\" /* end */ LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51151,13 +51151,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "/* ; */ WITH w /* ; */ AS (SELECT * FROM (WITH \"/tmp/t2s_trial_ylu3qe14/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ylu3qe14/secrets.csv\") SELECT * FROM w LIMIT 201"
+     "executed_sql": "/* ; */ WITH w /* ; */ AS (SELECT * FROM (WITH \"/tmp/t2s_trial_kuwft9z1/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_kuwft9z1/secrets.csv\") SELECT * FROM w LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_l_3eold2/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "/* ; */ WITH w /* ; */ AS (SELECT * FROM (WITH \"/tmp/t2s_trial_l_3eold2/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_l_3eold2/secrets.csv\") SELECT * FROM w LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_rjl4xxim/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "/* ; */ WITH w /* ; */ AS (SELECT * FROM (WITH \"/tmp/t2s_trial_rjl4xxim/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_rjl4xxim/secrets.csv\") SELECT * FROM w LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51185,13 +51185,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_r513pv9b/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_r513pv9b/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_igqp03yc/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_igqp03yc/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_8iv_ufya/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_8iv_ufya/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_8iv_ufya/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_t_6rl5fg/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_t_6rl5fg/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_t_6rl5fg/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51220,13 +51220,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT/* DROP */*/* DROP */FROM/* DROP */(/* DROP */WITH/* DROP */\"/tmp/t2s_trial_n6vkf6nr/secrets.csv\"/* DROP */AS/* DROP */(/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */s/* DROP */,/* DROP */\"/tmp/t2s_trial_n6vkf6nr/secrets.csv\"/* DROP */LIMIT/* DROP */5"
+     "executed_sql": "SELECT/* DROP */*/* DROP */FROM/* DROP */(/* DROP */WITH/* DROP */\"/tmp/t2s_trial_co495nzv/secrets.csv\"/* DROP */AS/* DROP */(/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */s/* DROP */,/* DROP */\"/tmp/t2s_trial_co495nzv/secrets.csv\"/* DROP */LIMIT/* DROP */5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_lna_7udt/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT/* DROP */*/* DROP */FROM/* DROP */(/* DROP */WITH/* DROP */\"/tmp/t2s_trial_lna_7udt/secrets.csv\"/* DROP */AS/* DROP */(/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */s/* DROP */,/* DROP */\"/tmp/t2s_trial_lna_7udt/secrets.csv\"/* DROP */LIMIT/* DROP */5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_rlpla80k/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT/* DROP */*/* DROP */FROM/* DROP */(/* DROP */WITH/* DROP */\"/tmp/t2s_trial_rlpla80k/secrets.csv\"/* DROP */AS/* DROP */(/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */SELECT/* DROP */1/* DROP */)/* DROP */s/* DROP */,/* DROP */\"/tmp/t2s_trial_rlpla80k/secrets.csv\"/* DROP */LIMIT/* DROP */5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51254,13 +51254,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_38qma4ts/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_38qma4ts/secrets.csv\" LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_z0ql158b/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_z0ql158b/secrets.csv\" LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_wjzqxqzm/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_wjzqxqzm/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_wjzqxqzm/secrets.csv\" LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_govvwp1h/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_govvwp1h/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_govvwp1h/secrets.csv\" LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51289,13 +51289,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_u3sd75lf/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_u3sd75lf/secrets.csv\") AS q3 LIMIT 5"
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_5e32uk36/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_5e32uk36/secrets.csv\") AS q3 LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ona33oxz/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_ona33oxz/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_ona33oxz/secrets.csv\") AS q3 LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_iqpws6vo/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_iqpws6vo/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_iqpws6vo/secrets.csv\") AS q3 LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51324,13 +51324,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_q7yok0gt/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_q7yok0gt/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
+     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_sec2z11d/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_sec2z11d/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial__xr6_qqg/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial__xr6_qqg/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial__xr6_qqg/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vvh7mm7s/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_vvh7mm7s/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_vvh7mm7s/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51359,13 +51359,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_3tj2q_bb/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_3tj2q_bb/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
+     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_2mzgtg6g/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_2mzgtg6g/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_mp0nz8th/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_mp0nz8th/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_mp0nz8th/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_56nghr0t/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_56nghr0t/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_56nghr0t/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51393,13 +51393,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_qm03vtjt/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_qm03vtjt/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_hwoavo0g/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_hwoavo0g/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_dyc5t28k/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_dyc5t28k/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_dyc5t28k/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_bqxbq8_s/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_bqxbq8_s/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_bqxbq8_s/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51427,13 +51427,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_l0buouqe/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_l0buouqe/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
+     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_0r5xqyvl/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_0r5xqyvl/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_c_7tge1x/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_c_7tge1x/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_c_7tge1x/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vc_d8cfr/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH w AS (SELECT * FROM \"/tmp/t2s_trial_vc_d8cfr/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_vc_d8cfr/secrets.csv\" AS (SELECT 1) SELECT 1)) SELECT * FROM w LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51462,13 +51462,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT\t*\tFROM\t\"/tmp/t2s_trial_gemvhh1u/secrets.csv\"\tWHERE\tEXISTS\t(WITH\t\"/tmp/t2s_trial_gemvhh1u/secrets.csv\"\tAS\t(SELECT\t1)\tSELECT\t1) LIMIT 5"
+     "executed_sql": "SELECT\t*\tFROM\t\"/tmp/t2s_trial_t4u0y58b/secrets.csv\"\tWHERE\tEXISTS\t(WITH\t\"/tmp/t2s_trial_t4u0y58b/secrets.csv\"\tAS\t(SELECT\t1)\tSELECT\t1) LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_mab38_ge/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT\t*\tFROM\t\"/tmp/t2s_trial_mab38_ge/secrets.csv\"\tWHERE\tEXISTS\t(WITH\t\"/tmp/t2s_trial_mab38_ge/secrets.csv\"\tAS\t(SELECT\t1)\tSELECT\t1) LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_b8lgmw64/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT\t*\tFROM\t\"/tmp/t2s_trial_b8lgmw64/secrets.csv\"\tWHERE\tEXISTS\t(WITH\t\"/tmp/t2s_trial_b8lgmw64/secrets.csv\"\tAS\t(SELECT\t1)\tSELECT\t1) LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51496,13 +51496,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_74u_6ktv/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_74u_6ktv/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_phkk938i/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_phkk938i/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0fbg_fhh/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_0fbg_fhh/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_0fbg_fhh/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_w73tt91x/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_w73tt91x/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_w73tt91x/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51530,13 +51530,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial_caaz9e5i/secrets.csv\" /* x */ /* x */ WHERE EXISTS(/* x */ WITH \"/tmp/t2s_trial_caaz9e5i/secrets.csv\" /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT 1 /* x */) /* x */ LIMIT 201"
+     "executed_sql": "/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial_llhmp_yf/secrets.csv\" /* x */ /* x */ WHERE EXISTS(/* x */ WITH \"/tmp/t2s_trial_llhmp_yf/secrets.csv\" /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT 1 /* x */) /* x */ LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_f91xso40/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial_f91xso40/secrets.csv\" /* x */ /* x */ WHERE EXISTS(/* x */ WITH \"/tmp/t2s_trial_f91xso40/secrets.csv\" /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT 1 /* x */) /* x */ LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_8xg6u67i/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial_8xg6u67i/secrets.csv\" /* x */ /* x */ WHERE EXISTS(/* x */ WITH \"/tmp/t2s_trial_8xg6u67i/secrets.csv\" /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT 1 /* x */) /* x */ LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51566,13 +51566,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_jir3tjwb/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_jir3tjwb/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_hxtpddx0/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_hxtpddx0/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_uppsqhqa/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_uppsqhqa/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_uppsqhqa/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_r1jrppiq/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_r1jrppiq/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_r1jrppiq/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51601,13 +51601,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_weu9lxnl/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_weu9lxnl/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_pm4n98qx/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_pm4n98qx/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_2qqh_51e/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_2qqh_51e/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_2qqh_51e/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_wcnzvts_/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_wcnzvts_/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_wcnzvts_/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51635,13 +51635,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_qxrp5o4e/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_qxrp5o4e/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_jsb0ow_k/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_jsb0ow_k/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_wgdvt4jl/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_wgdvt4jl/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_wgdvt4jl/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_yhx13upj/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_yhx13upj/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_yhx13upj/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51670,13 +51670,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT --\n* --\nFROM \"/tmp/t2s_trial_llrc5z5l/secrets.csv\" WHERE EXISTS ( WITH \"/tmp/t2s_trial_llrc5z5l/secrets.csv\" AS ( SELECT 1 ) SELECT 1 ) LIMIT 5"
+     "executed_sql": "SELECT --\n* --\nFROM \"/tmp/t2s_trial_chx21ti0/secrets.csv\" WHERE EXISTS ( WITH \"/tmp/t2s_trial_chx21ti0/secrets.csv\" AS ( SELECT 1 ) SELECT 1 ) LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_lurs1wa2/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT --\n* --\nFROM \"/tmp/t2s_trial_lurs1wa2/secrets.csv\" WHERE EXISTS ( WITH \"/tmp/t2s_trial_lurs1wa2/secrets.csv\" AS ( SELECT 1 ) SELECT 1 ) LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_2rdh1_4_/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT --\n* --\nFROM \"/tmp/t2s_trial_2rdh1_4_/secrets.csv\" WHERE EXISTS ( WITH \"/tmp/t2s_trial_2rdh1_4_/secrets.csv\" AS ( SELECT 1 ) SELECT 1 ) LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51705,13 +51705,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_hm9tu7_q/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_hm9tu7_q/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_7rgtkdha/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_7rgtkdha/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_7r3j4yyo/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_7r3j4yyo/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_7r3j4yyo/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_i1vy2k39/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_i1vy2k39/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_i1vy2k39/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51740,13 +51740,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "/* ; */ SELECT * /* ; */ FROM \"/tmp/t2s_trial_piu4lsc8/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_piu4lsc8/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "/* ; */ SELECT * /* ; */ FROM \"/tmp/t2s_trial_eide8rch/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_eide8rch/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_us_9jt8z/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "/* ; */ SELECT * /* ; */ FROM \"/tmp/t2s_trial_us_9jt8z/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_us_9jt8z/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_6y2_ab5w/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "/* ; */ SELECT * /* ; */ FROM \"/tmp/t2s_trial_6y2_ab5w/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_6y2_ab5w/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51775,13 +51775,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_s59x7q_7/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_s59x7q_7/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_vjpo0g8x/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_vjpo0g8x/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_6eqek5xm/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_6eqek5xm/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_6eqek5xm/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_nb505y23/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_nb505y23/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_nb505y23/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51810,13 +51810,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_1q7uq25i/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_1q7uq25i/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_1q7uq25i/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_htl1mkut/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_htl1mkut/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_htl1mkut/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_p9ap373l/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_p9ap373l/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_p9ap373l/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_p9ap373l/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_iwj93m9_/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_iwj93m9_/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_iwj93m9_/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_iwj93m9_/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51846,13 +51846,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH w AS (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_za_x3fih/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_za_x3fih/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_za_x3fih/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9) SELECT * FROM w LIMIT 201"
+     "executed_sql": "WITH w AS (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_iti8kkok/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_iti8kkok/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_iti8kkok/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9) SELECT * FROM w LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_jipe_6ri/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH w AS (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_jipe_6ri/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_jipe_6ri/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_jipe_6ri/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9) SELECT * FROM w LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ib_dmfps/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH w AS (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_ib_dmfps/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_ib_dmfps/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS(WITH \"/tmp/t2s_trial_ib_dmfps/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q9) SELECT * FROM w LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51880,13 +51880,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_wnjznwha/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_wnjznwha/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_wnjznwha/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_h4_pq7a_/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_h4_pq7a_/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_h4_pq7a_/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_lkwu45kz/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_lkwu45kz/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_lkwu45kz/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_lkwu45kz/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_7jbk6k1p/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_7jbk6k1p/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM \"/tmp/t2s_trial_7jbk6k1p/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_7jbk6k1p/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51915,13 +51915,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_op9wg6_r/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_op9wg6_r/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_ybyemcfx/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_ybyemcfx/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_n4oz_k32/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_n4oz_k32/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_n4oz_k32/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_xsuz8cu2/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_xsuz8cu2/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_xsuz8cu2/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51950,13 +51950,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_48x2_enj/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_48x2_enj/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_48x2_enj/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q0) AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_yvz4f24q/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_yvz4f24q/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_yvz4f24q/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q0) AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_v38xrp0h/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_v38xrp0h/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_v38xrp0h/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_v38xrp0h/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q0) AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_rcygxi_i/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_rcygxi_i/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (SELECT * FROM \"/tmp/t2s_trial_rcygxi_i/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_rcygxi_i/secrets.csv\" AS (SELECT 1) SELECT 1)) AS q0) AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -51984,13 +51984,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_tgtm904h/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_tgtm904h/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_e39mzkuo/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_e39mzkuo/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_rghloa5y/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_rghloa5y/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_rghloa5y/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0nzl96co/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_0nzl96co/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_0nzl96co/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52019,13 +52019,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_dboghmds/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_dboghmds/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS (WITH \"/tmp/t2s_trial_dboghmds/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_hso53ym8/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_hso53ym8/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS (WITH \"/tmp/t2s_trial_hso53ym8/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vp6ibvo4/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_vp6ibvo4/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_vp6ibvo4/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS (WITH \"/tmp/t2s_trial_vp6ibvo4/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_r6w8n4z6/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_r6w8n4z6/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_r6w8n4z6/secrets.csv\" AS (SELECT 1) SELECT 1) AND EXISTS (WITH \"/tmp/t2s_trial_r6w8n4z6/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52053,13 +52053,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_ascab595/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_ascab595/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_eny4fhv5/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_eny4fhv5/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0lc2_sa6/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_0lc2_sa6/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_0lc2_sa6/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_lc5l4efb/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_lc5l4efb/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_lc5l4efb/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52087,13 +52087,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_y1uj097q/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_y1uj097q/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_zm002hpn/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_zm002hpn/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0y5ifedg/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_0y5ifedg/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_0y5ifedg/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_w2lmt4zf/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_w2lmt4zf/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_w2lmt4zf/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52123,13 +52123,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SeleCT * FRom \"/tmp/t2s_trial_zrgiv0xl/secrets.csv\" wheRe eXiSts (WiTH \"/tmp/t2s_trial_zrgiv0xl/secrets.csv\" as (SelEct 1) sEleCt 1) LIMIT 5"
+     "executed_sql": "SeleCT * FRom \"/tmp/t2s_trial_6mjzigve/secrets.csv\" wheRe eXiSts (WiTH \"/tmp/t2s_trial_6mjzigve/secrets.csv\" as (SelEct 1) sEleCt 1) LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_wgrhpc1g/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SeleCT * FRom \"/tmp/t2s_trial_wgrhpc1g/secrets.csv\" wheRe eXiSts (WiTH \"/tmp/t2s_trial_wgrhpc1g/secrets.csv\" as (SelEct 1) sEleCt 1) LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ls5huiff/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SeleCT * FRom \"/tmp/t2s_trial_ls5huiff/secrets.csv\" wheRe eXiSts (WiTH \"/tmp/t2s_trial_ls5huiff/secrets.csv\" as (SelEct 1) sEleCt 1) LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52159,13 +52159,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_0j6hyqo_/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_0j6hyqo_/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_pab68jox/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_pab68jox/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_eq9u38wv/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_eq9u38wv/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_eq9u38wv/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_fv9dm5bm/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_fv9dm5bm/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_fv9dm5bm/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52193,13 +52193,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_gkqldmr_/secrets.csv\"), \"/tmp/t2s_trial_gkqldmr_/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_a9kt70yq/secrets.csv\"), \"/tmp/t2s_trial_a9kt70yq/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ktudsway/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_ktudsway/secrets.csv\"), \"/tmp/t2s_trial_ktudsway/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ty3hrggv/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_ty3hrggv/secrets.csv\"), \"/tmp/t2s_trial_ty3hrggv/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52227,13 +52227,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_8yndz7_o/secrets.csv\"), \"/tmp/t2s_trial_8yndz7_o/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial_8yndz7_o/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_ah3icrrv/secrets.csv\"), \"/tmp/t2s_trial_ah3icrrv/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial_ah3icrrv/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial__uqv95nx/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial__uqv95nx/secrets.csv\"), \"/tmp/t2s_trial__uqv95nx/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial__uqv95nx/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ckw2zqrp/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_ckw2zqrp/secrets.csv\"), \"/tmp/t2s_trial_ckw2zqrp/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial_ckw2zqrp/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52262,13 +52262,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_iy6707u_/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_iy6707u_/secrets.csv\"), \"/tmp/t2s_trial_iy6707u_/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial_iy6707u_/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_vv7gw79j/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_vv7gw79j/secrets.csv\"), \"/tmp/t2s_trial_vv7gw79j/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial_vv7gw79j/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_kchlw6w4/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_kchlw6w4/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_kchlw6w4/secrets.csv\"), \"/tmp/t2s_trial_kchlw6w4/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial_kchlw6w4/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_hmexm1lg/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_hmexm1lg/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_hmexm1lg/secrets.csv\"), \"/tmp/t2s_trial_hmexm1lg/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS(WITH \"/tmp/t2s_trial_hmexm1lg/secrets.csv\" AS (SELECT 1) SELECT 1)) AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52297,13 +52297,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (/* x */ WITH x /* x */ /* x */ AS (/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial_nxs86ctk/secrets.csv\" /* x */), \"/tmp/t2s_trial_nxs86ctk/secrets.csv\" /* x */ /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT * /* x */ /* x */ FROM x) AS q4 LIMIT 201"
+     "executed_sql": "SELECT * FROM (/* x */ WITH x /* x */ /* x */ AS (/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial_6s7vd1zc/secrets.csv\" /* x */), \"/tmp/t2s_trial_6s7vd1zc/secrets.csv\" /* x */ /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT * /* x */ /* x */ FROM x) AS q4 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial__btwn03w/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (/* x */ WITH x /* x */ /* x */ AS (/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial__btwn03w/secrets.csv\" /* x */), \"/tmp/t2s_trial__btwn03w/secrets.csv\" /* x */ /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT * /* x */ /* x */ FROM x) AS q4 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_pxdoyprr/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (/* x */ WITH x /* x */ /* x */ AS (/* x */ SELECT * /* x */ /* x */ FROM \"/tmp/t2s_trial_pxdoyprr/secrets.csv\" /* x */), \"/tmp/t2s_trial_pxdoyprr/secrets.csv\" /* x */ /* x */ /* x */ AS (/* x */ SELECT 1 /* x */) /* x */ SELECT * /* x */ /* x */ FROM x) AS q4 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52331,13 +52331,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_kczurv4g/secrets.csv\"), \"/tmp/t2s_trial_kczurv4g/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_idngcxhd/secrets.csv\"), \"/tmp/t2s_trial_idngcxhd/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_9wbi6w2g/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_9wbi6w2g/secrets.csv\"), \"/tmp/t2s_trial_9wbi6w2g/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ptmjd8wd/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_ptmjd8wd/secrets.csv\"), \"/tmp/t2s_trial_ptmjd8wd/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52366,13 +52366,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_wkf6lpim/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_wkf6lpim/secrets.csv\"), \"/tmp/t2s_trial_wkf6lpim/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_7snlrpxb/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_7snlrpxb/secrets.csv\"), \"/tmp/t2s_trial_7snlrpxb/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0p7_cbe5/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_0p7_cbe5/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_0p7_cbe5/secrets.csv\"), \"/tmp/t2s_trial_0p7_cbe5/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_p_faxgsh/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_p_faxgsh/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_p_faxgsh/secrets.csv\"), \"/tmp/t2s_trial_p_faxgsh/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52400,13 +52400,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_cgt2glw2/secrets.csv\"), \"/tmp/t2s_trial_cgt2glw2/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_1geeurwe/secrets.csv\"), \"/tmp/t2s_trial_1geeurwe/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_nvwvmow2/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_nvwvmow2/secrets.csv\"), \"/tmp/t2s_trial_nvwvmow2/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_19u95kxc/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_19u95kxc/secrets.csv\"), \"/tmp/t2s_trial_19u95kxc/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52434,13 +52434,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_cyxra45c/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_cyxra45c/secrets.csv\"), \"/tmp/t2s_trial_cyxra45c/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_1cn0ib42/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_1cn0ib42/secrets.csv\"), \"/tmp/t2s_trial_1cn0ib42/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_3bsbvz0n/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_3bsbvz0n/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_3bsbvz0n/secrets.csv\"), \"/tmp/t2s_trial_3bsbvz0n/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_jkvqfzzr/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_jkvqfzzr/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_jkvqfzzr/secrets.csv\"), \"/tmp/t2s_trial_jkvqfzzr/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52469,13 +52469,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_gazr62up/secrets.csv\"), \"/tmp/t2s_trial_gazr62up/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q9 LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_l9fbhwv6/secrets.csv\"), \"/tmp/t2s_trial_l9fbhwv6/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q9 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_bghyn1uv/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_bghyn1uv/secrets.csv\"), \"/tmp/t2s_trial_bghyn1uv/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q9 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_bo9mlwx2/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_bo9mlwx2/secrets.csv\"), \"/tmp/t2s_trial_bo9mlwx2/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q9 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52503,13 +52503,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial__7hkg8t5/secrets.csv\"), \"/tmp/t2s_trial__7hkg8t5/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_7c05dqg_/secrets.csv\"), \"/tmp/t2s_trial_7c05dqg_/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_2f1sc06_/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_2f1sc06_/secrets.csv\"), \"/tmp/t2s_trial_2f1sc06_/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_pcqa_agz/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_pcqa_agz/secrets.csv\"), \"/tmp/t2s_trial_pcqa_agz/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52537,13 +52537,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_kliwbexi/secrets.csv\"), \"/tmp/t2s_trial_kliwbexi/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_decwfay8/secrets.csv\"), \"/tmp/t2s_trial_decwfay8/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_xhoeiceq/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_xhoeiceq/secrets.csv\"), \"/tmp/t2s_trial_xhoeiceq/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ivbzo7m3/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_ivbzo7m3/secrets.csv\"), \"/tmp/t2s_trial_ivbzo7m3/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52571,13 +52571,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_531uw8e3/secrets.csv\"), \"/tmp/t2s_trial_531uw8e3/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_5pd1lum9/secrets.csv\"), \"/tmp/t2s_trial_5pd1lum9/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_oudbbm73/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_oudbbm73/secrets.csv\"), \"/tmp/t2s_trial_oudbbm73/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_hfi1nn6j/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_hfi1nn6j/secrets.csv\"), \"/tmp/t2s_trial_hfi1nn6j/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52606,13 +52606,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_56c9n1gw/secrets.csv\"), \"/tmp/t2s_trial_56c9n1gw/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS (WITH \"/tmp/t2s_trial_56c9n1gw/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_o8ywhj5_/secrets.csv\"), \"/tmp/t2s_trial_o8ywhj5_/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS (WITH \"/tmp/t2s_trial_o8ywhj5_/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_1euc_lif/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_1euc_lif/secrets.csv\"), \"/tmp/t2s_trial_1euc_lif/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS (WITH \"/tmp/t2s_trial_1euc_lif/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_i8rd8bz8/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_i8rd8bz8/secrets.csv\"), \"/tmp/t2s_trial_i8rd8bz8/secrets.csv\" AS (SELECT 1) SELECT * FROM x WHERE EXISTS (WITH \"/tmp/t2s_trial_i8rd8bz8/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52642,13 +52642,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_qz9fs4zo/secrets.csv\"), \"/tmp/t2s_trial_qz9fs4zo/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_gzq53zqb/secrets.csv\"), \"/tmp/t2s_trial_gzq53zqb/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_6w7vhtu7/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_6w7vhtu7/secrets.csv\"), \"/tmp/t2s_trial_6w7vhtu7/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_8p68vnu2/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "/* x */ WITH x /* x */ AS (SELECT * FROM \"/tmp/t2s_trial_8p68vnu2/secrets.csv\"), \"/tmp/t2s_trial_8p68vnu2/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52677,13 +52677,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial__kjr1xgf/secrets.csv\"), \"/tmp/t2s_trial__kjr1xgf/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_epgxom0c/secrets.csv\"), \"/tmp/t2s_trial_epgxom0c/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_rbqbo374/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_rbqbo374/secrets.csv\"), \"/tmp/t2s_trial_rbqbo374/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_us0zz2es/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_us0zz2es/secrets.csv\"), \"/tmp/t2s_trial_us0zz2es/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q3 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52711,13 +52711,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_tzc7jld9/secrets.csv\"), \"/tmp/t2s_trial_tzc7jld9/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_4hwnzn00/secrets.csv\"), \"/tmp/t2s_trial_4hwnzn00/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_8fjqe5ba/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_8fjqe5ba/secrets.csv\"), \"/tmp/t2s_trial_8fjqe5ba/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_6jnt6c9i/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_6jnt6c9i/secrets.csv\"), \"/tmp/t2s_trial_6jnt6c9i/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52747,13 +52747,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "sELeCT * from (with x AS (seLect * fRoM \"/tmp/t2s_trial_jgbr6q58/secrets.csv\"), \"/tmp/t2s_trial_jgbr6q58/secrets.csv\" AS (selECT 1) SeleCt * FROm x) As q3 LIMIT 5"
+     "executed_sql": "sELeCT * from (with x AS (seLect * fRoM \"/tmp/t2s_trial_vfg7uf4e/secrets.csv\"), \"/tmp/t2s_trial_vfg7uf4e/secrets.csv\" AS (selECT 1) SeleCt * FROm x) As q3 LIMIT 5"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_im31462y/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "sELeCT * from (with x AS (seLect * fRoM \"/tmp/t2s_trial_im31462y/secrets.csv\"), \"/tmp/t2s_trial_im31462y/secrets.csv\" AS (selECT 1) SeleCt * FROm x) As q3 LIMIT 5"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vic3w8re/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "sELeCT * from (with x AS (seLect * fRoM \"/tmp/t2s_trial_vic3w8re/secrets.csv\"), \"/tmp/t2s_trial_vic3w8re/secrets.csv\" AS (selECT 1) SeleCt * FROm x) As q3 LIMIT 5"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52781,13 +52781,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_92h5v8xu/secrets.csv\"), \"/tmp/t2s_trial_92h5v8xu/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_25pqfqzd/secrets.csv\"), \"/tmp/t2s_trial_25pqfqzd/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_jnt8hnu1/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_jnt8hnu1/secrets.csv\"), \"/tmp/t2s_trial_jnt8hnu1/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial__h9yksu0/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial__h9yksu0/secrets.csv\"), \"/tmp/t2s_trial__h9yksu0/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52815,13 +52815,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial__bckqmqr/secrets.csv\"), \"/tmp/t2s_trial__bckqmqr/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_sfxo7f32/secrets.csv\"), \"/tmp/t2s_trial_sfxo7f32/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_tddmp5ki/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_tddmp5ki/secrets.csv\"), \"/tmp/t2s_trial_tddmp5ki/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_dvscu0yo/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_dvscu0yo/secrets.csv\"), \"/tmp/t2s_trial_dvscu0yo/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52850,13 +52850,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_7i9kg16x/secrets.csv\"), \"/tmp/t2s_trial_7i9kg16x/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q7 LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_yr2gr305/secrets.csv\"), \"/tmp/t2s_trial_yr2gr305/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q7 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_m_6bwaj1/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_m_6bwaj1/secrets.csv\"), \"/tmp/t2s_trial_m_6bwaj1/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q7 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_5lmr7juv/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_5lmr7juv/secrets.csv\"), \"/tmp/t2s_trial_5lmr7juv/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q7 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52885,13 +52885,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial__14gxesk/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial__14gxesk/secrets.csv\"), \"/tmp/t2s_trial__14gxesk/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q4) AS t LIMIT 201"
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_9e8wo3bq/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_9e8wo3bq/secrets.csv\"), \"/tmp/t2s_trial_9e8wo3bq/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q4) AS t LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_g5agcfrp/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_g5agcfrp/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_g5agcfrp/secrets.csv\"), \"/tmp/t2s_trial_g5agcfrp/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q4) AS t LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_dldxnjp7/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_dldxnjp7/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (SELECT * FROM (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_dldxnjp7/secrets.csv\"), \"/tmp/t2s_trial_dldxnjp7/secrets.csv\" AS (SELECT 1) SELECT * FROM x) AS q4) AS t LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52919,13 +52919,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "/* ; */ WITH x /* ; */ AS (SELECT * FROM \"/tmp/t2s_trial_5yt59e3t/secrets.csv\"), \"/tmp/t2s_trial_5yt59e3t/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "/* ; */ WITH x /* ; */ AS (SELECT * FROM \"/tmp/t2s_trial_ch0udt3u/secrets.csv\"), \"/tmp/t2s_trial_ch0udt3u/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_6a8ob1t5/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "/* ; */ WITH x /* ; */ AS (SELECT * FROM \"/tmp/t2s_trial_6a8ob1t5/secrets.csv\"), \"/tmp/t2s_trial_6a8ob1t5/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_cu1m4m21/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "/* ; */ WITH x /* ; */ AS (SELECT * FROM \"/tmp/t2s_trial_cu1m4m21/secrets.csv\"), \"/tmp/t2s_trial_cu1m4m21/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52953,13 +52953,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_3wih8g8q/secrets.csv\"), \"/tmp/t2s_trial_3wih8g8q/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial__ejlxn8a/secrets.csv\"), \"/tmp/t2s_trial__ejlxn8a/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_97eipf2d/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_97eipf2d/secrets.csv\"), \"/tmp/t2s_trial_97eipf2d/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_46424hsf/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_46424hsf/secrets.csv\"), \"/tmp/t2s_trial_46424hsf/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -52988,13 +52988,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_sqd8ewty/secrets.csv\"), \"/tmp/t2s_trial_sqd8ewty/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_bzc4701u/secrets.csv\"), \"/tmp/t2s_trial_bzc4701u/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_6cvsga5o/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_6cvsga5o/secrets.csv\"), \"/tmp/t2s_trial_6cvsga5o/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_o1jn4b5w/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_o1jn4b5w/secrets.csv\"), \"/tmp/t2s_trial_o1jn4b5w/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",
@@ -53024,13 +53024,13 @@
       "file_read"
      ],
      "error": null,
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_nqz5w_or/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_nqz5w_or/secrets.csv\"), \"/tmp/t2s_trial_nqz5w_or/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5) AS t) AS q9 LIMIT 201"
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_8nxz7xh4/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_8nxz7xh4/secrets.csv\"), \"/tmp/t2s_trial_8nxz7xh4/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5) AS t) AS q9 LIMIT 201"
     },
     "guard+ro": {
      "guard_verdict": "allow",
      "harms": [],
-     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_dwyxk252/secrets.csv\" - file system operations are disabled by configuration",
-     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_dwyxk252/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_dwyxk252/secrets.csv\"), \"/tmp/t2s_trial_dwyxk252/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5) AS t) AS q9 LIMIT 201"
+     "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_or5fbwj8/secrets.csv\" - file system operations are disabled by configuration",
+     "executed_sql": "SELECT * FROM (SELECT * FROM (WITH \"/tmp/t2s_trial_or5fbwj8/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, (WITH x AS (SELECT * FROM \"/tmp/t2s_trial_or5fbwj8/secrets.csv\"), \"/tmp/t2s_trial_or5fbwj8/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 5) AS t) AS q9 LIMIT 201"
     },
     "hardened+ro": {
      "guard_verdict": "block",

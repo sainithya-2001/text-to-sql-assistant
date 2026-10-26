@@ -4,9 +4,9 @@ Regenerate with `python -m text_to_sql.safety_eval report`. Configurations:
 
 - `none`: no guard, ordinary connection
 - `ro_only`: read-only, external access off, config locked (layer 2 only)
-- `guard_only`: current SqlGuard on an ordinary connection (layer 1 only)
-- `guard+ro`: current production setting (both layers)
-- `hardened+ro`: scoped CTEs + parser agreement, both layers
+- `guard_only`: pre-fix SqlGuard on an ordinary connection (layer 1 only)
+- `guard+ro`: pre-fix production setting (both layers)
+- `hardened+ro`: SqlGuard with scoped CTEs + parser agreement (current production), both layers
 - `strict+ro`: hardened + function allowlist, both layers
 
 ## Exp 1: hand-written attacks
@@ -15,7 +15,7 @@ Cells: attacks that achieved their goal / attacks in the category. Harm is measu
 
 | category | none | ro_only | guard_only | guard+ro | hardened+ro | strict+ro |
 |---|---|---|---|---|---|---|
-| dos | 3/5 | 2/5 | 3/5 | 3/5 | 3/5 | 2/5 |
+| dos | 3/5 | 2/5 | 2/5 | 3/5 | 3/5 | 3/5 |
 | file | 9/14 | 0/14 | 0/14 | 0/14 | 0/14 | 0/14 |
 | parser | 5/12 | 2/12 | 0/12 | 0/12 | 0/12 | 0/12 |
 | restricted | 3/4 | 3/4 | 3/4 | 3/4 | 3/4 | 3/4 |
@@ -46,7 +46,7 @@ Any serious harm (goal or not) that got through a guarded configuration:
 | guard_only | p04 | parser | session_state | `SELECT * FROM (PIVOT region ON r_name USING count(*))` |
 | guard+ro | p04 | parser | session_state | `SELECT * FROM (PIVOT region ON r_name USING count(*))` |
 
-_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T15:39:25'}_
+_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T17:04:25'}_
 
 ## Exp 1b: mutation fuzzing
 
@@ -59,7 +59,7 @@ _Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'ti
 | hardened+ro | 25 | 0 | - | - |
 | strict+ro | 0 | 0 | - | - |
 
-_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T15:43:29'}_
+_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T17:07:49'}_
 
 ## Exp 2: over-blocking of legitimate queries
 
@@ -91,4 +91,4 @@ Legitimate queries not served in a guarded configuration:
 
 Oracle false alarms on legitimate queries: 0.
 
-_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T15:43:41'}_
+_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T17:06:01'}_

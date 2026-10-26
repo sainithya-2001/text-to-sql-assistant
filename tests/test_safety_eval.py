@@ -9,7 +9,7 @@ from sqlglot import exp
 from text_to_sql.db.duckdb_backend import TPCH_TABLES
 from text_to_sql.safety.guard import GuardError, SqlGuard
 from text_to_sql.safety_eval.fuzz import mutate
-from text_to_sql.safety_eval.hardened_guard import HardenedSqlGuard, visible_ctes
+from text_to_sql.safety_eval.hardened_guard import pre_fix_guard, visible_ctes
 from text_to_sql.safety_eval.layers import CONFIG_BY_NAME, run_sql
 from text_to_sql.safety_eval.sandbox import FILE_READ, INTEGRITY, SYSTEM_DISCLOSURE, load_restricted_values
 
@@ -23,17 +23,17 @@ SCOPE_BYPASSES = [
 
 @pytest.fixture(scope="module")
 def baseline():
-    return SqlGuard(set(TPCH_TABLES))
+    return pre_fix_guard(set(TPCH_TABLES))
 
 
 @pytest.fixture(scope="module")
 def hardened():
-    return HardenedSqlGuard(set(TPCH_TABLES))
+    return SqlGuard(set(TPCH_TABLES))  # the fixes are on by default
 
 
 @pytest.mark.parametrize("sql", SCOPE_BYPASSES)
 def test_baseline_misses_scope_confusion(baseline, sql):
-    baseline.check(sql)  # documents the bug the study found
+    baseline.check(sql)  # the pre-fix guard missed these; kept to show the study reproduces it
 
 
 @pytest.mark.parametrize("sql", SCOPE_BYPASSES + ["SELECT * FROM (PIVOT region ON r_name)"])

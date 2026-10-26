@@ -29,6 +29,11 @@ def guard():
         "SELECT o_orderdate + INTERVAL 3 MONTH, date_trunc('month', o_orderdate) FROM orders",
         "SELECT c_name, rank() OVER (ORDER BY c_acctbal DESC) AS r FROM customer",
         "SELECT count(*) FROM orders WHERE o_orderdate < current_date",
+        "WITH a AS (SELECT 1 AS x), b AS (SELECT * FROM a) SELECT * FROM b",
+        "WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 3) SELECT * FROM n",
+        "WITH t AS (SELECT 1 AS x) SELECT * FROM region WHERE EXISTS (SELECT * FROM t)",
+        "SELECT * FROM (SELECT o_orderpriority, o_orderstatus FROM orders) "
+        "PIVOT (count(*) FOR o_orderstatus IN ('F', 'O', 'P'))",
     ],
 )
 def test_allowed(guard, sql):
@@ -72,6 +77,12 @@ def test_allowed(guard, sql):
         ("SELECT 1; SELECT getenv('HOME')", False),
         ("SELECT 1; SELECT * FROM read_csv('x.csv')", False),
         ("SELECT getenv('HOME') FROM employees", False),  # policy wins over a fixable unknown table
+        # CTE scope confusion (safety_eval/RESULTS.md): a CTE name only counts where it is in scope
+        ('SELECT * FROM (WITH "/etc/passwd" AS (SELECT 1) SELECT 1) s, "/etc/passwd"', False),
+        ("SELECT * FROM duckdb_databases WHERE EXISTS (WITH duckdb_databases AS (SELECT 1) SELECT 1)", False),
+        ('WITH x AS (SELECT * FROM "/etc/passwd"), "/etc/passwd" AS (SELECT 1) SELECT * FROM x', False),
+        # DuckDB plans this as CREATE TYPE + SELECT although sqlglot reads a SELECT
+        ("SELECT * FROM (PIVOT region ON r_name)", False),
         # fixable mistakes go back to the model once
         ("SELECT 1; SELECT 2", True),
         ("SELECT * FROM nation; SELECT * FROM region", True),

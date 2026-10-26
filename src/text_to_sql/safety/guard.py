@@ -57,11 +57,57 @@ class GuardedSQL:
     tables: frozenset[str]
 
 
+def _with_of(node: exp.Expression) -> exp.With | None:
+    w = node.args.get("with_") or node.args.get("with")
+    return w if isinstance(w, exp.With) else None
+
+
+def visible_ctes(table: exp.Table) -> set[str]:
+    """CTE names a table reference can bind to, following SQL scoping rules: CTEs of an enclosing
+    query, earlier CTEs of the same WITH, and the CTE itself only under WITH RECURSIVE."""
+    names: set[str] = set()
+    path: list[exp.Expression] = []
+    node: exp.Expression | None = table
+    while node is not None:
+        path.append(node)
+        node = node.parent
+    on_path = {id(n) for n in path}
+    for n in path:
+        if isinstance(n, exp.With):
+            # The reference sits inside one of this WITH's CTE bodies.
+            ctes = list(n.expressions)
+            for i, cte in enumerate(ctes):
+                if id(cte) in on_path:
+                    names |= {c.alias_or_name.lower() for c in ctes[:i]}
+                    if n.args.get("recursive"):
+                        names.add(cte.alias_or_name.lower())
+                    break
+            continue
+        w = _with_of(n)
+        if w is not None and id(w) not in on_path:
+            # The reference sits in the body of a query that owns this WITH.
+            names |= {c.alias_or_name.lower() for c in w.expressions}
+    return names
+
+
 class SqlGuard:
-    def __init__(self, allowed_tables: set[str], dialect: str = "duckdb", *, max_rows: int = 200):
+    """`scoped_ctes` and `parser_agreement` close two bypasses found by the safety study
+    (safety_eval/RESULTS.md). Both default on; turning them off reproduces the earlier guard."""
+
+    def __init__(
+        self,
+        allowed_tables: set[str],
+        dialect: str = "duckdb",
+        *,
+        max_rows: int = 200,
+        scoped_ctes: bool = True,
+        parser_agreement: bool = True,
+    ):
         self.allowed_tables = {t.lower() for t in allowed_tables}
         self.dialect = dialect
         self.max_rows = max_rows
+        self.scoped_ctes = scoped_ctes
+        self.parser_agreement = parser_agreement
 
     def check(self, sql: str) -> GuardedSQL:
         text = sql.strip().rstrip(";").strip()
@@ -83,7 +129,16 @@ class SqlGuard:
         used: set[str] = set()
         for table in tree.find_all(exp.Table):
             name = table.name.lower()
-            if name in cte_names:
+            if self.scoped_ctes:
+                # A name only refers to a CTE where that CTE is in scope. Elsewhere DuckDB resolves
+                # it as a table, a system view (duckdb_databases) or, quoted, a file path.
+                if name in visible_ctes(table):
+                    continue
+                if name in cte_names and name not in self.allowed_tables:
+                    raise GuardError(
+                        f"{table.sql(self.dialect)} is not a business table or a CTE in scope here"
+                    )
+            elif name in cte_names:
                 continue
             if name not in self.allowed_tables:
                 raise GuardError(
@@ -98,7 +153,24 @@ class SqlGuard:
             tree = tree.limit(self.max_rows + 1, copy=True)
             limit_added = True
         out = tree.sql(dialect=self.dialect) if limit_added else text
+        if self.parser_agreement and self.dialect == "duckdb":
+            self._check_duckdb_agrees(out)
         return GuardedSQL(sql=out, original=sql, limit_added=limit_added, tables=frozenset(used))
+
+    def _check_duckdb_agrees(self, sql: str) -> None:
+        """The executor's own parser must see exactly one SELECT in the SQL that will run. sqlglot
+        reads `SELECT * FROM (PIVOT t ON c)` as a SELECT; DuckDB plans it as CREATE TYPE + SELECT."""
+        import duckdb
+
+        try:
+            statements = duckdb.extract_statements(sql)
+        except duckdb.Error as e:
+            raise GuardError(
+                f"the database could not parse the query: {_first_line(e)}", retryable=True
+            ) from e
+        kinds = [str(s.type).rsplit(".", 1)[-1] for s in statements]
+        if kinds != ["SELECT"]:
+            raise GuardError(f"the database plans this as {'+'.join(kinds)}, not a single SELECT")
 
     def _check_policy(self, tree: exp.Expression) -> None:
         """Raise a non-retryable GuardError for writes, table functions or system access."""
