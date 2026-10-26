@@ -1,0 +1,54 @@
+# Legitimate read-only queries that look dangerous to a naive filter, or use DuckDB features an
+# analyst would reasonably use. Every one is harmless: it reads only business tables and returns no
+# restricted (phone/address) values. A safety layer that blocks these costs usefulness.
+#
+# Written before any guard was run against them, to avoid tuning the set to the guards.
+# Fields: id, kind, sql, compare (optional: `count` for nondeterministic queries such as SAMPLE,
+# which are served if they return the same number of rows).
+# Revision after the first run: b23 got a tie-breaker (ORDER BY 2 DESC, 1) because it tied at the
+# LIMIT cutoff, and b17 (random SAMPLE) got compare: count. Both had failed in every configuration,
+# including the unguarded read-only one, so the failures were measurement noise, not guard effects.
+# kinds: keyword (scary words in strings/aliases/comments), duckdb (DuckDB-specific syntax),
+#        function (ordinary functions), generator (series/range table functions for calendars),
+#        structure (CTEs, subqueries, set operations, windows)
+
+- {id: b01, kind: keyword, sql: "SELECT count(*) FROM orders WHERE o_comment LIKE '%delete%'"}
+- {id: b02, kind: keyword, sql: "SELECT 'DROP TABLE orders' AS note, count(*) FROM orders"}
+- {id: b03, kind: keyword, sql: "SELECT o_orderstatus AS \"update\", count(*) AS \"delete\" FROM orders GROUP BY 1"}
+- {id: b04, kind: keyword, sql: "SELECT count(*) FROM lineitem -- ; DELETE FROM lineitem"}
+- {id: b05, kind: keyword, sql: "/* weekly report; do not drop */ SELECT r_name FROM region"}
+- {id: b06, kind: keyword, sql: "WITH insert_stats AS (SELECT o_orderpriority, count(*) AS n FROM orders GROUP BY 1) SELECT * FROM insert_stats"}
+- {id: b07, kind: keyword, sql: "SELECT c_name AS version, c_acctbal FROM customer ORDER BY c_acctbal DESC LIMIT 5"}
+- {id: b08, kind: keyword, sql: "SELECT count(*) AS settings FROM part WHERE p_type LIKE '%COPY%'"}
+- {id: b09, kind: keyword, sql: "SELECT s_name FROM supplier WHERE s_comment LIKE '%Customer%Complaints%'"}
+- {id: b10, kind: keyword, sql: "SELECT l_shipmode, count(*) FROM lineitem WHERE l_shipinstruct = 'TAKE BACK RETURN' GROUP BY 1"}
+- {id: b11, kind: duckdb, sql: "FROM region SELECT r_name"}
+- {id: b12, kind: duckdb, sql: "SELECT * EXCLUDE (c_phone, c_address, c_comment) FROM customer LIMIT 5"}
+- {id: b13, kind: duckdb, sql: "SELECT n_name, count(*) FROM nation JOIN customer ON c_nationkey = n_nationkey GROUP BY ALL"}
+- {id: b14, kind: duckdb, sql: "SELECT c_custkey, c_acctbal FROM customer QUALIFY row_number() OVER (PARTITION BY c_mktsegment ORDER BY c_acctbal DESC) = 1"}
+- {id: b15, kind: duckdb, sql: "SELECT o_orderkey, o_totalprice FROM orders ORDER BY o_totalprice DESC LIMIT 5"}
+- {id: b16, kind: duckdb, sql: "SELECT max(COLUMNS('l_.*price')) FROM lineitem"}
+- {id: b17, kind: duckdb, compare: count, sql: "SELECT * FROM region USING SAMPLE 2 ROWS"}
+- {id: b18, kind: duckdb, sql: "SELECT list(r_name ORDER BY r_name) FROM region"}
+- {id: b19, kind: duckdb, sql: "SELECT unnest(['a', 'b']) AS x"}
+- {id: b20, kind: duckdb, sql: "SELECT * FROM (SELECT o_orderpriority, o_orderstatus FROM orders) PIVOT (count(*) FOR o_orderstatus IN ('F', 'O', 'P'))"}
+- {id: b21, kind: function, sql: "SELECT date_trunc('month', o_orderdate) AS m, count(*) FROM orders GROUP BY 1 ORDER BY 1 LIMIT 3"}
+- {id: b22, kind: function, sql: "SELECT strftime(o_orderdate, '%Y-%m') AS ym, sum(o_totalprice) FROM orders GROUP BY 1 ORDER BY 1 LIMIT 3"}
+- {id: b23, kind: function, sql: "SELECT regexp_extract(p_name, '^(\\w+)', 1) AS first_word, count(*) FROM part GROUP BY 1 ORDER BY 2 DESC, 1 LIMIT 3"}
+- {id: b24, kind: function, sql: "SELECT string_agg(r_name, ', ' ORDER BY r_name) FROM region"}
+- {id: b25, kind: function, sql: "SELECT median(o_totalprice), quantile_cont(o_totalprice, 0.9) FROM orders"}
+- {id: b26, kind: function, sql: "SELECT datediff('day', l_shipdate, l_receiptdate) AS d, count(*) FROM lineitem GROUP BY 1 ORDER BY 1 LIMIT 3"}
+- {id: b27, kind: function, sql: "SELECT count(*) FROM orders WHERE o_orderdate < current_date"}
+- {id: b28, kind: function, sql: "SELECT upper(left(c_name, 8)), round(c_acctbal, -2) FROM customer LIMIT 3"}
+- {id: b29, kind: function, sql: "SELECT coalesce(nullif(o_clerk, ''), 'n/a'), greatest(1, 2) FROM orders LIMIT 2"}
+- {id: b30, kind: function, sql: "SELECT approx_count_distinct(l_partkey), count(DISTINCT l_suppkey) FROM lineitem"}
+- {id: b31, kind: function, sql: "SELECT year(o_orderdate) AS y, count(*) FROM orders GROUP BY y ORDER BY y"}
+- {id: b32, kind: function, sql: "SELECT l_returnflag, any_value(l_linestatus), arg_max(l_orderkey, l_extendedprice) FROM lineitem GROUP BY 1"}
+- {id: b33, kind: generator, sql: "SELECT m.month, count(o.o_orderkey) FROM range(DATE '1995-01-01', DATE '1996-01-01', INTERVAL 1 MONTH) AS m(month) LEFT JOIN orders o ON date_trunc('month', o.o_orderdate) = m.month GROUP BY 1 ORDER BY 1"}
+- {id: b34, kind: generator, sql: "SELECT g.d, count(o.o_orderkey) FROM generate_series(DATE '1995-01-01', DATE '1995-01-07', INTERVAL 1 DAY) AS g(d) LEFT JOIN orders o ON o.o_orderdate = g.d GROUP BY 1 ORDER BY 1"}
+- {id: b35, kind: structure, sql: "WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 5) SELECT i FROM n"}
+- {id: b36, kind: structure, sql: "WITH a AS (SELECT c_custkey FROM customer), b AS (SELECT o_custkey FROM orders) SELECT count(*) FROM a WHERE c_custkey NOT IN (SELECT o_custkey FROM b)"}
+- {id: b37, kind: structure, sql: "SELECT r_name FROM region INTERSECT SELECT r_name FROM region EXCEPT SELECT 'ASIA'"}
+- {id: b38, kind: structure, sql: "SELECT * FROM (WITH t AS (SELECT n_name FROM nation) SELECT * FROM t) s"}
+- {id: b39, kind: structure, sql: "SELECT c_mktsegment, avg(c_acctbal) OVER (PARTITION BY c_mktsegment) FROM customer LIMIT 3"}
+- {id: b40, kind: structure, sql: "SELECT p.p_brand, (SELECT count(*) FROM partsupp ps WHERE ps.ps_partkey = p.p_partkey) FROM part p LIMIT 3"}
