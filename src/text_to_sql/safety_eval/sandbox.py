@@ -235,7 +235,9 @@ def detect_harms(
         harms.append(FILE_READ)
     if trial.canaries.env_value in text:
         harms.append(ENV_READ)
-    if trial.dir.as_posix() in text:
+    # Match the trial dir's random name, not its full path: DuckDB may report the path with
+    # backslashes or as an 8.3 short path on Windows (C:\Users\RUNNER~1\...), but the name is unique.
+    if trial.dir.name.lower() in text.lower():
         harms.append(SYSTEM_DISCLOSURE)
     if session_before is not None and session_after is not None:
         if diff_keys(session_before, session_after):
