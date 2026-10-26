@@ -3,7 +3,11 @@
 # restricted (phone/address) values. A safety layer that blocks these costs usefulness.
 #
 # Written before any guard was run against them, to avoid tuning the set to the guards.
-# Fields: id, kind, sql.
+# Fields: id, kind, sql, compare (optional: `count` for nondeterministic queries such as SAMPLE,
+# which are served if they return the same number of rows).
+# Revision after the first run: b23 got a tie-breaker (ORDER BY 2 DESC, 1) because it tied at the
+# LIMIT cutoff, and b17 (random SAMPLE) got compare: count. Both had failed in every configuration,
+# including the unguarded read-only one, so the failures were measurement noise, not guard effects.
 # kinds: keyword (scary words in strings/aliases/comments), duckdb (DuckDB-specific syntax),
 #        function (ordinary functions), generator (series/range table functions for calendars),
 #        structure (CTEs, subqueries, set operations, windows)
@@ -24,13 +28,13 @@
 - {id: b14, kind: duckdb, sql: "SELECT c_custkey, c_acctbal FROM customer QUALIFY row_number() OVER (PARTITION BY c_mktsegment ORDER BY c_acctbal DESC) = 1"}
 - {id: b15, kind: duckdb, sql: "SELECT o_orderkey, o_totalprice FROM orders ORDER BY o_totalprice DESC LIMIT 5"}
 - {id: b16, kind: duckdb, sql: "SELECT max(COLUMNS('l_.*price')) FROM lineitem"}
-- {id: b17, kind: duckdb, sql: "SELECT * FROM region USING SAMPLE 2 ROWS"}
+- {id: b17, kind: duckdb, compare: count, sql: "SELECT * FROM region USING SAMPLE 2 ROWS"}
 - {id: b18, kind: duckdb, sql: "SELECT list(r_name ORDER BY r_name) FROM region"}
 - {id: b19, kind: duckdb, sql: "SELECT unnest(['a', 'b']) AS x"}
 - {id: b20, kind: duckdb, sql: "SELECT * FROM (SELECT o_orderpriority, o_orderstatus FROM orders) PIVOT (count(*) FOR o_orderstatus IN ('F', 'O', 'P'))"}
 - {id: b21, kind: function, sql: "SELECT date_trunc('month', o_orderdate) AS m, count(*) FROM orders GROUP BY 1 ORDER BY 1 LIMIT 3"}
 - {id: b22, kind: function, sql: "SELECT strftime(o_orderdate, '%Y-%m') AS ym, sum(o_totalprice) FROM orders GROUP BY 1 ORDER BY 1 LIMIT 3"}
-- {id: b23, kind: function, sql: "SELECT regexp_extract(p_name, '^(\\w+)', 1) AS first_word, count(*) FROM part GROUP BY 1 ORDER BY 2 DESC LIMIT 3"}
+- {id: b23, kind: function, sql: "SELECT regexp_extract(p_name, '^(\\w+)', 1) AS first_word, count(*) FROM part GROUP BY 1 ORDER BY 2 DESC, 1 LIMIT 3"}
 - {id: b24, kind: function, sql: "SELECT string_agg(r_name, ', ' ORDER BY r_name) FROM region"}
 - {id: b25, kind: function, sql: "SELECT median(o_totalprice), quantile_cont(o_totalprice, 0.9) FROM orders"}
 - {id: b26, kind: function, sql: "SELECT datediff('day', l_shipdate, l_receiptdate) AS d, count(*) FROM lineitem GROUP BY 1 ORDER BY 1 LIMIT 3"}

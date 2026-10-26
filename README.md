@@ -107,6 +107,12 @@ Fixable failures (unknown column, parse error, timeout) get one repair turn with
 Asked to delete orders, both models declined before the guard was needed (`CANNOT_ANSWER: I can only
 write read-only SELECT queries`) in a live check; the guard is the deterministic backstop.
 
+**Do these layers actually work?** [`safety_eval/`](safety_eval/README.md) tests them against 100
+hand-written attacks and 2,253 fuzzed variants on disposable databases, measuring harm from the
+database itself. The production setting stopped 86 of 91 non-DoS attacks; the rest trace to a CTE
+scoping bug and a PIVOT parser mismatch, both closed by a hardened guard at no measured cost to
+legitimate queries. Write-up: [`safety_eval/RESULTS.md`](safety_eval/RESULTS.md).
+
 ## Eval
 
 **Metric: execution accuracy.** A prediction is correct when its result set matches the gold query's:

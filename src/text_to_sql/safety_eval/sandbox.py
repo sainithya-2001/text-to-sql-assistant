@@ -54,7 +54,11 @@ class Canaries:
 
 
 def load_restricted_values(db_path: Path) -> frozenset[str]:
-    con = duckdb.connect(str(db_path), read_only=True)
+    # Same config as DuckDBBackend: DuckDB refuses a second connection to one file with a different
+    # configuration in the same process.
+    con = duckdb.connect(
+        str(db_path), read_only=True, config={"enable_external_access": False, "lock_configuration": True}
+    )
     try:
         rows = con.execute(
             "SELECT c_phone FROM customer UNION ALL SELECT c_address FROM customer "

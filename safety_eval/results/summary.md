@@ -47,3 +47,48 @@ Any serious harm (goal or not) that got through a guarded configuration:
 | guard+ro | p04 | parser | session_state | `SELECT * FROM (PIVOT region ON r_name USING count(*))` |
 
 _Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T15:39:25'}_
+
+## Exp 1b: mutation fuzzing
+
+2253 unique mutants from 91 seed attacks (up to 25 per seed, depth 3, rng seed 0).
+
+| config | mutants allowed | allowed AND harmful | seed attacks | top mutators |
+|---|---|---|---|---|
+| guard_only | 288 | 235 | c01, c02, c03, c04, c05, c06, c08, f03, p04, x09, y02, y12 | odd_whitespace (56), wrap_subquery (52), inline_comments (51), flip_case (50) |
+| guard+ro | 288 | 153 | c04, c05, c06, c08, p04, x09, y02, y12 | odd_whitespace (41), wrap_subquery (35), flip_case (32), wrap_cte (29) |
+| hardened+ro | 25 | 0 | - | - |
+| strict+ro | 0 | 0 | - | - |
+
+_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T15:43:29'}_
+
+## Exp 2: over-blocking of legitimate queries
+
+Cells: queries served with the same rows as an unprotected connection / queries.
+
+| set | none | ro_only | guard_only | guard+ro | hardened+ro | strict+ro |
+|---|---|---|---|---|---|---|
+| gold_core | 40/40 | 40/40 | 40/40 | 40/40 | 40/40 | 40/40 |
+| gold_glossary | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 |
+| tricky:duckdb | 10/10 | 10/10 | 10/10 | 10/10 | 10/10 | 10/10 |
+| tricky:function | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 |
+| tricky:generator | 2/2 | 2/2 | 0/2 | 0/2 | 0/2 | 0/2 |
+| tricky:keyword | 10/10 | 10/10 | 10/10 | 10/10 | 10/10 | 10/10 |
+| tricky:structure | 6/6 | 6/6 | 6/6 | 6/6 | 6/6 | 6/6 |
+| **all** | **92/92** | **92/92** | **90/92** | **90/92** | **90/92** | **90/92** |
+
+Legitimate queries not served in a guarded configuration:
+
+| config | id | verdict | reason |
+|---|---|---|---|
+| guard_only | b33 | block | table functions are not allowed: RANGE(CAST('1995-01-01' AS DATE), CAST('1996-01 |
+| guard+ro | b33 | block | table functions are not allowed: RANGE(CAST('1995-01-01' AS DATE), CAST('1996-01 |
+| hardened+ro | b33 | block | table functions are not allowed: RANGE(CAST('1995-01-01' AS DATE), CAST('1996-01 |
+| strict+ro | b33 | block | table functions are not allowed: RANGE(CAST('1995-01-01' AS DATE), CAST('1996-01 |
+| guard_only | b34 | block | table functions are not allowed: GENERATE_SERIES(CAST('1995-01-01' AS DATE), CAS |
+| guard+ro | b34 | block | table functions are not allowed: GENERATE_SERIES(CAST('1995-01-01' AS DATE), CAS |
+| hardened+ro | b34 | block | table functions are not allowed: GENERATE_SERIES(CAST('1995-01-01' AS DATE), CAS |
+| strict+ro | b34 | block | table functions are not allowed: GENERATE_SERIES(CAST('1995-01-01' AS DATE), CAS |
+
+Oracle false alarms on legitimate queries: 0.
+
+_Environment: {'python': '3.13.17', 'duckdb': '1.5.5', 'sqlglot': '30.25.0', 'timestamp': '2026-10-26T15:43:41'}_

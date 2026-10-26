@@ -55,7 +55,14 @@ def run_attacks(db: Path, configs=CONFIGS) -> dict:
 
 def benign_items() -> list[dict]:
     items = [
-        {"id": i["id"], "kind": i["kind"], "sql": i["sql"], "set": "tricky"} for i in load_yaml("benign.yaml")
+        {
+            "id": i["id"],
+            "kind": i["kind"],
+            "sql": i["sql"],
+            "set": "tricky",
+            "compare": i.get("compare", "rows"),
+        }
+        for i in load_yaml("benign.yaml")
     ]
     for path, cat in (
         (ROOT / "eval/questions.yaml", "core"),
@@ -80,7 +87,10 @@ def run_benign(db: Path, configs=CONFIGS) -> dict:
                 if c.name == "none"
                 else run_sql(item["sql"], c, db, restricted, template=False, keep_rows=True)
             )
-            same = bool(o.ran and ref.ran and o.rows is not None and results_match(o.rows, ref.rows))
+            if item.get("compare") == "count":
+                same = bool(o.ran and ref.ran and len(o.rows or []) == len(ref.rows or []))
+            else:
+                same = bool(o.ran and ref.ran and o.rows is not None and results_match(o.rows, ref.rows))
             harms = [h for h in o.harms if h != RESTRICTED_READ]
             rows.append(
                 {
