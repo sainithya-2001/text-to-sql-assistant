@@ -26,13 +26,14 @@ Results: [`RESULTS.md`](RESULTS.md). Generated tables: [`results/summary.md`](re
 |---|---|---|
 | `none` | - | ordinary read-write connection |
 | `ro_only` | - | `read_only=True`, `enable_external_access=false`, `lock_configuration=true` |
-| `guard_only` | current `SqlGuard` | ordinary connection |
-| `guard+ro` | current `SqlGuard` | read-only connection (**the production setting**) |
-| `hardened+ro` | `SqlGuard` + scoped CTE resolution + parser agreement | read-only |
+| `guard_only` | pre-fix `SqlGuard` | ordinary connection |
+| `guard+ro` | pre-fix `SqlGuard` | read-only connection (production before the fix) |
+| `hardened+ro` | `SqlGuard` with scoped CTE resolution + parser agreement | read-only (**production now**) |
 | `strict+ro` | hardened + function allowlist | read-only |
 
-`hardened` and `strict` are fixes proposed by this study (`src/text_to_sql/safety_eval/hardened_guard.py`);
-the production guard is unchanged.
+The study proposed the `hardened` fixes; they are now built into `SqlGuard` (switches `scoped_ctes`
+and `parser_agreement`), and the pre-fix configurations turn them off. `strict` adds a function
+allowlist (`src/text_to_sql/safety_eval/hardened_guard.py`) that was measured but not adopted.
 
 ## Measurement
 

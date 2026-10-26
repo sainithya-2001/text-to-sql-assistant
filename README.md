@@ -95,7 +95,8 @@ Generated SQL passes three independent layers before and during execution:
    tree (including data-modifying CTEs). Every table reference must be a catalog table or a CTE, which
    rejects table functions (`read_csv`, `duckdb_settings()`, `query()`), quoted file paths and
    `information_schema`. Server-state functions (`getenv`, `current_setting`, `version()`) are denied by
-   name. A `LIMIT` is added when missing.
+   name. A CTE name only counts where that CTE is in scope, and DuckDB's own parser must also see
+   exactly one SELECT (both found by the safety study below). A `LIMIT` is added when missing.
 2. **Locked-down connection.** DuckDB opens read-only with `enable_external_access=false` and
    `lock_configuration=true`. The first stops writes; the second stops `SELECT * FROM read_csv('/etc/passwd')`,
    which a read-only connection alone would allow and which *is* a SELECT; the third stops SQL from
@@ -109,9 +110,10 @@ write read-only SELECT queries`) in a live check; the guard is the deterministic
 
 **Do these layers actually work?** [`safety_eval/`](safety_eval/README.md) tests them against 100
 hand-written attacks and 2,253 fuzzed variants on disposable databases, measuring harm from the
-database itself. The production setting stopped 86 of 91 non-DoS attacks; the rest trace to a CTE
-scoping bug and a PIVOT parser mismatch, both closed by a hardened guard at no measured cost to
-legitimate queries. Write-up: [`safety_eval/RESULTS.md`](safety_eval/RESULTS.md).
+database itself. The original guard + read-only connection stopped 86 of 91 non-DoS attacks; the rest
+traced to a CTE scoping bug and a PIVOT parser mismatch. Both are now fixed in `SqlGuard`, which
+stops all 91 attacks and all fuzzed variants at no measured cost to legitimate queries. Write-up:
+[`safety_eval/RESULTS.md`](safety_eval/RESULTS.md).
 
 ## Eval
 

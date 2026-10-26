@@ -7,7 +7,7 @@ from pathlib import Path
 
 from ..db.duckdb_backend import TPCH_TABLES
 from ..safety.guard import GuardError, SqlGuard
-from .hardened_guard import HardenedSqlGuard
+from .hardened_guard import HardenedSqlGuard, pre_fix_guard
 from .sandbox import Trial, detect_harms, execute, persistent_fingerprint, session_fingerprint
 
 MAX_ROWS = 200
@@ -24,9 +24,14 @@ class Config:
 CONFIGS: tuple[Config, ...] = (
     Config("none", "none", False, "no guard, ordinary connection"),
     Config("ro_only", "none", True, "read-only, external access off, config locked (layer 2 only)"),
-    Config("guard_only", "baseline", False, "current SqlGuard on an ordinary connection (layer 1 only)"),
-    Config("guard+ro", "baseline", True, "current production setting (both layers)"),
-    Config("hardened+ro", "hardened", True, "scoped CTEs + parser agreement, both layers"),
+    Config("guard_only", "baseline", False, "pre-fix SqlGuard on an ordinary connection (layer 1 only)"),
+    Config("guard+ro", "baseline", True, "pre-fix production setting (both layers)"),
+    Config(
+        "hardened+ro",
+        "hardened",
+        True,
+        "SqlGuard with scoped CTEs + parser agreement (current production), both layers",
+    ),
     Config("strict+ro", "strict", True, "hardened + function allowlist, both layers"),
 )
 CONFIG_BY_NAME = {c.name: c for c in CONFIGS}
@@ -37,9 +42,9 @@ def make_guard(kind: str) -> SqlGuard | None:
     if kind == "none":
         return None
     if kind == "baseline":
-        return SqlGuard(tables, "duckdb", max_rows=MAX_ROWS)
+        return pre_fix_guard(tables, "duckdb", max_rows=MAX_ROWS)
     if kind == "hardened":
-        return HardenedSqlGuard(tables, "duckdb", max_rows=MAX_ROWS)
+        return SqlGuard(tables, "duckdb", max_rows=MAX_ROWS)  # current SqlGuard, fixes included
     if kind == "strict":
         return HardenedSqlGuard(tables, "duckdb", max_rows=MAX_ROWS, function_allowlist=True)
     raise ValueError(kind)

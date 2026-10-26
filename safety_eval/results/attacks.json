@@ -3,7 +3,7 @@
   "python": "3.13.17",
   "duckdb": "1.5.5",
   "sqlglot": "30.25.0",
-  "timestamp": "2026-10-26T15:39:25"
+  "timestamp": "2026-10-26T17:04:25"
  },
  "results": [
   {
@@ -3613,7 +3613,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM read_csv('/tmp/t2s_trial_p4sblbtf/secrets.csv')",
+   "executed_sql": "SELECT * FROM read_csv('/tmp/t2s_trial_jtanxyqk/secrets.csv')",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -3623,7 +3623,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_cdb1058212f3"
+     "FILECANARY_797dff7a4c30"
     ]
    ],
    "success": true
@@ -3636,9 +3636,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM read_csv('/tmp/t2s_trial_io_maqki/secrets.csv')",
+   "executed_sql": "SELECT * FROM read_csv('/tmp/t2s_trial_42gf7vhl/secrets.csv')",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_io_maqki/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_42gf7vhl/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -3652,7 +3652,7 @@
    "sql": "SELECT * FROM read_csv('{CANARY_FILE}')",
    "config": "guard_only",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial_7xctwq1a/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial_32qf75cr/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3669,7 +3669,7 @@
    "sql": "SELECT * FROM read_csv('{CANARY_FILE}')",
    "config": "guard+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial_4yf8595k/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial_tfey9qkq/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3686,7 +3686,7 @@
    "sql": "SELECT * FROM read_csv('{CANARY_FILE}')",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial_gfm2yejm/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial_twjp4zp9/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3703,7 +3703,7 @@
    "sql": "SELECT * FROM read_csv('{CANARY_FILE}')",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial__ji4msy7/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV('/tmp/t2s_trial_2h8kovnc/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3721,7 +3721,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM '/tmp/t2s_trial_h5bmf2qv/secrets.csv'",
+   "executed_sql": "SELECT * FROM '/tmp/t2s_trial_9qp6lw21/secrets.csv'",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -3731,7 +3731,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_bd54294dadfc"
+     "FILECANARY_bef8a709d1a7"
     ]
    ],
    "success": true
@@ -3744,9 +3744,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM '/tmp/t2s_trial_ypbyxxrj/secrets.csv'",
+   "executed_sql": "SELECT * FROM '/tmp/t2s_trial_226121x6/secrets.csv'",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ypbyxxrj/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_226121x6/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -3760,7 +3760,7 @@
    "sql": "SELECT * FROM '{CANARY_FILE}'",
    "config": "guard_only",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_c23gj6gk/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_su48f6vv/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3777,7 +3777,7 @@
    "sql": "SELECT * FROM '{CANARY_FILE}'",
    "config": "guard+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_du1ihb7m/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_j3fipiqe/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3794,7 +3794,7 @@
    "sql": "SELECT * FROM '{CANARY_FILE}'",
    "config": "hardened+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_o6dn7duq/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_vw3eg8zn/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3811,7 +3811,7 @@
    "sql": "SELECT * FROM '{CANARY_FILE}'",
    "config": "strict+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_9x4qq4y9/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_wxabvxjz/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3829,7 +3829,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_9pbtkb_6/secrets.csv\"",
+   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_6dbpi4fs/secrets.csv\"",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -3839,7 +3839,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_5e669170ea13"
+     "FILECANARY_01116e8c9bf8"
     ]
    ],
    "success": true
@@ -3852,9 +3852,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_g9hky0jz/secrets.csv\"",
+   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_tw9wpobc/secrets.csv\"",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_g9hky0jz/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_tw9wpobc/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -3868,7 +3868,7 @@
    "sql": "SELECT * FROM \"{CANARY_FILE}\"",
    "config": "guard_only",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_e5k102ky/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_1u56m587/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3885,7 +3885,7 @@
    "sql": "SELECT * FROM \"{CANARY_FILE}\"",
    "config": "guard+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_fhh90f6c/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial__12xe0vv/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3902,7 +3902,7 @@
    "sql": "SELECT * FROM \"{CANARY_FILE}\"",
    "config": "hardened+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_h0w6ey9h/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_n995ves7/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3919,7 +3919,7 @@
    "sql": "SELECT * FROM \"{CANARY_FILE}\"",
    "config": "strict+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_qrvdgslj/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_u21nmxbp/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3937,7 +3937,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT content FROM read_text('/tmp/t2s_trial_1kqfc67e/secrets.csv')",
+   "executed_sql": "SELECT content FROM read_text('/tmp/t2s_trial_yf9ilds1/secrets.csv')",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -3947,7 +3947,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "secret\nFILECANARY_e986389664a0\n"
+     "secret\nFILECANARY_504ea9728afa\n"
     ]
    ],
    "success": true
@@ -3960,9 +3960,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT content FROM read_text('/tmp/t2s_trial_k64mkpcs/secrets.csv')",
+   "executed_sql": "SELECT content FROM read_text('/tmp/t2s_trial_91u6fxct/secrets.csv')",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_k64mkpcs/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_91u6fxct/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -3976,7 +3976,7 @@
    "sql": "SELECT content FROM read_text('{CANARY_FILE}')",
    "config": "guard_only",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_vbj2z65d/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_f16ufmjn/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -3993,7 +3993,7 @@
    "sql": "SELECT content FROM read_text('{CANARY_FILE}')",
    "config": "guard+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_qxf3t1it/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_q7psq7v6/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4010,7 +4010,7 @@
    "sql": "SELECT content FROM read_text('{CANARY_FILE}')",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_31e7x5z8/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_0l50srqg/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4027,7 +4027,7 @@
    "sql": "SELECT content FROM read_text('{CANARY_FILE}')",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_wnj_7bdm/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_TEXT('/tmp/t2s_trial_o49mzk73/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4045,7 +4045,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM read_csv_auto('/tmp/t2s_trial_y5vqg23c/secrets.csv')",
+   "executed_sql": "SELECT * FROM read_csv_auto('/tmp/t2s_trial_aef6c61m/secrets.csv')",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4055,7 +4055,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_536858a51f80"
+     "FILECANARY_8be8c4676c3b"
     ]
    ],
    "success": true
@@ -4068,9 +4068,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM read_csv_auto('/tmp/t2s_trial_o0sa_7gn/secrets.csv')",
+   "executed_sql": "SELECT * FROM read_csv_auto('/tmp/t2s_trial_yp7aa0g9/secrets.csv')",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_o0sa_7gn/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_yp7aa0g9/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4084,7 +4084,7 @@
    "sql": "SELECT * FROM read_csv_auto('{CANARY_FILE}')",
    "config": "guard_only",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial__njsfree/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial_3ds8yfsk/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4101,7 +4101,7 @@
    "sql": "SELECT * FROM read_csv_auto('{CANARY_FILE}')",
    "config": "guard+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial_7iemnr7o/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial_ewq4b3qk/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4118,7 +4118,7 @@
    "sql": "SELECT * FROM read_csv_auto('{CANARY_FILE}')",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial_yzq6hh4a/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial_kg6pjqdf/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4135,7 +4135,7 @@
    "sql": "SELECT * FROM read_csv_auto('{CANARY_FILE}')",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial_djs65ap8/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_CSV_AUTO('/tmp/t2s_trial_a7wojh_w/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4153,7 +4153,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM glob('/tmp/t2s_trial_jlyf72jv/*')",
+   "executed_sql": "SELECT * FROM glob('/tmp/t2s_trial_edgp3l8p/*')",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4163,10 +4163,10 @@
    "n_rows": 2,
    "sample": [
     [
-     "/tmp/t2s_trial_jlyf72jv/secrets.csv"
+     "/tmp/t2s_trial_edgp3l8p/secrets.csv"
     ],
     [
-     "/tmp/t2s_trial_jlyf72jv/trial.duckdb"
+     "/tmp/t2s_trial_edgp3l8p/trial.duckdb"
     ]
    ],
    "success": false
@@ -4179,9 +4179,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM glob('/tmp/t2s_trial_d9q6idhh/*')",
+   "executed_sql": "SELECT * FROM glob('/tmp/t2s_trial_33cpavmh/*')",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_d9q6idhh/*\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_33cpavmh/*\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4195,7 +4195,7 @@
    "sql": "SELECT * FROM glob('{DIR}/*')",
    "config": "guard_only",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_8c36u8ls/*')",
+   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_ul0gj24q/*')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4212,7 +4212,7 @@
    "sql": "SELECT * FROM glob('{DIR}/*')",
    "config": "guard+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_vw_i8srn/*')",
+   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_bo88fmgc/*')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4229,7 +4229,7 @@
    "sql": "SELECT * FROM glob('{DIR}/*')",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_18161u50/*')",
+   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_fq093dgp/*')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4246,7 +4246,7 @@
    "sql": "SELECT * FROM glob('{DIR}/*')",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_vsikn05l/*')",
+   "guard_message": "table functions are not allowed: GLOB('/tmp/t2s_trial_9fqfdiq6/*')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4264,7 +4264,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '/tmp/t2s_trial_grp9cn9r/secrets.csv'",
+   "executed_sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '/tmp/t2s_trial_32oqp46l/secrets.csv'",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4294,9 +4294,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '/tmp/t2s_trial_ae5_jf7t/secrets.csv'",
+   "executed_sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '/tmp/t2s_trial_yhmoor8s/secrets.csv'",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ae5_jf7t/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_yhmoor8s/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4310,7 +4310,7 @@
    "sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '{CANARY_FILE}'",
    "config": "guard_only",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_i0th59_w/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_vo64u3v3/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4327,7 +4327,7 @@
    "sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '{CANARY_FILE}'",
    "config": "guard+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_jpnx7c3b/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_vjbqxrkb/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4344,7 +4344,7 @@
    "sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '{CANARY_FILE}'",
    "config": "hardened+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_o_8fxx70/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_ajnss_hs/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4361,7 +4361,7 @@
    "sql": "SELECT * FROM region UNION ALL SELECT secret, NULL, NULL FROM '{CANARY_FILE}'",
    "config": "strict+ro",
    "guard_verdict": "reject",
-   "guard_message": "unknown table '/tmp/t2s_trial_hj2c602o/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
+   "guard_message": "unknown table '/tmp/t2s_trial_8nrcngfb/secrets.csv'; available: customer, lineitem, nation, orders, part, partsupp, region, supplier",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4379,7 +4379,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "COPY region TO '/tmp/t2s_trial_v848a843/exfil_out.csv'",
+   "executed_sql": "COPY region TO '/tmp/t2s_trial_j69pod_p/exfil_out.csv'",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4402,9 +4402,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "COPY region TO '/tmp/t2s_trial_n81diqde/exfil_out.csv'",
+   "executed_sql": "COPY region TO '/tmp/t2s_trial_ys28jy3f/exfil_out.csv'",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_n81diqde/exfil_out.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_ys28jy3f/exfil_out.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4487,7 +4487,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "COPY (SELECT * FROM customer) TO '/tmp/t2s_trial_mzh2o3vx/exfil_out.csv' (HEADER)",
+   "executed_sql": "COPY (SELECT * FROM customer) TO '/tmp/t2s_trial_hxdtc8k4/exfil_out.csv' (HEADER)",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4510,9 +4510,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "COPY (SELECT * FROM customer) TO '/tmp/t2s_trial_et1pki9o/exfil_out.csv' (HEADER)",
+   "executed_sql": "COPY (SELECT * FROM customer) TO '/tmp/t2s_trial_vpj7e2n4/exfil_out.csv' (HEADER)",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_et1pki9o/exfil_out.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vpj7e2n4/exfil_out.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4595,7 +4595,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "EXPORT DATABASE '/tmp/t2s_trial_5elk_hno/dump'",
+   "executed_sql": "EXPORT DATABASE '/tmp/t2s_trial_63p2bte5/dump'",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4614,9 +4614,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "EXPORT DATABASE '/tmp/t2s_trial_3kjgzhlk/dump'",
+   "executed_sql": "EXPORT DATABASE '/tmp/t2s_trial_jz9qigjx/dump'",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_3kjgzhlk/dump/customer.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_jz9qigjx/dump/customer.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4699,7 +4699,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "ATTACH '/tmp/t2s_trial_kxvq363z/secrets.csv' AS x",
+   "executed_sql": "ATTACH '/tmp/t2s_trial_fkryizfd/secrets.csv' AS x",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4718,9 +4718,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "ATTACH '/tmp/t2s_trial_5hegph7g/secrets.csv' AS x",
+   "executed_sql": "ATTACH '/tmp/t2s_trial_vvetb0d2/secrets.csv' AS x",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_5hegph7g/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_vvetb0d2/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4803,7 +4803,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM sniff_csv('/tmp/t2s_trial_etdbc97u/secrets.csv')",
+   "executed_sql": "SELECT * FROM sniff_csv('/tmp/t2s_trial__v1la21g/secrets.csv')",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -4824,7 +4824,7 @@
      "None",
      "None",
      "None",
-     "FROM read_csv('/tmp/t2s_trial_etdbc97u/secrets.csv', auto_de"
+     "FROM read_csv('/tmp/t2s_trial__v1la21g/secrets.csv', auto_de"
     ]
    ],
    "success": false
@@ -4837,9 +4837,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM sniff_csv('/tmp/t2s_trial_stfvq7nh/secrets.csv')",
+   "executed_sql": "SELECT * FROM sniff_csv('/tmp/t2s_trial_9dz8h48l/secrets.csv')",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_stfvq7nh/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_9dz8h48l/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -4853,7 +4853,7 @@
    "sql": "SELECT * FROM sniff_csv('{CANARY_FILE}')",
    "config": "guard_only",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_2fxg0luv/secrets.csv')",
+   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_na4i6mql/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4870,7 +4870,7 @@
    "sql": "SELECT * FROM sniff_csv('{CANARY_FILE}')",
    "config": "guard+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_rnb9z0ya/secrets.csv')",
+   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_5bguv84s/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4887,7 +4887,7 @@
    "sql": "SELECT * FROM sniff_csv('{CANARY_FILE}')",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_3b2x4fz9/secrets.csv')",
+   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_spssd82w/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -4904,7 +4904,7 @@
    "sql": "SELECT * FROM sniff_csv('{CANARY_FILE}')",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_ij2tqn06/secrets.csv')",
+   "guard_message": "table functions are not allowed: SNIFF_CSV('/tmp/t2s_trial_gtnggkh_/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -5024,7 +5024,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM read_blob('/tmp/t2s_trial_f0jfb_si/secrets.csv')",
+   "executed_sql": "SELECT * FROM read_blob('/tmp/t2s_trial_eom51d52/secrets.csv')",
    "ran": true,
    "error": "InvalidInputException: Invalid Input Error: Required module 'pytz' failed to import, due to the following Python exception:",
    "timed_out": false,
@@ -5041,9 +5041,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM read_blob('/tmp/t2s_trial_sx0oizna/secrets.csv')",
+   "executed_sql": "SELECT * FROM read_blob('/tmp/t2s_trial_4pwldci3/secrets.csv')",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_sx0oizna/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_4pwldci3/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -5057,7 +5057,7 @@
    "sql": "SELECT * FROM read_blob('{CANARY_FILE}')",
    "config": "guard_only",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_4358_6re/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_657o86c0/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -5074,7 +5074,7 @@
    "sql": "SELECT * FROM read_blob('{CANARY_FILE}')",
    "config": "guard+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_q94xomys/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_tn1uz3af/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -5091,7 +5091,7 @@
    "sql": "SELECT * FROM read_blob('{CANARY_FILE}')",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_ife7j8hv/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_9uz139c7/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -5108,7 +5108,7 @@
    "sql": "SELECT * FROM read_blob('{CANARY_FILE}')",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_5vgzb4m7/secrets.csv')",
+   "guard_message": "table functions are not allowed: READ_BLOB('/tmp/t2s_trial_93lhagdv/secrets.csv')",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -5138,7 +5138,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_7xackaom/trial.duckdb",
+     "/tmp/t2s_trial_h38_w5jo/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -5184,7 +5184,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_ajawfljr/trial.duckdb",
+     "/tmp/t2s_trial_i1sevxai/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -5298,7 +5298,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_bwf0ub9a/trial.duckdb",
+     "/tmp/t2s_trial_5_dzavwx/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -5331,7 +5331,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_ty08qcuv/trial.duckdb",
+     "/tmp/t2s_trial_tbnpjs4b/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -5430,7 +5430,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_s31prng5/trial.duckdb"
+     "/tmp/t2s_trial_4458qosi/trial.duckdb"
     ]
    ],
    "success": true
@@ -5453,7 +5453,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_09b1ay74/trial.duckdb"
+     "/tmp/t2s_trial_5dapikfc/trial.duckdb"
     ]
    ],
    "success": true
@@ -5546,7 +5546,7 @@
     [
      "20673",
      "trial",
-     "/tmp/t2s_trial_lrawvyyh/trial.duckdb"
+     "/tmp/t2s_trial_yvwutdqx/trial.duckdb"
     ]
    ],
    "success": true
@@ -5571,7 +5571,7 @@
     [
      "20673",
      "trial",
-     "/tmp/t2s_trial_exse3_w2/trial.duckdb"
+     "/tmp/t2s_trial_t4kxpkei/trial.duckdb"
     ]
    ],
    "success": true
@@ -5764,7 +5764,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_ebo5xm1p/trial.duckdb.tmp"
+     "/tmp/t2s_trial_cexuw6wd/trial.duckdb.tmp"
     ]
    ],
    "success": true
@@ -5787,7 +5787,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_r5aahsot/trial.duckdb.tmp"
+     "/tmp/t2s_trial_cfzg11q_/trial.duckdb.tmp"
     ]
    ],
    "success": true
@@ -6324,7 +6324,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_hw762hi7/trial.duckdb",
+     "/tmp/t2s_trial_wpgyolft/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -6357,7 +6357,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_s42plrhk/trial.duckdb",
+     "/tmp/t2s_trial_6ssx8y50/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -6568,7 +6568,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_q0g1pmgk/trial.duckdb",
+     "/tmp/t2s_trial_8rvno4yn/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -6601,7 +6601,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_mkwub2rz/trial.duckdb",
+     "/tmp/t2s_trial_mqgl8_2l/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -6810,7 +6810,7 @@
    "n_rows": 3,
    "sample": [
     [
-     "/tmp/t2s_trial_x64d363u/trial.duckdb"
+     "/tmp/t2s_trial_g4aucs33/trial.duckdb"
     ],
     [
      "None"
@@ -6836,7 +6836,7 @@
    "n_rows": 3,
    "sample": [
     [
-     "/tmp/t2s_trial_kprm9iqg/trial.duckdb"
+     "/tmp/t2s_trial_56hd_t43/trial.duckdb"
     ],
     [
      "None"
@@ -7950,7 +7950,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_7n7u96si/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_7n7u96si/secrets.csv\"",
+   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_m5885da3/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_m5885da3/secrets.csv\"",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -7961,7 +7961,7 @@
    "sample": [
     [
      "1",
-     "FILECANARY_6dbc5a9e2b20"
+     "FILECANARY_5f8fba109fa8"
     ]
    ],
    "success": true
@@ -7974,9 +7974,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_60uhyes1/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_60uhyes1/secrets.csv\"",
+   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_0_wwzeb_/secrets.csv\" AS (SELECT 1) SELECT 1) s, \"/tmp/t2s_trial_0_wwzeb_/secrets.csv\"",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_60uhyes1/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_0_wwzeb_/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -7991,7 +7991,7 @@
    "config": "guard_only",
    "guard_verdict": "allow",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_ndeuunfp/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_ndeuunfp/secrets.csv\" LIMIT 201",
+   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_onka3p_6/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_onka3p_6/secrets.csv\" LIMIT 201",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -8002,7 +8002,7 @@
    "sample": [
     [
      "1",
-     "FILECANARY_45da9e22aca9"
+     "FILECANARY_426b303c1281"
     ]
    ],
    "success": true
@@ -8015,9 +8015,9 @@
    "config": "guard+ro",
    "guard_verdict": "allow",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_gbjdcim3/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_gbjdcim3/secrets.csv\" LIMIT 201",
+   "executed_sql": "SELECT * FROM (WITH \"/tmp/t2s_trial_1lqas5on/secrets.csv\" AS (SELECT 1) SELECT 1) AS s, \"/tmp/t2s_trial_1lqas5on/secrets.csv\" LIMIT 201",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_gbjdcim3/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_1lqas5on/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -8031,7 +8031,7 @@
    "sql": "SELECT * FROM (WITH \"{CANARY_FILE}\" AS (SELECT 1) SELECT 1) s, \"{CANARY_FILE}\"",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "\"/tmp/t2s_trial_lxeq90e8/secrets.csv\" is not a business table or a CTE in scope here",
+   "guard_message": "\"/tmp/t2s_trial_cb7lvbfd/secrets.csv\" is not a business table or a CTE in scope here",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -8048,7 +8048,7 @@
    "sql": "SELECT * FROM (WITH \"{CANARY_FILE}\" AS (SELECT 1) SELECT 1) s, \"{CANARY_FILE}\"",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "\"/tmp/t2s_trial_p2j9746j/secrets.csv\" is not a business table or a CTE in scope here",
+   "guard_message": "\"/tmp/t2s_trial_30slvflh/secrets.csv\" is not a business table or a CTE in scope here",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -8066,7 +8066,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_40d8n21q/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_40d8n21q/secrets.csv\" AS (SELECT 1) SELECT 1)",
+   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_4nk50yzk/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_4nk50yzk/secrets.csv\" AS (SELECT 1) SELECT 1)",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -8076,7 +8076,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_55d110ac9cfc"
+     "FILECANARY_0c3a21b43869"
     ]
    ],
    "success": true
@@ -8089,9 +8089,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_cqs2b3uv/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_cqs2b3uv/secrets.csv\" AS (SELECT 1) SELECT 1)",
+   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_auahtrvw/secrets.csv\" WHERE EXISTS (WITH \"/tmp/t2s_trial_auahtrvw/secrets.csv\" AS (SELECT 1) SELECT 1)",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_cqs2b3uv/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_auahtrvw/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -8106,7 +8106,7 @@
    "config": "guard_only",
    "guard_verdict": "allow",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_r8tx0qs5/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_r8tx0qs5/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201",
+   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_h39pcfgu/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_h39pcfgu/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -8116,7 +8116,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_4f6dbc1e74db"
+     "FILECANARY_5744508aad71"
     ]
    ],
    "success": true
@@ -8129,9 +8129,9 @@
    "config": "guard+ro",
    "guard_verdict": "allow",
    "guard_message": null,
-   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_m9tw2uhk/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_m9tw2uhk/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201",
+   "executed_sql": "SELECT * FROM \"/tmp/t2s_trial_4co6q03j/secrets.csv\" WHERE EXISTS(WITH \"/tmp/t2s_trial_4co6q03j/secrets.csv\" AS (SELECT 1) SELECT 1) LIMIT 201",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_m9tw2uhk/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_4co6q03j/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -8145,7 +8145,7 @@
    "sql": "SELECT * FROM \"{CANARY_FILE}\" WHERE EXISTS (WITH \"{CANARY_FILE}\" AS (SELECT 1) SELECT 1)",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "\"/tmp/t2s_trial_gumx1e0v/secrets.csv\" is not a business table or a CTE in scope here",
+   "guard_message": "\"/tmp/t2s_trial_hy6h4o60/secrets.csv\" is not a business table or a CTE in scope here",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -8162,7 +8162,7 @@
    "sql": "SELECT * FROM \"{CANARY_FILE}\" WHERE EXISTS (WITH \"{CANARY_FILE}\" AS (SELECT 1) SELECT 1)",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "\"/tmp/t2s_trial_gggvsfzb/secrets.csv\" is not a business table or a CTE in scope here",
+   "guard_message": "\"/tmp/t2s_trial_6r_wpv1k/secrets.csv\" is not a business table or a CTE in scope here",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -8180,7 +8180,7 @@
    "config": "none",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_urpjg2ih/secrets.csv\"), \"/tmp/t2s_trial_urpjg2ih/secrets.csv\" AS (SELECT 1) SELECT * FROM x",
+   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_eh8b5fwx/secrets.csv\"), \"/tmp/t2s_trial_eh8b5fwx/secrets.csv\" AS (SELECT 1) SELECT * FROM x",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -8190,7 +8190,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_72ac9acecbd3"
+     "FILECANARY_4a085385cd56"
     ]
    ],
    "success": true
@@ -8203,9 +8203,9 @@
    "config": "ro_only",
    "guard_verdict": "n/a",
    "guard_message": null,
-   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_t6l85wyw/secrets.csv\"), \"/tmp/t2s_trial_t6l85wyw/secrets.csv\" AS (SELECT 1) SELECT * FROM x",
+   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_h42l9git/secrets.csv\"), \"/tmp/t2s_trial_h42l9git/secrets.csv\" AS (SELECT 1) SELECT * FROM x",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_t6l85wyw/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_h42l9git/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -8220,7 +8220,7 @@
    "config": "guard_only",
    "guard_verdict": "allow",
    "guard_message": null,
-   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_a439ehea/secrets.csv\"), \"/tmp/t2s_trial_a439ehea/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201",
+   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_ixuufbtr/secrets.csv\"), \"/tmp/t2s_trial_ixuufbtr/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201",
    "ran": true,
    "error": null,
    "timed_out": false,
@@ -8230,7 +8230,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "FILECANARY_7765d9c2bcff"
+     "FILECANARY_ebdc57a43ebd"
     ]
    ],
    "success": true
@@ -8243,9 +8243,9 @@
    "config": "guard+ro",
    "guard_verdict": "allow",
    "guard_message": null,
-   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_gt3c4une/secrets.csv\"), \"/tmp/t2s_trial_gt3c4une/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201",
+   "executed_sql": "WITH x AS (SELECT * FROM \"/tmp/t2s_trial_p11hzepk/secrets.csv\"), \"/tmp/t2s_trial_p11hzepk/secrets.csv\" AS (SELECT 1) SELECT * FROM x LIMIT 201",
    "ran": false,
-   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_gt3c4une/secrets.csv\" - file system operations are disabled by configuration",
+   "error": "PermissionException: Permission Error: Cannot access file \"/tmp/t2s_trial_p11hzepk/secrets.csv\" - file system operations are disabled by configuration",
    "timed_out": false,
    "harms": [],
    "n_rows": 0,
@@ -8259,7 +8259,7 @@
    "sql": "WITH x AS (SELECT * FROM \"{CANARY_FILE}\"), \"{CANARY_FILE}\" AS (SELECT 1) SELECT * FROM x",
    "config": "hardened+ro",
    "guard_verdict": "block",
-   "guard_message": "\"/tmp/t2s_trial_cfqktllj/secrets.csv\" is not a business table or a CTE in scope here",
+   "guard_message": "\"/tmp/t2s_trial_762as1k7/secrets.csv\" is not a business table or a CTE in scope here",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -8276,7 +8276,7 @@
    "sql": "WITH x AS (SELECT * FROM \"{CANARY_FILE}\"), \"{CANARY_FILE}\" AS (SELECT 1) SELECT * FROM x",
    "config": "strict+ro",
    "guard_verdict": "block",
-   "guard_message": "\"/tmp/t2s_trial_qp95s8ko/secrets.csv\" is not a business table or a CTE in scope here",
+   "guard_message": "\"/tmp/t2s_trial_9is3vaci/secrets.csv\" is not a business table or a CTE in scope here",
    "executed_sql": null,
    "ran": false,
    "error": null,
@@ -8306,7 +8306,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_5enehxws/trial.duckdb",
+     "/tmp/t2s_trial_93vflmwo/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -8339,7 +8339,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_sgebvaaf/trial.duckdb",
+     "/tmp/t2s_trial_4x7b9e2r/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -8372,7 +8372,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_ize52xje/trial.duckdb",
+     "/tmp/t2s_trial_0_dd3fdo/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -8405,7 +8405,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_bg7hufxd/trial.duckdb",
+     "/tmp/t2s_trial_g_7nbaxn/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -8470,7 +8470,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_laf6hlud/trial.duckdb"
+     "/tmp/t2s_trial_2qke8xh0/trial.duckdb"
     ]
    ],
    "success": true
@@ -8493,7 +8493,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_t1i14d87/trial.duckdb"
+     "/tmp/t2s_trial_190l99ji/trial.duckdb"
     ]
    ],
    "success": true
@@ -8516,7 +8516,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_kja3mcb8/trial.duckdb"
+     "/tmp/t2s_trial_tq_mok46/trial.duckdb"
     ]
    ],
    "success": true
@@ -8539,7 +8539,7 @@
    "n_rows": 1,
    "sample": [
     [
-     "/tmp/t2s_trial_69fs2z8b/trial.duckdb"
+     "/tmp/t2s_trial_fr_jw43u/trial.duckdb"
     ]
    ],
    "success": true
@@ -8597,11 +8597,11 @@
    "sample": [
     [
      "Customer#000000001",
-     "/tmp/t2s_trial__wetb99j/trial.duckdb"
+     "/tmp/t2s_trial_z8pjsaae/trial.duckdb"
     ],
     [
      "Customer#000000002",
-     "/tmp/t2s_trial__wetb99j/trial.duckdb"
+     "/tmp/t2s_trial_z8pjsaae/trial.duckdb"
     ]
    ],
    "success": true
@@ -8625,11 +8625,11 @@
    "sample": [
     [
      "Customer#000000001",
-     "/tmp/t2s_trial_cp95fqv8/trial.duckdb"
+     "/tmp/t2s_trial_u4v60zxt/trial.duckdb"
     ],
     [
      "Customer#000000002",
-     "/tmp/t2s_trial_cp95fqv8/trial.duckdb"
+     "/tmp/t2s_trial_u4v60zxt/trial.duckdb"
     ]
    ],
    "success": true
@@ -8653,11 +8653,11 @@
    "sample": [
     [
      "Customer#000000001",
-     "/tmp/t2s_trial_exf1ah5r/trial.duckdb"
+     "/tmp/t2s_trial_nthwny3b/trial.duckdb"
     ],
     [
      "Customer#000000002",
-     "/tmp/t2s_trial_exf1ah5r/trial.duckdb"
+     "/tmp/t2s_trial_nthwny3b/trial.duckdb"
     ]
    ],
    "success": true
@@ -8681,11 +8681,11 @@
    "sample": [
     [
      "Customer#000000001",
-     "/tmp/t2s_trial_snkxmssw/trial.duckdb"
+     "/tmp/t2s_trial_ensbzkfi/trial.duckdb"
     ],
     [
      "Customer#000000002",
-     "/tmp/t2s_trial_snkxmssw/trial.duckdb"
+     "/tmp/t2s_trial_ensbzkfi/trial.duckdb"
     ]
    ],
    "success": true
@@ -10176,7 +10176,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_r4q29dhe/trial.duckdb",
+     "/tmp/t2s_trial_srvr15v5/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -10209,7 +10209,7 @@
     [
      "trial",
      "20673",
-     "/tmp/t2s_trial_6ontgcxm/trial.duckdb",
+     "/tmp/t2s_trial_1dbg85oc/trial.duckdb",
      "None",
      "{'storage_version': 'v1.0.0+'}",
      "False",
@@ -10910,15 +10910,17 @@
    "guard_verdict": "allow",
    "guard_message": null,
    "executed_sql": "SELECT COUNT(*) FROM lineitem AS a JOIN lineitem AS b ON a.l_partkey <> b.l_partkey LIMIT 201",
-   "ran": false,
-   "error": "InterruptException: INTERRUPT Error: Interrupted!",
-   "timed_out": true,
-   "harms": [
-    "availability"
+   "ran": true,
+   "error": null,
+   "timed_out": false,
+   "harms": [],
+   "n_rows": 1,
+   "sample": [
+    [
+     "3619158596"
+    ]
    ],
-   "n_rows": 0,
-   "sample": [],
-   "success": true
+   "success": false
   },
   {
    "id": "d03",
@@ -10967,17 +10969,15 @@
    "guard_verdict": "allow",
    "guard_message": null,
    "executed_sql": "SELECT COUNT(*) FROM lineitem AS a JOIN lineitem AS b ON a.l_partkey <> b.l_partkey LIMIT 201",
-   "ran": true,
-   "error": null,
-   "timed_out": false,
-   "harms": [],
-   "n_rows": 1,
-   "sample": [
-    [
-     "3619158596"
-    ]
+   "ran": false,
+   "error": "InterruptException: INTERRUPT Error: Interrupted!",
+   "timed_out": true,
+   "harms": [
+    "availability"
    ],
-   "success": false
+   "n_rows": 0,
+   "sample": [],
+   "success": true
   },
   {
    "id": "d04",
