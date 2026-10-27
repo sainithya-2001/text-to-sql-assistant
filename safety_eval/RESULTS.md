@@ -2,7 +2,8 @@
 
 Setup, threat model and metrics: [`README.md`](README.md). Every number below comes from
 [`results/summary.md`](results/summary.md), regenerated from the raw JSON in `results/`.
-Environment: DuckDB 1.5.5, sqlglot 30.25.0, Python 3.13, TPC-H sf=0.01. No API calls.
+Environment: DuckDB 1.5.5, sqlglot 30.25.0, Python 3.13, TPC-H sf=0.01. No API calls. Verified on
+DuckDB 2.0.0 too (see "Version check" below).
 
 > **Status:** both fixes are now in `SqlGuard` (on by default). In the tables below, `guard_only` and
 > `guard+ro` are the **pre-fix** guard (reproduced with `scoped_ctes=False, parser_agreement=False`);
@@ -104,9 +105,8 @@ and no measured cost here, so this study gives no evidence for adopting it.
 
 ## Limitations
 
-- **One engine, one version.** Results are for DuckDB 1.5.5. The project pins `duckdb>=1.1` and was
-  developed on 2.0; this sandbox could not fetch the 2.0 TPC-H extension. Parser differentials are
-  version-specific, so rerun on 2.0 before quoting numbers.
+- **One engine.** Only DuckDB was tested (1.5.5 and 2.0.0). The Snowflake backend skips the parser
+  agreement check, and its own parser differentials are untested.
 - **The model is not in the loop.** This measures the layers against adversarial SQL, i.e. the worst
   case of a manipulated model. It does not measure how often Claude actually emits such SQL under
   manipulation, which is the natural next experiment.
@@ -117,6 +117,24 @@ and no measured cost here, so this study gives no evidence for adopting it.
 - **Conservative oracle.** System disclosure is counted only when the server path appears in the rows;
   e.g. listing `duckdb_tables` through the scope bug is not counted. Harm is undercounted, not
   overcounted: 0 false alarms on 92 legitimate queries x 6 configurations.
+
+## Version check: DuckDB 2.0.0
+
+The study was rerun on DuckDB 2.0.0 (the version the project develops on) against the same database
+file, plus a fresh fuzz with a different random seed, 60 variants per seed and depth 4 (5,416 variants)
+on both versions. Raw data: `results/duckdb-2.0/`, `results/fuzz_seed7.json`.
+
+- Over-blocking and the original fuzz: **identical** to 1.5.5 on every record.
+- Fresh fuzz, current `SqlGuard` + read-only: **0 harmful** on both versions (55 and 56 variants allowed,
+  all harmless). Pre-fix guard: 353 harmful on 1.5.5, 354 on 2.0.
+- Two version differences, both handled by the current guard, and both evidence for checking with the
+  executor's own parser rather than trusting one fixed model of SQL:
+  - DuckDB 2.0 executes a data-modifying CTE (`WITH d AS (DELETE ... RETURNING *) SELECT ...`) that 1.5.5
+    rejects, so with no guard it deletes data (unguarded smuggled writes: 12 -> 13 of 15). Every guarded
+    configuration blocks it on both versions.
+  - DuckDB 2.0 accepts a vertical tab (`\x0b`) as whitespace; 1.5.5 does not. One fuzzed scope-bypass
+    variant separated by vertical tabs therefore failed harmlessly on 1.5.5 but leaked the server path
+    through the pre-fix guard on 2.0. The current guard blocks it on both.
 
 ## Recommendations
 
