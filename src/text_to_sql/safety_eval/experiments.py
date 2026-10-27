@@ -160,9 +160,10 @@ def run_fuzz(
     }
 
 
-def save(name: str, data: dict) -> Path:
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    p = RESULTS_DIR / f"{name}.json"
+def save(name: str, data: dict, out_dir: Path | None = None) -> Path:
+    out_dir = out_dir or RESULTS_DIR
+    out_dir.mkdir(parents=True, exist_ok=True)
+    p = out_dir / f"{name}.json"
     p.write_text(json.dumps(data, indent=1, default=str), encoding="utf-8")
     return p
 
