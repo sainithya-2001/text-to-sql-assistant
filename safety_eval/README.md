@@ -62,14 +62,31 @@ rows (as a multiset, with the accuracy eval's normalisation) as an unprotected c
    run through the guarded configurations. Deterministic for a given seed.
 3. **Over-blocking** (`benign.yaml` + the gold SQL from the accuracy eval): 40 tricky-but-legitimate
    queries written before any guard was run on them, plus 52 gold queries.
+4. **Robustness checks**: the whole study rerun on DuckDB 2.0.0, and a second, larger fuzz with a
+   different random seed (5,416 variants, depth 4) on both DuckDB versions. Results in `results/duckdb-2.0/`
+   and `results/fuzz_seed7.json`; see "Version check" in `RESULTS.md`.
 
 ## Reproduce
 
 ```
 pip install -e ".[dev]" && t2s init-db
-python -m text_to_sql.safety_eval offline --per-seed 25   # attacks, fuzz, benign (~15 min, no API)
+
+# Experiments 1-3, the published run (~15 min)
+python -m text_to_sql.safety_eval offline --per-seed 25
 python -m text_to_sql.safety_eval report                  # -> results/summary.md
+
+# Experiment 4: the second fuzz (~5 min) -> results/fuzz_seed7.json
+python -m text_to_sql.safety_eval fuzz --per-seed 60 --depth 4 --seed 7 \
+    --configs guard+ro,hardened+ro --name fuzz_seed7
+
+# Experiment 4: the study on another DuckDB version. Install it in a separate environment and point it
+# at a copy of data/tpch.duckdb (opening the file read-only does not change it).
+python -m text_to_sql.safety_eval offline --per-seed 25 --db COPY.duckdb --out-dir safety_eval/results/duckdb-2.0
+
 pytest -q tests/test_safety_eval.py
 ```
+
+The fuzzer is deterministic: the seed-7 command above reproduces `results/fuzz_seed7.json` record for
+record (checked).
 
 No API key, no network, no paid calls.

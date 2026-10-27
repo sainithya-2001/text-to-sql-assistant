@@ -109,11 +109,13 @@ Asked to delete orders, both models declined before the guard was needed (`CANNO
 write read-only SELECT queries`) in a live check; the guard is the deterministic backstop.
 
 **Do these layers actually work?** [`safety_eval/`](safety_eval/README.md) tests them against 100
-hand-written attacks and 2,253 fuzzed variants on disposable databases, measuring harm from the
-database itself. The original guard + read-only connection stopped 86 of 91 non-DoS attacks; the rest
-traced to a CTE scoping bug and a PIVOT parser mismatch. Both are now fixed in `SqlGuard`, which
-stops all 91 attacks and all fuzzed variants at no measured cost to legitimate queries. Write-up:
-[`safety_eval/RESULTS.md`](safety_eval/RESULTS.md).
+hand-written attacks and 7,669 fuzzed variants (two independent fuzz runs) on disposable databases,
+measuring harm from the database itself rather than from the guard's verdict. The original guard +
+read-only connection stopped 86 of 91 non-DoS attacks; the rest traced to a CTE scoping bug and a
+PIVOT parser mismatch. Both are now fixed in `SqlGuard`, which stops all 91 and lets none of the
+fuzzed variants cause harm, while serving the same legitimate queries as before. Results hold on
+DuckDB 1.5.5 and 2.0.0. Not covered by any layer: reads of PII-like columns, and expensive queries
+beyond the timeout. Write-up: [`safety_eval/RESULTS.md`](safety_eval/RESULTS.md).
 
 ## Eval
 
@@ -328,3 +330,7 @@ Docker image.
 - The glossary is hand-curated and matched lexically; a term phrased in a way none of its synonyms
   cover won't match (the model's `CLARIFY` path is the fallback).
 - The Snowflake backend is implemented but has not been run against a live account in this repo's CI.
+- Safety is read-only, not authorization: any user can read any column, including customer phone
+  numbers and addresses, and query cost is bounded only by the timeout and row cap. The guard's
+  DuckDB parser check does not apply to the Snowflake dialect, and the safety study tested DuckDB only
+  (`safety_eval/RESULTS.md`).
